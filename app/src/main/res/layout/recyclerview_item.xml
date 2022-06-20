@@ -11,7 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"  >
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryLight"
+        android:layout_marginTop="8dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,15 +54,15 @@
                 android:gravity="right"
                 />
 
-            <TextView
-                android:id="@+id/level"
-                style="@style/text_view_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:padding="8dp"
-                android:text="Залежність"
-                android:gravity="right"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/priority"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@color/priority_red"
+                android:padding="5dp"
+                android:layout_gravity="right"
+                />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
