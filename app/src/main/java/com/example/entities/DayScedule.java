@@ -12,4 +12,9 @@ public class DayScedule {
      *dependance on time to Pills
      */
     HashMap<Date,Pill> pillSchedule =new HashMap();
+    Date breakfast;
+    Date dinner;
+    Date lunch;
+    Date wakingUp;
+    Date Going_to_sleap;
 }
