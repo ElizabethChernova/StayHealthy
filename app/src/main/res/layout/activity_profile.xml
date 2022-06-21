@@ -10,77 +10,157 @@
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="729dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/text_style"
+            android:id="@+id/name"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:text="Ім'я" />
+
+        <EditText
+            style="@style/edittext_view_style"
+            android:id="@+id/personName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            />
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
-                android:text="Ім'я" />
-
-            <TextView
+                style="@style/text_style"
                 android:id="@+id/weight"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
                 android:text="Вага" />
 
-            <TextView
-                android:id="@+id/age"
-                android:layout_width="wrap_content"
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/editWeigh"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
-                android:text="Вік" />
-
-            <TextView
-                android:id="@+id/sex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
-                android:text="Стать" />
-
-            <TextView
-                android:id="@+id/awakening_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
-                android:text="Час пробудження" />
-
-            <TextView
-                android:id="@+id/sleeping_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="#00857D"
-                android:text="Час засинання" />
+                android:ems="10"
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/age"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Вік" />
+
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/editAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/sex"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Стать" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/radio_button_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="М" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="Ж" />
+            </RadioGroup>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/awakening_time"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Час пробудження" />
+
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/editAwakeTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/sleeping_time"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Час засинання" />
+
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/editSleepingTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="time" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
