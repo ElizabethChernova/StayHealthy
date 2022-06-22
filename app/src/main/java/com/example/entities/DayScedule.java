@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import java.time.OffsetTime;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ public class DayScedule {
     /**
      *dependance on time to something
      */
-    HashMap<Date,String> schedule =new HashMap();
+    HashMap<OffsetTime,String> schedule =new HashMap();
     /**
      *dependance on time to Pills
      */

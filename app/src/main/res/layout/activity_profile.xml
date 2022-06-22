@@ -164,5 +164,11 @@
                 android:inputType="time" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/save_changes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Зберегти зміни" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
