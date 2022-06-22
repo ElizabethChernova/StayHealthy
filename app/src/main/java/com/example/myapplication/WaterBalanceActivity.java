@@ -23,7 +23,7 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+        mTextView.setText(String.valueOf(seekBar.getProgress()) + " мл");
     }
 
     @Override
@@ -33,6 +33,6 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        mTextView.setText(String.valueOf(seekBar.getProgress()) + " мл");
+
     }
 }

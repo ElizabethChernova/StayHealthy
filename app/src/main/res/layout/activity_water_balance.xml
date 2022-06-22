@@ -27,12 +27,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <ImageButton
-            android:id="@+id/plusButton"
+            android:id="@+id/minusButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:background="#9DDFDC"
-            app:srcCompat="@drawable/ic_plus_03" />
+            app:srcCompat="@drawable/ic_minus_03" />
 
         <TextView
             android:id="@+id/textView"
@@ -44,12 +44,13 @@
             android:text="0" />
 
         <ImageButton
-            android:id="@+id/minusButton"
+            android:id="@+id/plusButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:background="#9DDFDC"
-            app:srcCompat="@drawable/ic_minus_03" />
+            app:srcCompat="@drawable/ic_plus_03" />
+
     </LinearLayout>
 
     <LinearLayout
