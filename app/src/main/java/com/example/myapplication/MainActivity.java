@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
                 int id=item.getItemId();
                 if(id==R.id.nav_main){
                     //Toast.makeText(MainActivity.this,"Main",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,MainActivity.class));
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
                 }else if(id==R.id.nav_profile){
                     //Toast.makeText(MainActivity.this,"Help",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 }else if(id==R.id.nav_water){
                     //Toast.makeText(MainActivity.this,"Broadcast",Toast.LENGTH_SHORT).show();
-                    //startActivity(new Intent(MainActivity.this,MainActivity.class));
+                    //startActivity(new Intent(MainActivity.this, NewMedicineActivity.class));
                 }else if(id==R.id.nav_feeling){
                     //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(MainActivity.this,BackgroundActivity.class));

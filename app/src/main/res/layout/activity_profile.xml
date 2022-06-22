@@ -106,6 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
+                    android:textColor="@color/colorTextPrimary"
                     android:text="М" />
 
                 <RadioButton
@@ -113,6 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
+                    android:textColor="@color/colorTextPrimary"
                     android:text="Ж" />
             </RadioGroup>
 
