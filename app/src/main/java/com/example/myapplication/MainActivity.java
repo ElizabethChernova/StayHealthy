@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 }else if(id==R.id.nav_water){
                     //Toast.makeText(MainActivity.this,"Broadcast",Toast.LENGTH_SHORT).show();
-                    //startActivity(new Intent(MainActivity.this, NewMedicineActivity.class));
+                    startActivity(new Intent(MainActivity.this, WaterBalanceActivity.class));
                 }else if(id==R.id.nav_feeling){
                     //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(MainActivity.this,BackgroundActivity.class));
