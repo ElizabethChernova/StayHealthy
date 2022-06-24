@@ -54,10 +54,20 @@
             <EditText
                 style="@style/edittext_view_style"
                 android:id="@+id/editWeigh"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
+            <TextView
+                android:id="@+id/kg"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:text="кг"
+                android:layout_marginTop="8dp"
+                android:paddingStart="0dp"
+                android:padding="12dp"
+                android:textSize="17dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,10 +85,21 @@
             <EditText
                 style="@style/edittext_view_style"
                 android:id="@+id/editAge"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
+
+            <TextView
+                android:id="@+id/p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:text="р"
+                android:layout_marginTop="8dp"
+                android:paddingStart="0dp"
+                android:padding="12dp"
+                android:textSize="17dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,7 +143,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:orientation="horizontal">
 
             <TextView
@@ -130,21 +151,19 @@
                 android:id="@+id/awakening_time"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час пробудження" />
+                android:text="Час пробудження"
+                android:layout_gravity="center"/>
 
-            <EditText
-                style="@style/edittext_view_style"
-                android:id="@+id/editAwakeTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="time" />
+            <TimePicker
+                android:id="@+id/timePickerAwakeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:timePickerMode="spinner" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:orientation="horizontal">
 
             <TextView
@@ -152,16 +171,14 @@
                 android:id="@+id/sleeping_time"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час засинання" />
+                android:text="Час засинання"
+                android:layout_gravity="center"/>
 
-            <EditText
-                style="@style/edittext_view_style"
-                android:id="@+id/editSleepingTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="time" />
+            <TimePicker
+                android:id="@+id/timePickerSleepingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:timePickerMode="spinner" />
         </LinearLayout>
 
         <Button

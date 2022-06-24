@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, WaterBalanceActivity.class));
                 }else if(id==R.id.nav_feeling){
                     //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
-                    //startActivity(new Intent(MainActivity.this,BackgroundActivity.class));
+                    startActivity(new Intent(MainActivity.this, FeelingActivity.class));
                 }else if(id==R.id.nav_help){
                 //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(MainActivity.this,BackgroundActivity.class));
+                    startActivity(new Intent(MainActivity.this, InstructionActivity.class));
                 }
                 return true;
             }
