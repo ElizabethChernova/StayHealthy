@@ -59,7 +59,11 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 currentNumberOfGlass++;
                 numberOfGlass.setText(String.valueOf(currentNumberOfGlass));
                 remainingML-= getNumber((String) mTextView.getText());
-                mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML+ " мл");
+                if(remainingML>=0) {
+                    mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
+                }else{
+                    mlInDay.setText("Сьогодні ви випили на: " + remainingML*(-1) + " мл вище норми");
+                }
             }
         });
 
