@@ -2,4 +2,9 @@
     <string name="app_name">StayHealthy</string>
     <string name="Open">NavBar</string>
     <string name="Close">NavBar</string>
+    <string name="temperRase">Підвищення температури</string>
+    <string name="cough">Кашель</string>
+    <string name="appetite">Втрата апетиту</string>
+    <string name="digestive_problems">Проблеми травлення</string>
+    <string name="bad_mood">Погіршення настрою</string>
 </resources>

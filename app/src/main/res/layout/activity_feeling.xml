@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeelingActivity">
+    tools:context=".FeelingActivity"
+    android:background="#EAFDFC">
 
     <TextView
         android:id="@+id/howAreYou"
@@ -27,6 +28,167 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howAreYou" />
+
+
+    <TextView
+        android:id="@+id/feeling"
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Симптоми"
+        android:textSize="30dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeling">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/imageButtonTemper"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00E0FFFD"
+                    app:srcCompat="@drawable/ic_icon_feeling_1" />
+
+                <TextView
+                    android:id="@+id/temperature"
+                    style="@style/text_style"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:text="@string/temperRase"
+                    android:textAlignment="center"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/imageButtonCough"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00E0FFFD"
+                    app:srcCompat="@drawable/ic_icon_feeling_2" />
+
+                <TextView
+                    android:id="@+id/cough"
+                    style="@style/text_style"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:text="@string/cough"
+                    android:textAlignment="center"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/imageButtonEating"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00E0FFFD"
+                    app:srcCompat="@drawable/ic_icon_feeling_3" />
+
+                <TextView
+                    android:id="@+id/appetite"
+                    style="@style/text_style"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:text="@string/appetite"
+                    android:textAlignment="center"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/imageButtonStomach"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00E0FFFD"
+                    app:srcCompat="@drawable/ic_icon_feeling_4" />
+
+                <TextView
+                    android:id="@+id/stomach"
+                    style="@style/text_style"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:text="@string/digestive_problems"
+                    android:textAlignment="center"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <ImageButton
+                    android:id="@+id/imageButtonMood"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00E0FFFD"
+                    app:srcCompat="@drawable/ic_icon_feeling_5" />
+
+                <TextView
+                    android:id="@+id/mood"
+                    style="@style/text_style"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:text="@string/bad_mood"
+                    android:textAlignment="center"
+                    android:textSize="17dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
