@@ -7,9 +7,7 @@
     android:orientation="vertical"
     android:background="@color/colorScreenBackground"
     android:id="@+id/dl">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WaterBalanceActivity">
@@ -43,7 +41,7 @@
             app:srcCompat="@drawable/ic_minus_03" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/numberOfGlass"
             style="@style/text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,38 +59,52 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/mlInDay"
+        style="@style/text_style"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:text="На сьогодні ще потрібно випити:"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/mlInDay">
 
         <TextView
             android:id="@+id/glass"
             style="@style/text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:text="В одному стакані" />
+            android:text="В одному стакані"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textML"
             style="@style/text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:padding="0dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:textSize="17dp"
-            android:text="50 мл" />
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="50 мл"
+            android:textSize="17dp" />
 
         <SeekBar
             android:id="@+id/seekBar"
