@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ import java.time.OffsetTime;
 public class ProfileActivity extends AppCompatActivity {
 
     private EditText name,weight,height,age;
+    private RadioGroup sex;
+    private RadioButton male,female;
     private TimePicker awake,goToSleep;
     private Button save;
     private boolean firstSetUp;
@@ -56,6 +60,9 @@ public class ProfileActivity extends AppCompatActivity {
         weight=(EditText) findViewById(R.id.editWeigh);
         height=(EditText) findViewById(R.id.editHeight);
         age=(EditText) findViewById(R.id.editAge);
+        sex=(RadioGroup) findViewById(R.id.radio_group_sex);
+        male=(RadioButton) findViewById(R.id.radio_button_male);
+        female=(RadioButton) findViewById(R.id.radio_button_female);
         awake=(TimePicker) findViewById(R.id.timePickerAwakeTime);
         goToSleep=(TimePicker) findViewById(R.id.timePickerSleepingTime);
         save=(Button) findViewById(R.id.save_changes);
@@ -66,6 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         open();
+
+
 
 
         NavigationView nav_view=(NavigationView) findViewById(R.id.nav_view);
@@ -105,6 +114,10 @@ public class ProfileActivity extends AppCompatActivity {
         person.setWeight(Double.parseDouble(weight.getText().toString()));
         person.setHeight(Double.parseDouble(height.getText().toString()));
         person.setAge(Integer.parseInt(age.getText().toString()));
+
+        if(sex.getCheckedRadioButtonId()==R.id.radio_button_male) person.setSex('Ч');
+        else if(sex.getCheckedRadioButtonId()==R.id.radio_button_female) person.setSex('Ж');
+
         DaySchedule ds=new DaySchedule();
         //ds.wakingUp(awake.getHour(),awake.getMinute());
         person.setDaySchedule(ds);
@@ -124,6 +137,9 @@ public class ProfileActivity extends AppCompatActivity {
            weight.setText(person.getWeight()+"");
            height.setText(person.getHeight()+"");
            age.setText(person.getAge()+"");
+           if(person.getSex()=='Ч')male.setChecked(true);
+           else if(person.getSex()=='Ж') female.setChecked(true);
+
         }
         else{
             person=new Person();

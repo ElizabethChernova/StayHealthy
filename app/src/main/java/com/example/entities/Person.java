@@ -26,6 +26,16 @@ public class Person {
 
     private double weight;
 
+    public char getSex() {
+        return sex;
+    }
+
+    public void setSex(char sex) {
+        this.sex = sex;
+    }
+
+    private char sex;
+
     public String getName() {
         return name;
     }
