@@ -132,12 +132,12 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/text_style"
                 android:id="@+id/eating_time"
+                style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час прийому"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Час прийому" />
 
             <TimePicker
                 android:id="@+id/timePickerEatPills"
@@ -207,6 +207,18 @@
             android:inputType="textLongMessage"
             />
     </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Залежність від їжі(якщо до, то обираємо -, якщо після, то -)" />
+        <TimePicker
+            android:id="@+id/timePickereating"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:timePickerMode="spinner"
+            />
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
@@ -215,6 +227,12 @@
             android:layout_marginTop="50dp"
             android:text="Додати" />
 
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="time" />
 
 
     </LinearLayout>

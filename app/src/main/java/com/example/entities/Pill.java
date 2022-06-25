@@ -28,16 +28,21 @@ public class Pill {
      */
     private String dependencyOnFood;
     /**
+     * User can add dependency between pills and meal if +30(30 minutes after meal), -30(30 minutes before meal)
+     */
+    private int dependencyOnFoodInMinutes;
+    /**
      * Set of times, when user should take pills
      */
     private ArrayList<OffsetTime> times;
 
-    public Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood){
+    public Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood, int dependencyOnFoodInMinutes){
         this.name=name;
         this.dose=dose;
         this.timesPerDay=timesPerDay;
         this.dependencyOnSleep=dependencyOnSleep;
         this.dependencyOnFood=dependencyOnFood;
+        this.dependencyOnFoodInMinutes=dependencyOnFoodInMinutes;
         countTimeSlots();
     }
 
