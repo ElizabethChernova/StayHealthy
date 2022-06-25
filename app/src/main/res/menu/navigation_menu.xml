@@ -14,5 +14,5 @@
         android:title="Самопочуття"></item>
     <item
         android:id="@+id/nav_help"
-        android:title="Інструкція"></item>
+        android:title="Про додаток"></item>
 </menu>
