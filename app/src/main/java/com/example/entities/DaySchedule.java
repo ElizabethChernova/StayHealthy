@@ -17,5 +17,5 @@ public class DayScedule {
     Date dinner;
     Date lunch;
     Date wakingUp;
-    Date Going_to_sleap;
+    Date goingToSleep;
 }
