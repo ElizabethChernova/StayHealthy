@@ -1,13 +1,11 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,10 +23,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     private Button add;
     private Spinner spinner;
     private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
-private int dependencyOnFood;
+
     private LinearLayout layout;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +33,7 @@ private int dependencyOnFood;
 
         TimePicker timePicker = this.findViewById(R.id.timePickerEatPills);
         timePicker.setIs24HourView(true);
-        TimePicker timePicker2=this.findViewById(R.id.timePickereating);
-        dependencyOnFood=(timePicker2.getHour())*60+timePicker2.getMinute();
+
         add = findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
