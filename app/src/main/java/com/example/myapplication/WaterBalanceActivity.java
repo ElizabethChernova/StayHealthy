@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
 
 public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
@@ -26,8 +27,8 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
 
     private int currentNumberOfGlass=0;
     //це число має розраховуватись!
-    private int neededMLInDay=2000;
-    private int remainingML=neededMLInDay;
+    private double neededMLInDay=2000;
+    private double remainingML=neededMLInDay;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -139,5 +140,12 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         }
 
         return result;
+    }
+    private void countWater(){
+        if(Storage.importFromJSON(this)!=null){
+
+        double water_mililiters = Storage.importFromJSON(this).getWeight()*35;
+        neededMLInDay=water_mililiters;
+        }
     }
 }
