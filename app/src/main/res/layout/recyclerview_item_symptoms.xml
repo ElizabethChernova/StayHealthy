@@ -1,6 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorScreenBackground"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <RatingBar
+            android:id="@+id/lastRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp" />
+
+            <TextView
+                android:id="@+id/dayAndTime"
+                style="@style/text_view_style"
+                android:background="@color/colorScreenBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:padding="8dp"
+                android:gravity="right"
+                android:text="Data" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/additionalPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/comment"
+                style="@style/text_view_style"
+                android:background="@color/colorScreenBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:padding="8dp"
+                android:text="Comment" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/feeling">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/imageButtonTemper"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00E0FFFD"
+                                app:srcCompat="@drawable/ic_icon_feeling_1" />
+
+                            <ImageView
+                                android:id="@+id/tick1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="75dp"
+                                app:srcCompat="@drawable/ic_icon_feeling_6" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/temperature"
+                            style="@style/text_style"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            android:text="@string/temperRase"
+                            android:textAlignment="center"
+                            android:textSize="17dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/imageButtonCough"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00E0FFFD"
+                                app:srcCompat="@drawable/ic_icon_feeling_2" />
+
+                            <ImageView
+                                android:id="@+id/tick2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="75dp"
+                                app:srcCompat="@drawable/ic_icon_feeling_6" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/cough"
+                            style="@style/text_style"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            android:text="@string/cough"
+                            android:textAlignment="center"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/imageButtonEating"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00E0FFFD"
+                                app:srcCompat="@drawable/ic_icon_feeling_3" />
+
+                            <ImageView
+                                android:id="@+id/tick3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="75dp"
+                                app:srcCompat="@drawable/ic_icon_feeling_6" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/appetite"
+                            style="@style/text_style"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            android:text="@string/appetite"
+                            android:textAlignment="center"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/imageButtonStomach"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00E0FFFD"
+                                app:srcCompat="@drawable/ic_icon_feeling_4" />
+
+                            <ImageView
+                                android:id="@+id/tick4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="75dp"
+                                app:srcCompat="@drawable/ic_icon_feeling_6" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/stomach"
+                            style="@style/text_style"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            android:text="@string/digestive_problems"
+                            android:textAlignment="center"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/imageButtonMood"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="#00E0FFFD"
+                                app:srcCompat="@drawable/ic_icon_feeling_5" />
+
+                            <ImageView
+                                android:id="@+id/tick5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="75dp"
+                                app:srcCompat="@drawable/ic_icon_feeling_6" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/mood"
+                            style="@style/text_style"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            android:text="@string/bad_mood"
+                            android:textAlignment="center"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
