@@ -51,6 +51,7 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         mlInDay = findViewById(R.id.mlInDay);
+        countWater();
         mlInDay.setText("На сьогодні ще потрібно випити: " + neededMLInDay+ " мл");
 
         plus.setOnClickListener(new View.OnClickListener() {
