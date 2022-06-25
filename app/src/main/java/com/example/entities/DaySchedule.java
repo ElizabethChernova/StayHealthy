@@ -4,7 +4,7 @@ import java.time.OffsetTime;
 import java.util.Date;
 import java.util.HashMap;
 
-public class DayScedule {
+public class DaySchedule {
     /**
      *dependance on time to something
      */
@@ -13,9 +13,9 @@ public class DayScedule {
      *dependance on time to Pills
      */
     HashMap<Date,Pill> pillSchedule =new HashMap();
-    Date breakfast;
-    Date dinner;
-    Date lunch;
-    Date wakingUp;
-    Date goingToSleep;
+    OffsetTime breakfast;
+    OffsetTime dinner;
+    OffsetTime lunch;
+    public OffsetTime wakingUp;
+    public OffsetTime goingToSleep;
 }

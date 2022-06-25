@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,13 +16,17 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.entities.DaySchedule;
 import com.example.entities.Person;
 import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
 
+import java.time.OffsetTime;
+
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText name,weight;
+    private EditText name,weight,height,age;
+    private TimePicker awake,goToSleep;
     private Button save;
     private boolean firstSetUp;
     Person person;
@@ -48,6 +54,10 @@ public class ProfileActivity extends AppCompatActivity {
         //set connection with fields
         name=(EditText) findViewById(R.id.personName);
         weight=(EditText) findViewById(R.id.editWeigh);
+        height=(EditText) findViewById(R.id.editHeight);
+        age=(EditText) findViewById(R.id.editAge);
+        awake=(TimePicker) findViewById(R.id.timePickerAwakeTime);
+        goToSleep=(TimePicker) findViewById(R.id.timePickerSleepingTime);
         save=(Button) findViewById(R.id.save_changes);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +103,11 @@ public class ProfileActivity extends AppCompatActivity {
     public void saveChanges(View view){
         person.setName(name.getText().toString());
         person.setWeight(Double.parseDouble(weight.getText().toString()));
+        person.setHeight(Double.parseDouble(height.getText().toString()));
+        person.setAge(Integer.parseInt(age.getText().toString()));
+        DaySchedule ds=new DaySchedule();
+        //ds.wakingUp(awake.getHour(),awake.getMinute());
+        person.setDaySchedule(ds);
         boolean result = Storage.exportToJSON(this, person);
         if(result){
             Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();
@@ -107,6 +122,8 @@ public class ProfileActivity extends AppCompatActivity {
         if(person!=null){
            name.setText(person.getName());
            weight.setText(person.getWeight()+"");
+           height.setText(person.getHeight()+"");
+           age.setText(person.getAge()+"");
         }
         else{
             person=new Person();

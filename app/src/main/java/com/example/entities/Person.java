@@ -1,6 +1,5 @@
 package com.example.entities;
 
-import java.time.OffsetTime;
 import java.util.ArrayList;
 /**
  * This class contains basic information about user
@@ -59,20 +58,20 @@ public class Person {
         this.pills = pills;
     }
 
-    public DayScedule getUsualDay() {
+    public DaySchedule getUsualDay() {
         return usualDay;
     }
 
-    public void setUsualDay(DayScedule usualDay) {
+    public void setUsualDay(DaySchedule usualDay) {
         this.usualDay = usualDay;
     }
 
-    public DayScedule getUsualDayWithPills() {
-        return usualDayWithPills;
+    public DaySchedule getDaySchedule() {
+        return daySchedule;
     }
 
-    public void setUsualDayWithPills(DayScedule usualDayWithPills) {
-        this.usualDayWithPills = usualDayWithPills;
+    public void setDaySchedule(DaySchedule daySchedule) {
+        this.daySchedule = daySchedule;
     }
 
     /**
@@ -84,21 +83,21 @@ public class Person {
      */
     private ArrayList<Pill> pills;
 
-private DayScedule usualDay;
-    private DayScedule usualDayWithPills;
-    public Person(String name, double weight, double height, int age, ArrayList<Pill> pills, DayScedule usualDay) {
+private DaySchedule usualDay;
+    private DaySchedule daySchedule;
+    public Person(String name, double weight, double height, int age, ArrayList<Pill> pills, DaySchedule usualDay) {
         this.name = name;
         this.weight=weight;
         this.height = height;
         this.age = age;
         this.pills = pills;
         this.usualDay=usualDay;
-       usualDayWithPills= makeNewScedual();
+       daySchedule = makeNewSchedule();
     }
 
-    public Person(){};
-//TODO make new scedual
-    private DayScedule makeNewScedual() {
+    public Person(){}
+//TODO make new schedule
+    private DaySchedule makeNewSchedule() {
         return usualDay;
     }
 }
