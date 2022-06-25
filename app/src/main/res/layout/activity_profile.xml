@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:textColor="@color/colorTextPrimary"
-                    android:text="М" />
+                    android:text="Ч" />
 
                 <RadioButton
                     android:id="@+id/radio_button_no"
