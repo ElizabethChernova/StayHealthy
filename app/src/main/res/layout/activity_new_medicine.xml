@@ -82,20 +82,53 @@
                 android:layout_height="wrap_content"
                 android:text="Залежність" />
 
-            <EditText
-                style="@style/edittext_view_style"
-                android:id="@+id/edit_dependency"
+            <Spinner
+                android:id="@+id/spinnerDependency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newDependency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/newDep"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="За   "
+                android:gravity="right"
+                android:textSize="17dp"/>
+
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/edit_minute"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:text="хв"
+                android:layout_marginTop="8dp"
+                android:paddingStart="0dp"
+                android:padding="12dp"
+                android:textSize="17dp" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:orientation="horizontal">
 
             <TextView
@@ -103,16 +136,14 @@
                 android:id="@+id/eating_time"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час прийому" />
+                android:text="Час прийому"
+                android:layout_gravity="center"/>
 
-            <EditText
-                style="@style/edittext_view_style"
-                android:id="@+id/edit_eating_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="time" />
+            <TimePicker
+                android:id="@+id/timePickerAwakeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:timePickerMode="spinner" />
         </LinearLayout>
 
         <LinearLayout
