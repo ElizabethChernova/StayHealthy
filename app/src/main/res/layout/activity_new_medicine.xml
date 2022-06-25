@@ -140,10 +140,11 @@
                 android:layout_gravity="center"/>
 
             <TimePicker
-                android:id="@+id/timePickerAwakeTime"
+                android:id="@+id/timePickerEatPills"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:timePickerMode="spinner" />
+                android:timePickerMode="spinner"
+                />
         </LinearLayout>
 
         <LinearLayout

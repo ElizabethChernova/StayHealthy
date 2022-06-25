@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.entities.Person;
@@ -31,6 +32,12 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        TimePicker timePicker = this.findViewById(R.id.timePickerAwakeTime);
+        timePicker.setIs24HourView(true);
+        timePicker = this.findViewById(R.id.timePickerSleepingTime);
+        timePicker.setIs24HourView(true);
+
         drawerLayout=(DrawerLayout) findViewById(R.id.dl);
         actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);

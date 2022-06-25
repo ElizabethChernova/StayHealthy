@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,6 +30,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
+
+        TimePicker timePicker = this.findViewById(R.id.timePickerEatPills);
+        timePicker.setIs24HourView(true);
 
         add = findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
