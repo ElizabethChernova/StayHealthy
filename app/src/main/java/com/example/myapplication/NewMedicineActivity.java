@@ -68,4 +68,15 @@ public class NewMedicineActivity extends AppCompatActivity {
             }
         });
     }
+//save new medical
+    public void saveChanges(View view) {
+        if(findViewById(R.id.edit_med_name)!=null && !findViewById(R.id.edit_med_name).equals("")
+                && findViewById(R.id.edit_weigh)!=null && !findViewById(R.id.edit_weigh).equals("")
+                && findViewById(R.id.radio_group_sex)!=null
+                && findViewById(R.id.editTextСomment)!=null && !findViewById(R.id.editTextСomment).equals("")
+
+        ){
+
+        }
+    }
 }
