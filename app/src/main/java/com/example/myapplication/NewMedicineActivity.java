@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -62,6 +63,23 @@ public class NewMedicineActivity extends AppCompatActivity {
                 if(position==1 || position==5)
                 {
                     layout.setVisibility(View.GONE);
+                }
+                TextView timeTExt= findViewById(R.id.eating_time);
+                if(position==0 || position==1  || position==2 )
+                {
+                    timeTExt.setText("Час прийому іжі");
+                }
+                if(position==3)
+                {
+                    timeTExt.setText("Час засинання");
+                }
+                if(position==4)
+                {
+                    timeTExt.setText("Час прокидання");
+                }
+                if(position==5)
+                {
+                    timeTExt.setText("Час прийому");
                 }
            }
             @Override
