@@ -110,11 +110,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void saveChanges(View view){
-        if(findViewById(R.id.personName)!=null && !findViewById(R.id.personName).equals("")
+        if(true/*
+                findViewById(R.id.personName)!=null && !findViewById(R.id.personName).equals("")
                 && findViewById(R.id.editWeigh)!=null
                 && findViewById(R.id.editAge)!=null
                 && findViewById(R.id.editHeight)!=null
-                && findViewById(R.id.radio_group_sex)!=null
+                && findViewById(R.id.radio_group_sex)!=null*/
         ) {
             person.setName(name.getText().toString());
             person.setWeight(Double.parseDouble(weight.getText().toString()));
