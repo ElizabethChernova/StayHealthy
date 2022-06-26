@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -72,11 +73,11 @@ public class NewMedicineActivity extends AppCompatActivity {
     public void saveChanges(View view) {
         if(findViewById(R.id.edit_med_name)!=null && !findViewById(R.id.edit_med_name).equals("")
                 && findViewById(R.id.edit_weigh)!=null && !findViewById(R.id.edit_weigh).equals("")
-                && findViewById(R.id.radio_group_sex)!=null
-                && findViewById(R.id.editTextСomment)!=null && !findViewById(R.id.editTextСomment).equals("")
-
-        ){
+                && findViewById(R.id.radio_group_sex)!=null){
 
         }
+    else{
+        Toast.makeText(this, "Заповніть, будь ласка, всі поля", Toast.LENGTH_LONG).show();
+    }
     }
 }

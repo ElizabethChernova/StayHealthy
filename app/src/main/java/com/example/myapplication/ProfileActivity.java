@@ -110,23 +110,31 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void saveChanges(View view){
-        person.setName(name.getText().toString());
-        person.setWeight(Double.parseDouble(weight.getText().toString()));
-        person.setHeight(Double.parseDouble(height.getText().toString()));
-        person.setAge(Integer.parseInt(age.getText().toString()));
+        if(findViewById(R.id.personName)!=null && !findViewById(R.id.personName).equals("")
+                && findViewById(R.id.editWeigh)!=null
+                && findViewById(R.id.editAge)!=null
+                && findViewById(R.id.editHeight)!=null
+                && findViewById(R.id.radio_group_sex)!=null
+        ) {
+            person.setName(name.getText().toString());
+            person.setWeight(Double.parseDouble(weight.getText().toString()));
+            person.setHeight(Double.parseDouble(height.getText().toString()));
+            person.setAge(Integer.parseInt(age.getText().toString()));
 
-        if(sex.getCheckedRadioButtonId()==R.id.radio_button_male) person.setSex('Ч');
-        else if(sex.getCheckedRadioButtonId()==R.id.radio_button_female) person.setSex('Ж');
+            if (sex.getCheckedRadioButtonId() == R.id.radio_button_male) person.setSex('Ч');
+            else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
 
-        DaySchedule ds=new DaySchedule();
-        //ds.wakingUp(awake.getHour(),awake.getMinute());
-        person.setDaySchedule(ds);
-        boolean result = Storage.exportToJSON(this, person);
-        if(result){
-            Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(this, "Помилка збереження змін", Toast.LENGTH_LONG).show();
+            DaySchedule ds = new DaySchedule();
+            //ds.wakingUp(awake.getHour(),awake.getMinute());
+            person.setDaySchedule(ds);
+            boolean result = Storage.exportToJSON(this, person);
+            if (result) {
+                Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Помилка збереження змін", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(this, "Заповніть, будь ласка, всі поля", Toast.LENGTH_LONG).show();
         }
     }
 
