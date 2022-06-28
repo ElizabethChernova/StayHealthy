@@ -79,7 +79,9 @@ public class Person {
     public DaySchedule getDaySchedule() {
         return daySchedule;
     }
-
+public void addPill(Pill pill){
+      pills.add(pill);
+}
     public void setDaySchedule(DaySchedule daySchedule) {
         this.daySchedule = daySchedule;
     }

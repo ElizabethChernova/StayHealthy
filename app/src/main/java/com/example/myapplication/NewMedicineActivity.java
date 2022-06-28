@@ -12,20 +12,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.entities.DaySchedule;
+import com.example.entities.Pill;
+import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
 
 public class NewMedicineActivity extends AppCompatActivity {
 
+    private EditText name,dose,comment,minutesEating,times;
+    private RadioGroup alarmType;
+    private RadioButton notification,alarm;
+    private TimePicker eatingPills;
     private Button add;
     private Spinner spinner;
     private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
-
+Pill newPill;
     private LinearLayout layout;
 
     @Override
@@ -33,14 +43,22 @@ public class NewMedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
 
-        TimePicker timePicker = this.findViewById(R.id.timePickerEatPills);
-        timePicker.setIs24HourView(true);
-
+        eatingPills = this.findViewById(R.id.timePickerEatPills);
+        eatingPills.setIs24HourView(true);
+        name=(EditText) findViewById(R.id.edit_med_name);
+        dose=(EditText) findViewById(R.id.edit_dose);
+        comment=(EditText) findViewById(R.id.editTextСomment);
+times=(EditText) findViewById(R.id.edit_times);
+        alarmType=(RadioGroup) findViewById(R.id.radio_group_alarmType);
+        alarm=(RadioButton) findViewById(R.id.radio_button_alarm);
+        notification=(RadioButton) findViewById(R.id.radio_button_notification);
+        eatingPills=(TimePicker) findViewById(R.id.timePickerEatPills);
         add = findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // додаємо ліки у списор
+                // додаємо ліки у список
+                saveNewMedicine(view);
             }
         });
 
@@ -87,15 +105,31 @@ public class NewMedicineActivity extends AppCompatActivity {
             }
         });
     }
-//save new medical
-/*    public void saveChanges(View view) {
-        if(findViewById(R.id.edit_med_name)!=null && !findViewById(R.id.edit_med_name).equals("")
-                && findViewById(R.id.edit_weigh)!=null && !findViewById(R.id.edit_weigh).equals("")
-                && findViewById(R.id.radio_group_sex)!=null){
+
+    private void saveNewMedicine(View view) {
+        String nameGetString=name.getText().toString();
+        String doseString=dose.getText().toString();
+String timesString=times.getText().toString();
+        if (timesString.matches("")||((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) &&alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification)||doseString.matches("")||nameGetString.matches("")){
+            Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         }
-    else{
-        Toast.makeText(this, "Заповніть, будь ласка, всі поля", Toast.LENGTH_LONG).show();
+        //todo check if dependence is on eating, there should be minetus(you should always enter minutes, if dependency on eating)
+        else{
+
+            newPill.setName(name.getText().toString());
+
+            newPill.setDose(Double.parseDouble(dose.getText().toString()));
+            newPill.setTimesPerDay(Integer.parseInt(times.getText().toString()));
+
+
+            if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification) newPill.setAlarmType('A');
+            else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm) newPill.setAlarmType('N');
+          //todo add pills to a person
+
+      //      boolean result = Storage.exportToJSON(this, newPill);
+
+        }
     }
-    }*/
+
 }

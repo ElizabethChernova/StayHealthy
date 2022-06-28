@@ -27,11 +27,17 @@ public class Pill {
      * User can add dependency between pills and meal (user can add comments such as "After breakfast"
      */
     private String dependencyOnFood;
+
+
+    /**
+     * type of Alarm: A-alarm, N-noification
+     */
+    private char alarmType;
     /**
      * Set of times, when user should take pills
      */
     private ArrayList<OffsetTime> times;
-
+//todo add dependancy on food nd sleep in xml(connect with this class)
     public Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood){
         this.name=name;
         this.dose=dose;
@@ -44,5 +50,60 @@ public class Pill {
     private void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
         //TODO коли буде готовий клас користувача додати обрахунок часових слотів для прийому ліків залежно від сну і режиму дня
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public char getAlarmType() {
+        return alarmType;
+    }
+
+    public void setAlarmType(char alarmType) {
+        this.alarmType = alarmType;
+    }
+    public double getDose() {
+        return dose;
+    }
+
+    public void setDose(double dose) {
+        this.dose = dose;
+    }
+
+    public int getTimesPerDay() {
+        return timesPerDay;
+    }
+
+    public void setTimesPerDay(int timesPerDay) {
+        this.timesPerDay = timesPerDay;
+    }
+
+    public int getDependencyOnSleep() {
+        return dependencyOnSleep;
+    }
+
+    public void setDependencyOnSleep(int dependencyOnSleep) {
+        this.dependencyOnSleep = dependencyOnSleep;
+    }
+
+    public String getDependencyOnFood() {
+        return dependencyOnFood;
+    }
+
+    public void setDependencyOnFood(String dependencyOnFood) {
+        this.dependencyOnFood = dependencyOnFood;
+    }
+
+    public ArrayList<OffsetTime> getTimes() {
+        return times;
+    }
+
+    public void setTimes(ArrayList<OffsetTime> times) {
+        this.times = times;
     }
 }
