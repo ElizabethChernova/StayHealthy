@@ -109,34 +109,39 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    public void saveChanges(View view){
-        if(true/*
-                findViewById(R.id.personName)!=null && !findViewById(R.id.personName).equals("")
-                && findViewById(R.id.editWeigh)!=null
-                && findViewById(R.id.editAge)!=null
-                && findViewById(R.id.editHeight)!=null
-                && findViewById(R.id.radio_group_sex)!=null*/
-        ) {
-            person.setName(name.getText().toString());
-            person.setWeight(Double.parseDouble(weight.getText().toString()));
-            person.setHeight(Double.parseDouble(height.getText().toString()));
-            person.setAge(Integer.parseInt(age.getText().toString()));
+    public void saveChanges(View view) {
+    String nameGetString=name.getText().toString();
+    String weightString=weight.getText().toString();
+    String ageString=age.getText().toString();
+        if (((sex.getCheckedRadioButtonId() != R.id.radio_button_male) &&sex.getCheckedRadioButtonId() != R.id.radio_button_female)||ageString.matches("")||nameGetString.matches("")||weightString.matches("")){
+            Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
-            if (sex.getCheckedRadioButtonId() == R.id.radio_button_male) person.setSex('Ч');
-            else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
-
-            DaySchedule ds = new DaySchedule();
-            //ds.wakingUp(awake.getHour(),awake.getMinute());
-            person.setDaySchedule(ds);
-            boolean result = Storage.exportToJSON(this, person);
-            if (result) {
-                Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Помилка збереження змін", Toast.LENGTH_LONG).show();
-            }
-        }else{
-            Toast.makeText(this, "Заповніть, будь ласка, всі поля", Toast.LENGTH_LONG).show();
+        }else if(Double.parseDouble(weightString)>400||Double.parseDouble(weightString)<1){
+            Toast.makeText(this, "Please enter correct weight", Toast.LENGTH_SHORT).show();
+        }else if(Double.parseDouble(ageString)>150||Double.parseDouble(weightString)<0){
+            Toast.makeText(this, "Please enter correct age", Toast.LENGTH_SHORT).show();
         }
+        else{
+
+        person.setName(name.getText().toString());
+
+    person.setWeight(Double.parseDouble(weight.getText().toString()));
+       person.setHeight(Double.parseDouble(height.getText().toString()));
+        person.setAge(Integer.parseInt(age.getText().toString()));
+
+        if (sex.getCheckedRadioButtonId() == R.id.radio_button_male) person.setSex('Ч');
+        else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
+
+        DaySchedule ds = new DaySchedule();
+        //ds.wakingUp(awake.getHour(),awake.getMinute());
+        person.setDaySchedule(ds);
+        boolean result = Storage.exportToJSON(this, person);
+        if (result) {
+            Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Помилка збереження змін", Toast.LENGTH_LONG).show();
+        }
+    }
     }
 
     public void open(){

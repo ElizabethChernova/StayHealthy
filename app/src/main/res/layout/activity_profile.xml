@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/dl">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
@@ -30,9 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            style="@style/text_style"
             android:id="@+id/name"
+            style="@style/text_style"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:text="Ім'я" />
@@ -51,9 +50,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                style="@style/text_style"
                 android:id="@+id/weight"
+                style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:text="Вага" />
@@ -181,16 +181,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="108dp"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/text_style"
                 android:id="@+id/awakening_time"
+                style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час пробудження"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Час пробудження" />
 
             <TimePicker
                 android:id="@+id/timePickerAwakeTime"
@@ -201,16 +201,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="80dp"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/text_style"
                 android:id="@+id/sleeping_time"
+                style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час засинання"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Час засинання" />
 
             <TimePicker
                 android:id="@+id/timePickerSleepingTime"
@@ -222,7 +222,7 @@
         <Button
             android:id="@+id/save_changes"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Зберегти зміни" />
