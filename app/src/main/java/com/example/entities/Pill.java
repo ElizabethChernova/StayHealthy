@@ -37,7 +37,11 @@ public class Pill {
      * Set of times, when user should take pills
      */
     private ArrayList<OffsetTime> times;
-//todo add dependancy on food nd sleep in xml(connect with this class)
+
+    public Pill() {
+    }
+
+    //todo add dependancy on food nd sleep in xml(connect with this class)
     public Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood){
         this.name=name;
         this.dose=dose;

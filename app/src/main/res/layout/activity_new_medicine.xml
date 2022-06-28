@@ -128,23 +128,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="62dp"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/text_style"
                 android:id="@+id/eating_time"
+                style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Час прийому"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Час прийому" />
 
             <TimePicker
                 android:id="@+id/timePickerEatPills"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:timePickerMode="spinner"
-                />
+                android:timePickerMode="spinner" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,8 +156,8 @@
                 style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Вид оповіщення"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Вид оповіщення" />
 
             <RadioGroup
                 android:id="@+id/radio_group_alarmType"
@@ -188,7 +187,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -199,13 +198,12 @@
                 android:text="Коментар" />
 
             <EditText
+                android:id="@+id/editTextСomment"
                 style="@style/edittext_view_style"
-            android:id="@+id/editTextСomment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textLongMessage"
-            />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textLongMessage" />
 
         </LinearLayout>
           <LinearLayout

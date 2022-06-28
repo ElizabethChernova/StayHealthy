@@ -107,7 +107,9 @@ private DaySchedule usualDay;
        daySchedule = makeNewSchedule();
     }
 
-    public Person(){}
+    public Person(){
+        pills=new ArrayList<Pill>();
+    }
 //TODO make new schedule
     private DaySchedule makeNewSchedule() {
         return usualDay;

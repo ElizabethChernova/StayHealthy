@@ -22,12 +22,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.entities.DaySchedule;
+import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
 
 public class NewMedicineActivity extends AppCompatActivity {
-
+Person person;
     private EditText name,dose,comment,minutesEating,times;
     private RadioGroup alarmType;
     private RadioButton notification,alarm;
@@ -61,7 +62,7 @@ times=(EditText) findViewById(R.id.edit_times);
                 saveNewMedicine(view);
             }
         });
-
+        open();
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -106,6 +107,10 @@ times=(EditText) findViewById(R.id.edit_times);
         });
     }
 
+    private void open() {
+        person = Storage.importFromJSON(this);
+    }
+
     private void saveNewMedicine(View view) {
         String nameGetString=name.getText().toString();
         String doseString=dose.getText().toString();
@@ -116,7 +121,7 @@ String timesString=times.getText().toString();
         }
         //todo check if dependence is on eating, there should be minetus(you should always enter minutes, if dependency on eating)
         else{
-
+newPill= new Pill();
             newPill.setName(name.getText().toString());
 
             newPill.setDose(Double.parseDouble(dose.getText().toString()));
@@ -125,10 +130,16 @@ String timesString=times.getText().toString();
 
             if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification) newPill.setAlarmType('A');
             else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm) newPill.setAlarmType('N');
-          //todo add pills to a person
+            person = Storage.importFromJSON(this);
+            if(person!=null){
 
-      //      boolean result = Storage.exportToJSON(this, newPill);
+    person.addPill(newPill);
+                Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
 
+        }else{
+                Toast.makeText(this, "PLease make your personal profile at first", Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
 
