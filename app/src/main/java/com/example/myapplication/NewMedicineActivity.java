@@ -39,6 +39,7 @@ Person person;
 Pill newPill;
     private LinearLayout layout;
 
+    public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,28 +50,42 @@ Pill newPill;
         name=(EditText) findViewById(R.id.edit_med_name);
         dose=(EditText) findViewById(R.id.edit_dose);
         comment=(EditText) findViewById(R.id.editTextСomment);
-times=(EditText) findViewById(R.id.edit_times);
+        times=(EditText) findViewById(R.id.edit_times);
         alarmType=(RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm=(RadioButton) findViewById(R.id.radio_button_alarm);
         notification=(RadioButton) findViewById(R.id.radio_button_notification);
         eatingPills=(TimePicker) findViewById(R.id.timePickerEatPills);
+
+        // адаптер
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        layout = findViewById(R.id.newDependency);
+        spinner = findViewById(R.id.spinnerDependency);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(5);
+
         add = findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // додаємо ліки у список
                 saveNewMedicine(view);
+
+                Intent replyIntent = new Intent();
+                String info[] = new String[4];
+
+                info[0]= String.valueOf(name.getText());
+                info[1]= eatingPills.toString();
+                info[2]= String.valueOf(spinner.getSelectedItem());
+                info[3]= String.valueOf(alarmType.getCheckedRadioButtonId());
+
+                replyIntent.putExtra(EXTRA_REPLY, info);
+                setResult(RESULT_OK, replyIntent);
+                finish();
             }
         });
         open();
-        // адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        layout = findViewById(R.id.newDependency);
-        spinner = findViewById(R.id.spinnerDependency);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(5);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,

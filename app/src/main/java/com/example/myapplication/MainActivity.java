@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
         buttonPlus = findViewById(R.id.fab);
+
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final MedicalListAdapter adapter = new MedicalListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         NavigationView nav_view=(NavigationView) findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
