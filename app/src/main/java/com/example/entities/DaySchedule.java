@@ -5,17 +5,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class DaySchedule {
-    /**
-     *dependance on time to something
-     */
-    HashMap<OffsetTime,String> schedule =new HashMap();
-    /**
-     *dependance on time to Pills
-     */
-    HashMap<Date,Pill> pillSchedule =new HashMap();
-    OffsetTime breakfast;
-    OffsetTime dinner;
-    OffsetTime lunch;
+    public DaySchedule(OffsetTime wakingUp, OffsetTime goingToSleep) {
+        this.wakingUp = wakingUp;
+        this.goingToSleep = goingToSleep;
+    }
+
     public OffsetTime wakingUp;
     public OffsetTime goingToSleep;
 }
