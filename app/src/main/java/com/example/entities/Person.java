@@ -1,13 +1,14 @@
 package com.example.entities;
 
 import java.util.ArrayList;
+
 /**
  * This class contains basic information about user
  */
 public class Person {
 
 
-   /**
+    /**
      * Name of person
      */
     private String name;
@@ -35,6 +36,16 @@ public class Person {
     }
 
     private char sex;
+
+    public int getCurrentAmountOfWater() {
+        return currentAmountOfWater;
+    }
+
+    public void setCurrentAmountOfWater(int currentAmountOfWater) {
+        currentAmountOfWater = currentAmountOfWater;
+    }
+
+    private int currentAmountOfWater = 0;
 
     public String getName() {
         return name;
@@ -79,9 +90,11 @@ public class Person {
     public DaySchedule getDaySchedule() {
         return daySchedule;
     }
-public void addPill(Pill pill){
-      pills.add(pill);
-}
+
+    public void addPill(Pill pill) {
+        pills.add(pill);
+    }
+
     public void setDaySchedule(DaySchedule daySchedule) {
         this.daySchedule = daySchedule;
     }
@@ -95,22 +108,23 @@ public void addPill(Pill pill){
      */
     private ArrayList<Pill> pills;
 
-private DaySchedule usualDay;
+    private DaySchedule usualDay;
     private DaySchedule daySchedule;
+
     public Person(String name, double weight, double height, int age, ArrayList<Pill> pills, DaySchedule usualDay) {
         this.name = name;
-        this.weight=weight;
+        this.weight = weight;
         this.height = height;
         this.age = age;
         this.pills = pills;
-        this.usualDay=usualDay;
-       daySchedule = makeNewSchedule();
+        this.usualDay = usualDay;
+        daySchedule = makeNewSchedule();
     }
 
-    public Person(){
-        pills=new ArrayList<Pill>();
+    public Person() {
+        pills = new ArrayList<Pill>();
     }
-//TODO make new schedule
+
     private DaySchedule makeNewSchedule() {
         return usualDay;
     }

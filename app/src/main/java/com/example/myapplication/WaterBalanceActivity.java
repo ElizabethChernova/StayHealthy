@@ -26,19 +26,19 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
     private TextView numberOfGlass;
     private TextView mlInDay;
 
-    private int currentNumberOfGlass=0;
-    //це число має розраховуватись!
-    private double neededMLInDay=2000;
-    private double remainingML=neededMLInDay;
+    private int currentNumberOfGlass = 0;
+    private double neededMLInDay = 2000;
+    private double remainingML = neededMLInDay;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_balance);
-        drawerLayout=(DrawerLayout) findViewById(R.id.dl);
-        actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
+        drawerLayout = (DrawerLayout) findViewById(R.id.dl);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -53,8 +53,8 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         minus = findViewById(R.id.minusButton);
         mlInDay = findViewById(R.id.mlInDay);
         countWater();
-        remainingML=neededMLInDay;
-        mlInDay.setText("На сьогодні ще потрібно випити: " + neededMLInDay+ " мл");
+        remainingML = neededMLInDay;
+        mlInDay.setText("На сьогодні ще потрібно випити: " + neededMLInDay + " мл");
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +62,11 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 currentNumberOfGlass = Integer.parseInt((String) numberOfGlass.getText());
                 currentNumberOfGlass++;
                 numberOfGlass.setText(String.valueOf(currentNumberOfGlass));
-                remainingML-= getNumber((String) mTextView.getText());
-                if(remainingML>=0) {
+                remainingML -= getNumber((String) mTextView.getText());
+                if (remainingML >= 0) {
                     mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
-                }else{
-                    mlInDay.setText("Сьогодні ви випили на: " + remainingML*(-1) + " мл вище норми");
+                } else {
+                    mlInDay.setText("Сьогодні ви випили на: " + remainingML * (-1) + " мл вище норми");
                 }
             }
         });
@@ -75,34 +75,34 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
             @Override
             public void onClick(View view) {
                 currentNumberOfGlass = Integer.parseInt((String) numberOfGlass.getText());
-                if(currentNumberOfGlass!=0)
-                {
+                if (currentNumberOfGlass != 0) {
                     currentNumberOfGlass--;
                     numberOfGlass.setText(String.valueOf(currentNumberOfGlass));
-                    remainingML+= getNumber((String) mTextView.getText());
-                    mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML+ " мл");
+                    remainingML += getNumber((String) mTextView.getText());
+                    mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
+                    
                 }
             }
         });
 
-        NavigationView nav_view=(NavigationView) findViewById(R.id.nav_view);
+        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id=item.getItemId();
-                if(id==R.id.nav_main){
+                int id = item.getItemId();
+                if (id == R.id.nav_main) {
                     //Toast.makeText(MainActivity.this,"Main",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(WaterBalanceActivity.this, MainActivity.class));
-                }else if(id==R.id.nav_profile){
+                } else if (id == R.id.nav_profile) {
                     //Toast.makeText(MainActivity.this,"Help",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(WaterBalanceActivity.this, ProfileActivity.class));
-                }else if(id==R.id.nav_water){
+                } else if (id == R.id.nav_water) {
                     //Toast.makeText(MainActivity.this,"Broadcast",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(WaterBalanceActivity.this, WaterBalanceActivity.class));
-                }else if(id==R.id.nav_feeling){
+                } else if (id == R.id.nav_feeling) {
                     //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(WaterBalanceActivity.this, FeelingActivity.class));
-                }else if(id==R.id.nav_help){
+                } else if (id == R.id.nav_help) {
                     //Toast.makeText(MainActivity.this,"Background",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(WaterBalanceActivity.this, InstructionActivity.class));
                 }
@@ -113,7 +113,7 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return actionBarDrawerToggle.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
 
@@ -132,26 +132,26 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
 
     }
 
-    private int getNumber(String str){
-        int result=0;
-        for(int i=0; i<str.length(); i++)
-        {
-            if(str.charAt(i)>='0' && str.charAt(i)<='9')
-            {
-                result = result*10 + Character.getNumericValue(str.charAt(i));
+    private int getNumber(String str) {
+        int result = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                result = result * 10 + Character.getNumericValue(str.charAt(i));
             }
         }
 
         return result;
     }
-    private void countWater(){
-        Person p=Storage.importFromJSON(this);
-        if(p!=null){
-if(p.getSex()=='Ч'){
-    neededMLInDay = Storage.importFromJSON(this).getWeight()*35;}
-else{
-     neededMLInDay = Storage.importFromJSON(this).getWeight()*31;}
-}
+
+    private void countWater() {
+        Person p = Storage.importFromJSON(this);
+        if (p != null) {
+            if (p.getSex() == 'Ч') {
+                neededMLInDay = Storage.importFromJSON(this).getWeight() * 35;
+            } else {
+                neededMLInDay = Storage.importFromJSON(this).getWeight() * 31;
+            }
+        }
 
 
     }
