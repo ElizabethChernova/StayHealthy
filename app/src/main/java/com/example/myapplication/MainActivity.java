@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.entities.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton buttonPlus;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static String info[]= new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,5 +84,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return actionBarDrawerToggle.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+
+          //  Pill pill =new Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood);
+//            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+//            mWordViewModel.insert(word);
+        } else {
+
+        }
     }
 }

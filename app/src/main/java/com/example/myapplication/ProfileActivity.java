@@ -132,9 +132,9 @@ public class ProfileActivity extends AppCompatActivity {
         if (sex.getCheckedRadioButtonId() == R.id.radio_button_male) person.setSex('Ч');
         else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
 
-        DaySchedule ds = new DaySchedule();
+      //  DaySchedule ds = new DaySchedule();
         //ds.wakingUp(awake.getHour(),awake.getMinute());
-        person.setDaySchedule(ds);
+       // person.setDaySchedule(ds);
         boolean result = Storage.exportToJSON(this, person);
         if (result) {
             Toast.makeText(this, "Зміни збережено", Toast.LENGTH_LONG).show();

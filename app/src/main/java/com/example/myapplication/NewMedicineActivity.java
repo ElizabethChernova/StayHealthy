@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.MainActivity.info;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +74,7 @@ Pill newPill;
                 saveNewMedicine(view);
 
                 Intent replyIntent = new Intent();
-                String info[] = new String[4];
+                //String info[] = new String[4];
 
                 info[0]= String.valueOf(name.getText());
                 info[1]= eatingPills.toString();
