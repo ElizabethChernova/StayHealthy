@@ -2,14 +2,10 @@ package com.example.myapplication;
 
 import static com.example.myapplication.MainActivity.info;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,18 +19,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.entities.DaySchedule;
 import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
-import com.google.android.material.navigation.NavigationView;
 
 public class NewMedicineActivity extends AppCompatActivity {
 Person person;
     private EditText name,dose,comment,minutesEating,times;
     private RadioGroup alarmType;
     private RadioButton notification,alarm;
-    private TimePicker eatingPills;
+    private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
     private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
@@ -47,8 +41,8 @@ Pill newPill;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
 
-        eatingPills = this.findViewById(R.id.timePickerEatPills);
-        eatingPills.setIs24HourView(true);
+        timeToPills = this.findViewById(R.id.timePickerEatPills);
+        timeToPills.setIs24HourView(true);
         name=(EditText) findViewById(R.id.edit_med_name);
         dose=(EditText) findViewById(R.id.edit_dose);
         comment=(EditText) findViewById(R.id.editTextСomment);
@@ -56,7 +50,7 @@ Pill newPill;
         alarmType=(RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm=(RadioButton) findViewById(R.id.radio_button_alarm);
         notification=(RadioButton) findViewById(R.id.radio_button_notification);
-        eatingPills=(TimePicker) findViewById(R.id.timePickerEatPills);
+        timeToPills =(TimePicker) findViewById(R.id.timePickerEatPills);
 
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
@@ -77,9 +71,13 @@ Pill newPill;
                 //String info[] = new String[4];
 
                 info[0]= String.valueOf(name.getText());
-                info[1]= eatingPills.toString();
-                info[2]= String.valueOf(spinner.getSelectedItem());
-                info[3]= String.valueOf(alarmType.getCheckedRadioButtonId());
+                info[1]= String.valueOf(dose.getText());
+                info[2]= String.valueOf(times.getText());
+                info[3]= timeToPills.toString();
+                //залежність
+                info[4]= String.valueOf(spinner.getSelectedItem());
+                //вид сповіщень
+                info[5]= String.valueOf(alarmType.getCheckedRadioButtonId());
 
                 replyIntent.putExtra(EXTRA_REPLY, info);
                 setResult(RESULT_OK, replyIntent);

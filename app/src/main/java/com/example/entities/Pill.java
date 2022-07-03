@@ -51,6 +51,19 @@ public class Pill {
         countTimeSlots();
     }
 
+    public Pill(String name, double dose, int timesPerDay, String timeForEatingPill, String dependency, int typeOfAlarm) {
+        this.name=name;
+        this.dose=dose;
+        this.timesPerDay=timesPerDay;
+        //timeForEatingPill
+        this.dependencyOnFood=dependency;
+        if(typeOfAlarm==0)
+            alarmType='N';
+        else
+            alarmType='A';
+        countTimeSlots();
+    }
+
     private void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
         //TODO коли буде готовий клас користувача додати обрахунок часових слотів для прийому ліків залежно від сну і режиму дня

@@ -91,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
-          //  Pill pill =new Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood);
+          Pill pill =new Pill(info[0], Double.parseDouble(info[1]), Integer.parseInt(info[2]),
+            info[3], info[4], Integer.parseInt(info[5]));
 //            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
 //            mWordViewModel.insert(word);
         } else {
