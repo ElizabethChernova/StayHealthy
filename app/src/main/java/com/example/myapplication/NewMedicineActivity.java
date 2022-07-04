@@ -67,20 +67,20 @@ Pill newPill;
                 // додаємо ліки у список
                 saveNewMedicine(view);
 
-                Intent replyIntent = new Intent();
-                //String info[] = new String[4];
-
-                info[0]= String.valueOf(name.getText());
-                info[1]= String.valueOf(dose.getText());
-                info[2]= String.valueOf(times.getText());
-                info[3]= timeToPills.toString();
-                //залежність
-                info[4]= String.valueOf(spinner.getSelectedItem());
-                //вид сповіщень
-                info[5]= String.valueOf(alarmType.getCheckedRadioButtonId());
-
-                replyIntent.putExtra(EXTRA_REPLY, info);
-                setResult(RESULT_OK, replyIntent);
+//                Intent replyIntent = new Intent();
+//                //String info[] = new String[4];
+//
+//                info[0]= String.valueOf(name.getText());
+//                info[1]= String.valueOf(dose.getText());
+//                info[2]= String.valueOf(times.getText());
+//                info[3]= timeToPills.toString();
+//                //залежність
+//                info[4]= String.valueOf(spinner.getSelectedItem());
+//                //вид сповіщень
+//                info[5]= String.valueOf(alarmType.getCheckedRadioButtonId());
+//
+//                replyIntent.putExtra(EXTRA_REPLY, info);
+//                setResult(RESULT_OK, replyIntent);
                 finish();
             }
         });

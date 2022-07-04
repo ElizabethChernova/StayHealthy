@@ -32,7 +32,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             Pill current = pills.get(position);
             holder.name.setText(current.getName());
             holder.time.setText(current.getTimes().get(0).toString());
-            holder.dependency.setText(current.getDependencyOnFood());
+            holder.dependency.setText(current.getDependency());
         //    holder.priority.setBackgroundColor(2);
         } else {
             // Covers the case of data not being ready yet.

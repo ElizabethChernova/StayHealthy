@@ -19,15 +19,15 @@ public class Pill {
      * User can set how many times some pills should be taken
      */
     private int timesPerDay;
+
     /**
-     * User can set dependency between pills and sleep (e.g. 2 hours before sleep)
+     * User can set how many das he needs to eat pills
      */
-    private int dependencyOnSleep;
+    private int numberOfDays;
     /**
      * User can add dependency between pills and meal (user can add comments such as "After breakfast"
      */
-    private String dependencyOnFood;
-
+    private String dependency;
 
     /**
      * type of Alarm: A-alarm, N-noification
@@ -42,25 +42,26 @@ public class Pill {
     }
 
     //todo add dependancy on food nd sleep in xml(connect with this class)
-    public Pill(String name, double dose, int timesPerDay, int dependencyOnSleep, String dependencyOnFood){
+    public Pill(String name, double dose, int timesPerDay, String dependency){
         this.name=name;
         this.dose=dose;
         this.timesPerDay=timesPerDay;
-        this.dependencyOnSleep=dependencyOnSleep;
-        this.dependencyOnFood=dependencyOnFood;
+        this.dependency =dependency;
         countTimeSlots();
     }
 
-    public Pill(String name, double dose, int timesPerDay, String timeForEatingPill, String dependency, int typeOfAlarm) {
+    public Pill(String name, double dose, int timesPerDay, int numberOfDays, String dependency, int typeOfAlarm) {
         this.name=name;
         this.dose=dose;
         this.timesPerDay=timesPerDay;
+        this.numberOfDays=numberOfDays;
         //timeForEatingPill
-        this.dependencyOnFood=dependency;
+        this.dependency =dependency;
         if(typeOfAlarm==0)
             alarmType='N';
         else
             alarmType='A';
+
         countTimeSlots();
     }
 
@@ -100,20 +101,12 @@ public class Pill {
         this.timesPerDay = timesPerDay;
     }
 
-    public int getDependencyOnSleep() {
-        return dependencyOnSleep;
+    public String getDependency() {
+        return dependency;
     }
 
-    public void setDependencyOnSleep(int dependencyOnSleep) {
-        this.dependencyOnSleep = dependencyOnSleep;
-    }
-
-    public String getDependencyOnFood() {
-        return dependencyOnFood;
-    }
-
-    public void setDependencyOnFood(String dependencyOnFood) {
-        this.dependencyOnFood = dependencyOnFood;
+    public void setDependency(String dependency) {
+        this.dependency = dependency;
     }
 
     public ArrayList<OffsetTime> getTimes() {
