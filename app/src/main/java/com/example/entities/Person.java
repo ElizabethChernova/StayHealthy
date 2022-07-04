@@ -128,4 +128,14 @@ public class Person {
     private DaySchedule makeNewSchedule() {
         return usualDay;
     }
+
+    private ArrayList<Note> notes;
+
+    public ArrayList<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
+        this.notes = notes;
+    }
 }
