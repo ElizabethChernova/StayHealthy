@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -25,7 +26,8 @@ import com.example.entities.Storage;
 
 public class NewMedicineActivity extends AppCompatActivity {
     Person person;
-    private EditText name, dose, comment, dependencyTime, times, numberOfDays;
+    private EditText name, dose, comment, dependencyTime;
+    private NumberPicker times, numberOfDays;
     private RadioGroup alarmType;
     private RadioButton notification, alarm;
     private TimePicker timeToPills;
@@ -49,13 +51,17 @@ public class NewMedicineActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.edit_med_name);
         dose = (EditText) findViewById(R.id.edit_dose);
         comment = (EditText) findViewById(R.id.editTextСomment);
-        times = (EditText) findViewById(R.id.edit_times);
+        times =  findViewById(R.id.edit_times);
+        times.setMaxValue(20);
+        times.setMinValue(1);
         alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
         notification = (RadioButton) findViewById(R.id.radio_button_notification);
         timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
         timeLayout = findViewById(R.id.field_time);
-        numberOfDays= (EditText) findViewById(R.id.edit_number_of_days);
+        numberOfDays=  findViewById(R.id.edit_number_of_days);
+        numberOfDays.setMaxValue(365);
+        numberOfDays.setMinValue(1);
         comment=(EditText) findViewById(R.id.editTextСomment);
         dependencyTime=(EditText) findViewById(R.id.edit_minute);
         timePicker=(TimePicker) findViewById(R.id.timePickerEatPills);
@@ -139,8 +145,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     private void saveNewMedicine(View view) {
         String nameGetString = name.getText().toString();
         String doseString = dose.getText().toString();
-        String timesString = times.getText().toString();
-        if (timesString.matches("") || ((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
+        if (((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
             Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         }
@@ -150,8 +155,8 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setName(name.getText().toString());
 
             newPill.setDose(Double.parseDouble(dose.getText().toString()));
-            newPill.setTimesPerDay(Integer.parseInt(times.getText().toString()));
-            newPill.setNumberOfDays(Integer.parseInt(numberOfDays.getText().toString()));
+            newPill.setTimesPerDay(times.getValue());
+            newPill.setNumberOfDays(numberOfDays.getValue());
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
             newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
