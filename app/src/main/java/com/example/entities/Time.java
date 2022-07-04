@@ -21,7 +21,12 @@ public class Time {
 
     @Override
     public String toString() {
-        return hours + " : " + minutes ;
+        String result="";
+        if(hours<10) result+="0";
+        result+=hours+" : ";
+        if(minutes<10) result+="0";
+        result+=minutes;
+        return result;
     }
 
     public Time(int hours, int minutes) {

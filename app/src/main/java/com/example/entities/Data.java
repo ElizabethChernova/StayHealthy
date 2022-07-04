@@ -37,7 +37,12 @@ public class Data {
 
     @Override
     public String toString() {
-        return day + "." + month + "." + year;
+        String result="";
+        if(day<10) result+="0";
+        result+=day+".";
+        if(month<10) result+="0";
+        result+=month+"."+year;
+        return result;
     }
 
     private int year;
