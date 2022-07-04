@@ -34,6 +34,7 @@ Person person;
     private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
 Pill newPill;
     private LinearLayout layout;
+    private LinearLayout timeLayout;
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
     @Override
@@ -51,6 +52,7 @@ Pill newPill;
         alarm=(RadioButton) findViewById(R.id.radio_button_alarm);
         notification=(RadioButton) findViewById(R.id.radio_button_notification);
         timeToPills =(TimePicker) findViewById(R.id.timePickerEatPills);
+        timeLayout = findViewById(R.id.field_time);
 
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
@@ -101,18 +103,22 @@ Pill newPill;
                 TextView timeTExt= findViewById(R.id.eating_time);
                 if(position==0 || position==1  || position==2 )
                 {
+                    timeLayout.setVisibility(View.VISIBLE);
                     timeTExt.setText("Час прийому іжі");
                 }
                 if(position==3)
                 {
-                    timeTExt.setText("Час засинання");
+                    timeLayout.setVisibility(View.GONE);
+                   // timeTExt.setText("Час засинання");
                 }
                 if(position==4)
                 {
-                    timeTExt.setText("Час прокидання");
+                    timeLayout.setVisibility(View.GONE);
+                   // timeTExt.setText("Час прокидання");
                 }
                 if(position==5)
                 {
+                    timeLayout.setVisibility(View.VISIBLE);
                     timeTExt.setText("Час прийому");
                 }
            }
