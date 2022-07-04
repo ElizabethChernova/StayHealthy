@@ -1,14 +1,13 @@
 package com.example.entities;
 
 public class Note {
-    String comment;
-    double rate;
-    boolean caught;
-    boolean temperature;
-    boolean badAppetite;
-    boolean badEating;
-    boolean badMood;
-
+    private String comment;
+    private double rate;
+    private boolean caught;
+    private boolean temperature;
+    private boolean badAppetite;
+    private boolean badEating;
+    private boolean badMood;
 
     public Note(String comment, double rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
         this.comment = comment;
