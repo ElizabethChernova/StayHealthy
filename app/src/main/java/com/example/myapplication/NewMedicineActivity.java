@@ -202,7 +202,7 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setNumberOfDays(numberOfDays.getValue());
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
-            if(dependencyTime.getText().toString()!="")
+            if(!dependencyTime.getText().toString().equals(""))
                 newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
             else
                 newPill.setDependencyTime(0);
