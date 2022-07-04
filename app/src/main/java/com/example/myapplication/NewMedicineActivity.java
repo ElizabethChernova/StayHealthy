@@ -25,7 +25,7 @@ import com.example.entities.Storage;
 
 public class NewMedicineActivity extends AppCompatActivity {
     Person person;
-    private EditText name, dose, comment, minutesEating, times;
+    private EditText name, dose, comment, dependencyTime, times, numberOfDays;
     private RadioGroup alarmType;
     private RadioButton notification, alarm;
     private TimePicker timeToPills;
@@ -35,6 +35,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
+    private TimePicker timePicker;
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
 
@@ -54,6 +55,13 @@ public class NewMedicineActivity extends AppCompatActivity {
         notification = (RadioButton) findViewById(R.id.radio_button_notification);
         timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
         timeLayout = findViewById(R.id.field_time);
+        numberOfDays= (EditText) findViewById(R.id.edit_number_of_days);
+        comment=(EditText) findViewById(R.id.editTextСomment);
+        dependencyTime=(EditText) findViewById(R.id.edit_minute);
+        timePicker=(TimePicker) findViewById(R.id.timePickerEatPills);
+
+
+
 
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
@@ -143,7 +151,12 @@ public class NewMedicineActivity extends AppCompatActivity {
 
             newPill.setDose(Double.parseDouble(dose.getText().toString()));
             newPill.setTimesPerDay(Integer.parseInt(times.getText().toString()));
-
+            newPill.setNumberOfDays(Integer.parseInt(numberOfDays.getText().toString()));
+            newPill.setDependency(spinner.getSelectedItem().toString());
+            newPill.setComment(comment.getText().toString());
+            newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
+            newPill.setUserTimeH(timePicker.getHour());
+            newPill.setUserTimeM(timePicker.getMinute());
 
             if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
                 newPill.setAlarmType('A');

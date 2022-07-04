@@ -20,6 +20,14 @@ public class Pill {
      */
     private int timesPerDay;
 
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
     /**
      * User can set how many das he needs to eat pills
      */
@@ -29,6 +37,34 @@ public class Pill {
      */
     private String dependency;
 
+    public int getUserTimeH() {
+        return userTimeH;
+    }
+
+    public void setUserTimeH(int userTimeH) {
+        this.userTimeH = userTimeH;
+    }
+
+    public int getUserTimeM() {
+        return userTimeM;
+    }
+
+    public void setUserTimeM(int userTimeM) {
+        this.userTimeM = userTimeM;
+    }
+
+    private int userTimeH,userTimeM;
+    private OffsetTime userTime;
+
+    public int getDependencyTime() {
+        return dependencyTime;
+    }
+
+    public void setDependencyTime(int dependencyTime) {
+        this.dependencyTime = dependencyTime;
+    }
+
+    private int dependencyTime;
     /**
      * type of Alarm: A-alarm, N-noification
      */
@@ -40,6 +76,16 @@ public class Pill {
 
     public Pill() {
     }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    private String comment;
 
     //todo add dependancy on food nd sleep in xml(connect with this class)
     public Pill(String name, double dose, int timesPerDay, String dependency){
@@ -67,7 +113,7 @@ public class Pill {
 
     private void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
-        //TODO коли буде готовий клас користувача додати обрахунок часових слотів для прийому ліків залежно від сну і режиму дня
+        
     }
 
     public String getName() {

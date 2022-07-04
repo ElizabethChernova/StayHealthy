@@ -35,7 +35,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         if (pills != null) {
             Pill current = pills.get(position);
             holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
-           // holder.time.setText(current.getTimes().get(0).toString());
+            //holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
 
            // holder.priority.setBackgroundColor();
