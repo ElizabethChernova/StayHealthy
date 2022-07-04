@@ -87,7 +87,7 @@ public class Person {
         this.usualDay = usualDay;
     }
 
-    public DaySchedule getDaySchedule() {
+    public static DaySchedule getDaySchedule() {
         return daySchedule;
     }
 
@@ -113,7 +113,7 @@ public class Person {
     private ArrayList<Pill> pills;
 
     private DaySchedule usualDay;
-    private DaySchedule daySchedule;
+    private static DaySchedule daySchedule;
 
     public Person(String name, double weight, double height, int age, ArrayList<Pill> pills, DaySchedule usualDay) {
         this.name = name;

@@ -110,10 +110,25 @@ public class Pill {
 
         countTimeSlots();
     }
-
-    private void countTimeSlots(){
+//"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"
+    public void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
-        
+        OffsetTime currentUserTime=OffsetTime.of(userTimeH,userTimeM,0,0,OffsetTime.now().getOffset());
+        if(dependency.equals("До іжі")){
+            currentUserTime.minusMinutes(dependencyTime);
+        }
+        if(dependency.equals("Після іжі")){
+            currentUserTime.plusMinutes(dependencyTime);
+        }
+        if(dependency.equals("До сну")){
+            currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
+            currentUserTime.minusMinutes(dependencyTime);
+        }
+        if(dependency.equals("Після сну")){
+            currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
+            currentUserTime.plusMinutes(dependencyTime);
+        }
+        times.add(currentUserTime);
     }
 
     public String getName() {

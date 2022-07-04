@@ -169,7 +169,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
             if (person != null) {
-
+                newPill.countTimeSlots();
                 person.addPill(newPill);
                 Storage.exportToJSON(this,person);
                 Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
