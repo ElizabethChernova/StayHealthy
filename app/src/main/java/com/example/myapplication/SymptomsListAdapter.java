@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +16,7 @@ import com.example.entities.Pill;
 
 import java.util.List;
 
-public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapter.SymptomsViewHolder>{
+public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapter.SymptomsViewHolder> {
 
     private List<Note> symptoms; // Cached copy of words
 
@@ -34,6 +36,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
             Note current = symptoms.get(position);
             holder.ratingBar.setRating(current.getRate());
             holder.data.setText(current.getData().toString() + "\n" + current.getTime());
+            holder.comment.setText(current.getComment());
         } else {
             // Covers the case of data not being ready yet.
            // holder.name.setText("No name");
@@ -49,16 +52,26 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         else return 0;
     }
 
-    class SymptomsViewHolder extends RecyclerView.ViewHolder {
+    class SymptomsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final RatingBar ratingBar;
         private final TextView data;
+        private final LinearLayout linearComment;
+        private final TextView comment;
 
         private SymptomsViewHolder(View itemView) {
             super(itemView);
             data = itemView.findViewById(R.id.dayAndTime);
             ratingBar = itemView.findViewById(R.id.lastRatingBar);
+            linearComment= itemView.findViewById(R.id.additionalPanel);
+            comment = itemView.findViewById(R.id.comment);
+        }
+
+        @Override
+        public void onClick(View view) {
+            linearComment.setVisibility(View.VISIBLE);
         }
     }
+
 }
 
 

@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,11 +56,12 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         else return 0;
     }
 
-    class MedicalViewHolder extends RecyclerView.ViewHolder {
+    class MedicalViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         private final TextView name;
         private final TextView time;
         private final TextView dependency;
         private final ShapeableImageView priority;
+        private final LinearLayout item;
 
         private MedicalViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +69,14 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             time = itemView.findViewById(R.id.time);
             dependency = itemView.findViewById(R.id.condition);
             priority = itemView.findViewById(R.id.priority);
+            item =  itemView.findViewById(R.id.item);
+            item.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            contextMenu.add(this.getAdapterPosition(), 121,0,"Редагувати");
+            contextMenu.add(this.getAdapterPosition(), 122,1,"Видалити");
         }
     }
 }

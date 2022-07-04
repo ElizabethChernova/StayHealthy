@@ -202,7 +202,10 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setNumberOfDays(numberOfDays.getValue());
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
-            newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
+            if(dependencyTime.getText().toString()!="")
+                newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
+            else
+                newPill.setDependencyTime(0);
 
             for(View timePicker:arrayListOfTimePicker) {
                 newPill.addUserTime(new Time(((TimePicker)timePicker).getHour(),((TimePicker)timePicker).getMinute()));
