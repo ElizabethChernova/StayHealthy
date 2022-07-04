@@ -56,6 +56,8 @@ public class NewMedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
 
+        this.setTheme(R.style.TimePicker);
+
         timeToPills = findViewById(R.id.timePickerEatPills);
         timeToPills.setIs24HourView(true);
         arrayListOfTimePicker.add(timeToPills);
@@ -157,7 +159,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                              case MotionEvent.ACTION_UP://1
                                  Log.e("ТЕГ", "LinearLayout onTouch поднять вверх");
                                  layoutWithTimePickers.removeAllViewsInLayout();
-                                 for(int i=1; i<number; i++)
+                                 for(int i=arrayListOfTimePicker.size(); i<number; i++)
                                  {
                                      TimePicker timePicker= new TimePicker(NewMedicineActivity.this);
                                      timePicker.setIs24HourView(true);
