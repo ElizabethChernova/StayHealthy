@@ -189,6 +189,6 @@ public class FeelingActivity extends AppCompatActivity {
     }
 
     private void saveNewNote(View view) {
-       //TODO add notes
+
     }
 }
