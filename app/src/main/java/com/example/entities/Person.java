@@ -79,29 +79,23 @@ public class Person {
         this.pills = pills;
     }
 
-    public DaySchedule getUsualDay() {
-        return usualDay;
+    public Time getStart() {
+        return start;
     }
 
-    public void setUsualDay(DaySchedule usualDay) {
-        this.usualDay = usualDay;
+    public void setStart(Time start) {
+        this.start = start;
     }
 
-    public static DaySchedule getDaySchedule() {
-        return daySchedule;
+    public Time getEnd() {
+        return end;
     }
 
-    public void addPill(Pill pill) {
-        pills.add(pill);
+    public void setEnd(Time end) {
+        this.end = end;
     }
 
-    public void addNote(Note note) {
-        notes.add(note);
-    }
-
-    public void setDaySchedule(DaySchedule daySchedule) {
-        this.daySchedule = daySchedule;
-    }
+    private Time start=new Time(0,0),end=new Time(0,0);
 
     /**
      * age of person
@@ -112,17 +106,13 @@ public class Person {
      */
     private ArrayList<Pill> pills;
 
-    private DaySchedule usualDay;
-    private static DaySchedule daySchedule;
 
-    public Person(String name, double weight, double height, int age, ArrayList<Pill> pills, DaySchedule usualDay) {
+    public Person(String name, double weight, double height, int age, ArrayList<Pill> pill) {
         this.name = name;
         this.weight = weight;
         this.height = height;
         this.age = age;
         this.pills = pills;
-        this.usualDay = usualDay;
-        daySchedule = makeNewSchedule();
     }
 
     public Person() {
@@ -130,9 +120,6 @@ public class Person {
         notes = new ArrayList<Note>();
     }
 
-    private DaySchedule makeNewSchedule() {
-        return usualDay;
-    }
 
     private ArrayList<Note> notes;
 

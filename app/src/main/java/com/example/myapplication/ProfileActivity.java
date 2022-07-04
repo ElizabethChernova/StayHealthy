@@ -19,13 +19,10 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.entities.DaySchedule;
 import com.example.entities.Person;
 import com.example.entities.Storage;
+import com.example.entities.Time;
 import com.google.android.material.navigation.NavigationView;
-
-import java.time.LocalDateTime;
-import java.time.OffsetTime;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -134,8 +131,8 @@ public class ProfileActivity extends AppCompatActivity {
             else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
 
 
-            DaySchedule ds=new DaySchedule(awake.getHour(),awake.getMinute(),goToSleep.getHour(),goToSleep.getMinute());
-            person.setDaySchedule(ds);
+            person.setStart(new Time(awake.getHour(),awake.getMinute()));
+            person.setEnd(new Time(goToSleep.getHour(),goToSleep.getMinute()));
 
             boolean result = Storage.exportToJSON(this, person);
             if (result) {
@@ -157,10 +154,10 @@ public class ProfileActivity extends AppCompatActivity {
 
             if (person.getSex() == 'Ч') male.setChecked(true);
             else if (person.getSex() == 'Ж') female.setChecked(true);
-            awake.setHour(person.getDaySchedule().wakingUpH);
-            awake.setMinute(person.getDaySchedule().wakingUpM);
-            goToSleep.setHour(person.getDaySchedule().goingToSleepH);
-            goToSleep.setMinute(person.getDaySchedule().goingToSleepM);
+            awake.setHour(person.getStart().getHours());
+            awake.setMinute(person.getStart().getMinutes());
+            goToSleep.setHour(person.getEnd().getHours());
+            goToSleep.setMinute(person.getEnd().getMinutes());
         } else {
             person = new Person();
             firstSetUp = true;

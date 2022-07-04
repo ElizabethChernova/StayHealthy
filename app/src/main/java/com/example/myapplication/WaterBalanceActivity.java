@@ -65,8 +65,11 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         else{
             remainingML=neededMLInDay;
         }
-        mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
-
+        if (remainingML >= 0) {
+            mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
+        } else {
+            mlInDay.setText("Сьогодні ви випили на: " + remainingML * (-1) + " мл вище норми");
+        }
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
