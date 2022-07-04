@@ -17,6 +17,7 @@ import com.example.entities.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static String info[]= new String[4];
 
-    private List<Pill> pillsFromJson;
+    private List<Pill> pillsFromJson = new ArrayList<Pill>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         buttonPlus = findViewById(R.id.fab);
 
 
+//        pillsFromJson.add(new Pill("pill1", 2, 3, "d"));
+//        pillsFromJson.add(new Pill("pill2", 2, 3, "d"));
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final MedicalListAdapter adapter = new MedicalListAdapter(this, pillsFromJson);
         recyclerView.setAdapter(adapter);

@@ -33,10 +33,10 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
     public void onBindViewHolder(MedicalViewHolder holder, int position) {
         if (pills != null) {
             Pill current = pills.get(position);
-            holder.name.setText(current.getName());
-            holder.time.setText(current.getTimes().get(0).toString());
+            holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
+           // holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
-        //    holder.priority.setBackgroundColor(2);
+           // holder.priority.setBackgroundColor();
         } else {
             // Covers the case of data not being ready yet.
             holder.name.setText("No name");
