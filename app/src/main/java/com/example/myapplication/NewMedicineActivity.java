@@ -24,19 +24,20 @@ import com.example.entities.Pill;
 import com.example.entities.Storage;
 
 public class NewMedicineActivity extends AppCompatActivity {
-Person person;
-    private EditText name,dose,comment,minutesEating,times;
+    Person person;
+    private EditText name, dose, comment, minutesEating, times;
     private RadioGroup alarmType;
-    private RadioButton notification,alarm;
+    private RadioButton notification, alarm;
     private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
     private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
-Pill newPill;
+    Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +45,14 @@ Pill newPill;
 
         timeToPills = this.findViewById(R.id.timePickerEatPills);
         timeToPills.setIs24HourView(true);
-        name=(EditText) findViewById(R.id.edit_med_name);
-        dose=(EditText) findViewById(R.id.edit_dose);
-        comment=(EditText) findViewById(R.id.editTextСomment);
-        times=(EditText) findViewById(R.id.edit_times);
-        alarmType=(RadioGroup) findViewById(R.id.radio_group_alarmType);
-        alarm=(RadioButton) findViewById(R.id.radio_button_alarm);
-        notification=(RadioButton) findViewById(R.id.radio_button_notification);
-        timeToPills =(TimePicker) findViewById(R.id.timePickerEatPills);
+        name = (EditText) findViewById(R.id.edit_med_name);
+        dose = (EditText) findViewById(R.id.edit_dose);
+        comment = (EditText) findViewById(R.id.editTextСomment);
+        times = (EditText) findViewById(R.id.edit_times);
+        alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
+        alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
+        notification = (RadioButton) findViewById(R.id.radio_button_notification);
+        timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
         timeLayout = findViewById(R.id.field_time);
 
         // адаптер
@@ -69,7 +70,7 @@ Pill newPill;
                 // додаємо ліки у список
                 saveNewMedicine(view);
 
-//                Intent replyIntent = new Intent();
+                Intent replyIntent = new Intent();
 //                //String info[] = new String[4];
 //
 //                info[0]= String.valueOf(name.getText());
@@ -81,8 +82,8 @@ Pill newPill;
 //                //вид сповіщень
 //                info[5]= String.valueOf(alarmType.getCheckedRadioButtonId());
 //
-//                replyIntent.putExtra(EXTRA_REPLY, info);
-//                setResult(RESULT_OK, replyIntent);
+               replyIntent.putExtra(EXTRA_REPLY, info);
+                setResult(RESULT_OK, replyIntent);
                 finish();
             }
         });
@@ -92,36 +93,31 @@ Pill newPill;
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                if(position==0 || position==2 || position==3|| position==4)
-                {
+                if (position == 0 || position == 2 || position == 3 || position == 4) {
                     layout.setVisibility(View.VISIBLE);
                 }
-                if(position==1 || position==5)
-                {
+                if (position == 1 || position == 5) {
                     layout.setVisibility(View.GONE);
                 }
-                TextView timeTExt= findViewById(R.id.eating_time);
-                if(position==0 || position==1  || position==2 )
-                {
+                TextView timeTExt = findViewById(R.id.eating_time);
+                if (position == 0 || position == 1 || position == 2) {
                     timeLayout.setVisibility(View.VISIBLE);
                     timeTExt.setText("Час прийому іжі");
                 }
-                if(position==3)
-                {
+                if (position == 3) {
                     timeLayout.setVisibility(View.GONE);
-                   // timeTExt.setText("Час засинання");
+                    // timeTExt.setText("Час засинання");
                 }
-                if(position==4)
-                {
+                if (position == 4) {
                     timeLayout.setVisibility(View.GONE);
-                   // timeTExt.setText("Час прокидання");
+                    // timeTExt.setText("Час прокидання");
                 }
-                if(position==5)
-                {
+                if (position == 5) {
                     timeLayout.setVisibility(View.VISIBLE);
                     timeTExt.setText("Час прийому");
                 }
-           }
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
             }
@@ -133,31 +129,34 @@ Pill newPill;
     }
 
     private void saveNewMedicine(View view) {
-        String nameGetString=name.getText().toString();
-        String doseString=dose.getText().toString();
-String timesString=times.getText().toString();
-        if (timesString.matches("")||((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) &&alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification)||doseString.matches("")||nameGetString.matches("")){
+        String nameGetString = name.getText().toString();
+        String doseString = dose.getText().toString();
+        String timesString = times.getText().toString();
+        if (timesString.matches("") || ((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
             Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         }
         //todo check if dependence is on eating, there should be minetus(you should always enter minutes, if dependency on eating)
-        else{
-newPill= new Pill();
+        else {
+            newPill = new Pill();
             newPill.setName(name.getText().toString());
 
             newPill.setDose(Double.parseDouble(dose.getText().toString()));
             newPill.setTimesPerDay(Integer.parseInt(times.getText().toString()));
 
 
-            if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification) newPill.setAlarmType('A');
-            else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm) newPill.setAlarmType('N');
+            if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
+                newPill.setAlarmType('A');
+            else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm)
+                newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
-            if(person!=null){
+            if (person != null) {
 
-    person.addPill(newPill);
+                person.addPill(newPill);
+                Storage.exportToJSON(this,person);
                 Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
 
-        }else{
+            } else {
                 Toast.makeText(this, "PLease make your personal profile at first", Toast.LENGTH_SHORT).show();
 
             }

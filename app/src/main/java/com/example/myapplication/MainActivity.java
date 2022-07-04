@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.entities.Person;
 import com.example.entities.Pill;
+import com.example.entities.Storage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private Person person;
     private FloatingActionButton buttonPlus;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static String info[]= new String[4];
 
+    private RecyclerView recyclerView;
+    private  MedicalListAdapter adapter;
     private List<Pill> pillsFromJson = new ArrayList<Pill>();
 
     @Override
@@ -45,11 +50,15 @@ public class MainActivity extends AppCompatActivity {
 
         buttonPlus = findViewById(R.id.fab);
 
+        person= Storage.importFromJSON(this);
 
+        if(person!=null){
+            pillsFromJson=person.getPills();
+        }
 //        pillsFromJson.add(new Pill("pill1", 2, 3, "d"));
 //        pillsFromJson.add(new Pill("pill2", 2, 3, "d"));
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final MedicalListAdapter adapter = new MedicalListAdapter(this, pillsFromJson);
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new MedicalListAdapter(this, pillsFromJson);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -97,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            person= Storage.importFromJSON(this);
+
+            if(person!=null){
+                pillsFromJson=person.getPills();
+            }
+            adapter = new MedicalListAdapter(this, pillsFromJson);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 //          Pill pill =new Pill(info[0], Double.parseDouble(info[1]), Integer.parseInt(info[2]),
 //            info[3], info[4], Integer.parseInt(info[5]));

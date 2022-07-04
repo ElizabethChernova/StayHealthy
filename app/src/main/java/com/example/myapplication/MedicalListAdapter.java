@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
            // holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
+
            // holder.priority.setBackgroundColor();
         } else {
             // Covers the case of data not being ready yet.
