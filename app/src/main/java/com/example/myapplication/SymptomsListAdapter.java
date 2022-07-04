@@ -9,30 +9,29 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.entities.Note;
 import com.example.entities.Pill;
 
 import java.util.List;
 
 public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapter.SymptomsViewHolder>{
 
-    private final LayoutInflater mInflater;
-    private List<Pill> symptoms; // Cached copy of words
+    private List<Note> symptoms; // Cached copy of words
 
-    SymptomsListAdapter(Context context, List<Pill> pills) {
-        mInflater = LayoutInflater.from(context);
-        this.symptoms =pills;
+    SymptomsListAdapter(List<Note> symptoms) {
+        this.symptoms =symptoms;
     }
 
     @Override
     public SymptomsListAdapter.SymptomsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false);
         return new SymptomsListAdapter.SymptomsViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(SymptomsListAdapter.SymptomsViewHolder holder, int position) {
         if (symptoms != null) {
-            Pill current = symptoms.get(position);
+            Note current = symptoms.get(position);
          //   holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
             //holder.time.setText(current.getTimes().get(0).toString());
             //holder.dependency.setText(current.getDependency());

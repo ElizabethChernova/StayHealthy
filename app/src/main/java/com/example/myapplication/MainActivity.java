@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
         if(person!=null){
             pillsFromJson=person.getPills();
         }
-//        pillsFromJson.add(new Pill("pill1", 2, 3, "d"));
-//        pillsFromJson.add(new Pill("pill2", 2, 3, "d"));
+
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new MedicalListAdapter(this, pillsFromJson);
         recyclerView.setAdapter(adapter);

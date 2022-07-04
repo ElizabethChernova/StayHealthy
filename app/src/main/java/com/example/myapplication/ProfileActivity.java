@@ -154,7 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
             weight.setText(person.getWeight() + "");
             height.setValue((int) person.getHeight());
             age.setValue((int) person.getAge());
-            
+
             if (person.getSex() == 'Ч') male.setChecked(true);
             else if (person.getSex() == 'Ж') female.setChecked(true);
             awake.setHour(person.getDaySchedule().wakingUpH);

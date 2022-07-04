@@ -1,20 +1,28 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.entities.Note;
+import com.example.entities.Person;
+import com.example.entities.Pill;
+import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FeelingActivity extends AppCompatActivity {
 
@@ -23,6 +31,8 @@ public class FeelingActivity extends AppCompatActivity {
     private ImageButton appetite;
     private ImageButton stomach;
     private ImageButton mood;
+
+    private Button saveButton;
 
     private ImageView tick;
 
@@ -34,6 +44,11 @@ public class FeelingActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
+    private RecyclerView recyclerView;
+    private  SymptomsListAdapter adapter;
+    private List<Note> notesFromJson = new ArrayList<>();
+    private Person person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +67,24 @@ public class FeelingActivity extends AppCompatActivity {
         stomach = findViewById(R.id.imageButtonStomach);
         mood = findViewById(R.id.imageButtonMood);
 
+        saveButton = findViewById(R.id.saveSymptomData);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO зберегти динні в json!
+
+                person= Storage.importFromJSON(FeelingActivity.this);
+
+                if(person!=null){
+                  //  notesFromJson=person.;
+                }
+
+                recyclerView = findViewById(R.id.recyclerview);
+                adapter = new SymptomsListAdapter(notesFromJson);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(FeelingActivity.this));
+            }
+        });
         temperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
