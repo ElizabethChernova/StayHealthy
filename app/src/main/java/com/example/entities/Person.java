@@ -95,6 +95,10 @@ public class Person {
         pills.add(pill);
     }
 
+    public void addNote(Note note) {
+        notes.add(note);
+    }
+
     public void setDaySchedule(DaySchedule daySchedule) {
         this.daySchedule = daySchedule;
     }

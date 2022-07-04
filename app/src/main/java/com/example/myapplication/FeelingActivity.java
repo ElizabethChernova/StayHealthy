@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.entities.Note;
 import com.example.entities.Person;
@@ -76,7 +77,7 @@ public class FeelingActivity extends AppCompatActivity {
                 person= Storage.importFromJSON(FeelingActivity.this);
 
                 if(person!=null){
-                  //  notesFromJson=person.;
+                    notesFromJson=person.getNotes();
                 }
 
                 recyclerView = findViewById(R.id.recyclerview);
@@ -185,5 +186,9 @@ public class FeelingActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return actionBarDrawerToggle.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
+    }
+
+    private void saveNewNote(View view) {
+       //TODO add notes
     }
 }
