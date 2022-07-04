@@ -72,7 +72,7 @@ public class Pill {
     /**
      * Set of times, when user should take pills
      */
-    private ArrayList<OffsetTime> times;
+    private ArrayList<Time> times;
 
     public Pill() {
     }
@@ -115,20 +115,20 @@ public class Pill {
         times=new ArrayList<>(timesPerDay);
         OffsetTime currentUserTime=OffsetTime.of(userTimeH,userTimeM,0,0,OffsetTime.now().getOffset());
         if(dependency.equals("До іжі")){
-            currentUserTime.minusMinutes(dependencyTime);
+            currentUserTime=currentUserTime.minusMinutes(dependencyTime);
         }
         if(dependency.equals("Після іжі")){
-            currentUserTime.plusMinutes(dependencyTime);
+            currentUserTime=currentUserTime.plusMinutes(dependencyTime);
         }
         if(dependency.equals("До сну")){
             currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
-            currentUserTime.minusMinutes(dependencyTime);
+            currentUserTime=currentUserTime.minusMinutes(dependencyTime);
         }
         if(dependency.equals("Після сну")){
             currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
-            currentUserTime.plusMinutes(dependencyTime);
+            currentUserTime=currentUserTime.plusMinutes(dependencyTime);
         }
-        times.add(currentUserTime);
+        times.add(new Time(currentUserTime.getHour(),currentUserTime.getMinute()));
     }
 
     public String getName() {
@@ -170,11 +170,11 @@ public class Pill {
         this.dependency = dependency;
     }
 
-    public ArrayList<OffsetTime> getTimes() {
+    public ArrayList<Time> getTimes() {
         return times;
     }
 
-    public void setTimes(ArrayList<OffsetTime> times) {
+    public void setTimes(ArrayList<Time> times) {
         this.times = times;
     }
 }
