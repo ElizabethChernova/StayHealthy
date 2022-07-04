@@ -32,11 +32,8 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
     public void onBindViewHolder(SymptomsListAdapter.SymptomsViewHolder holder, int position) {
         if (symptoms != null) {
             Note current = symptoms.get(position);
-         //   holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
-            //holder.time.setText(current.getTimes().get(0).toString());
-            //holder.dependency.setText(current.getDependency());
-
-            // holder.priority.setBackgroundColor();
+            holder.ratingBar.setRating(current.getRate());
+            holder.data.setText("new data");
         } else {
             // Covers the case of data not being ready yet.
            // holder.name.setText("No name");

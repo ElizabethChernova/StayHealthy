@@ -2,14 +2,15 @@ package com.example.entities;
 
 public class Note {
     private String comment;
-    private double rate;
+    private float rate;
     private boolean caught;
     private boolean temperature;
     private boolean badAppetite;
     private boolean badEating;
     private boolean badMood;
 
-    public Note(String comment, double rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
+
+    public Note(String comment, float rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
         this.comment = comment;
         this.rate = rate;
         this.caught = caught;
@@ -19,11 +20,11 @@ public class Note {
         this.badMood = badMood;
     }
 
-    public double getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
