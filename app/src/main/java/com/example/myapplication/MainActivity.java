@@ -17,6 +17,8 @@ import com.example.entities.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton buttonPlus;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static String info[]= new String[4];
+
+    private List<Pill> pillsFromJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final MedicalListAdapter adapter = new MedicalListAdapter(this);
+        final MedicalListAdapter adapter = new MedicalListAdapter(this, pillsFromJson);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

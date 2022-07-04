@@ -18,7 +18,10 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
     private final LayoutInflater mInflater;
     private List<Pill> pills; // Cached copy of words
 
-    MedicalListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    MedicalListAdapter(Context context, List<Pill> pills) {
+        mInflater = LayoutInflater.from(context);
+        this.pills=pills;
+    }
 
     @Override
     public MedicalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,11 +41,6 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             // Covers the case of data not being ready yet.
             holder.name.setText("No name");
         }
-    }
-
-    void setWords(List<Pill> words){
-        pills = words;
-        notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,
