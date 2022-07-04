@@ -127,6 +127,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case 122:
                 adapter.removeItem(item.getGroupId());
+                person=Storage.importFromJSON(this);
+                if(person!=null) {
+                    person.getPills().remove(item.getGroupId());
+                    Storage.exportToJSON(this, person);
+                }
                 return false;
         }
         return super.onContextItemSelected(item);
