@@ -64,10 +64,10 @@ public class NewMedicineActivity extends AppCompatActivity {
         numberOfDays.setMinValue(1);
         comment=(EditText) findViewById(R.id.editTextСomment);
         dependencyTime=(EditText) findViewById(R.id.edit_minute);
-        timePicker=(TimePicker) findViewById(R.id.timePickerEatPills);
 
 
-
+        layoutWithTimePickers = findViewById(R.id.timePickers);
+        layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
 
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
