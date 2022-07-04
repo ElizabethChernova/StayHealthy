@@ -94,6 +94,13 @@ public class Person {
     public void setEnd(Time end) {
         this.end = end;
     }
+    public void addPill(Pill pill) {
+        pills.add(pill);
+    }
+
+    public void addNote(Note note) {
+        notes.add(note);
+    }
 
     private Time start=new Time(0,0);private static Time end=new Time(0,0);
 
