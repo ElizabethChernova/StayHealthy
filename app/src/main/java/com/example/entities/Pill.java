@@ -116,11 +116,11 @@ public class Pill {
                 currentUserTime = currentUserTime.plusMinutes(dependencyTime);
             }
             if (dependency.equals("До сну")) {
-                //currentUserTime = OffsetTime.of(Person.getDaySchedule().goingToSleep.getHour(), Person.getDaySchedule().goingToSleep.getMinute(), 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = OffsetTime.of(Person.getEnd().getHours(), Person.getEnd().getMinutes(), 0, 0, OffsetTime.now().getOffset());
                 currentUserTime = currentUserTime.minusMinutes(dependencyTime);
             }
             if (dependency.equals("Після сну")) {
-                //currentUserTime = OffsetTime.of(Person.getDaySchedule().goingToSleep.getHour(), Person.getDaySchedule().goingToSleep.getMinute(), 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = OffsetTime.of(Person.getEnd().getHours(), Person.getEnd().getMinutes(), 0, 0, OffsetTime.now().getOffset());
                 currentUserTime = currentUserTime.plusMinutes(dependencyTime);
             }
             times.add(new Time(currentUserTime.getHour(), currentUserTime.getMinute()));

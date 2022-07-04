@@ -87,7 +87,7 @@ public class Person {
         this.start = start;
     }
 
-    public Time getEnd() {
+    public static Time getEnd() {
         return end;
     }
 
@@ -95,7 +95,7 @@ public class Person {
         this.end = end;
     }
 
-    private Time start=new Time(0,0),end=new Time(0,0);
+    private Time start=new Time(0,0);private static Time end=new Time(0,0);
 
     /**
      * age of person
