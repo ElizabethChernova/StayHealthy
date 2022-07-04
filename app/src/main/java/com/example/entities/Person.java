@@ -127,6 +127,7 @@ public class Person {
 
     public Person() {
         pills = new ArrayList<Pill>();
+        notes = new ArrayList<Note>();
     }
 
     private DaySchedule makeNewSchedule() {

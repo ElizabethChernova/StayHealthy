@@ -9,8 +9,27 @@ public class Note {
     private boolean badEating;
     private boolean badMood;
 
+    public Data getData() {
+        return data;
+    }
 
-    public Note(String comment, float rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
+    public void setData(Data data) {
+        this.data = data;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    private Data data;
+    private Time time;
+
+    public Note(){}
+    public Note(String comment, float rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood, Data data, Time time) {
         this.comment = comment;
         this.rate = rate;
         this.caught = caught;
@@ -18,6 +37,8 @@ public class Note {
         this.badAppetite = badAppetite;
         this.badEating = badEating;
         this.badMood = badMood;
+        this.data = data;
+        this.time = time;
     }
 
     public float getRate() {

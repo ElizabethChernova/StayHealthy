@@ -24,7 +24,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
 
     @Override
     public SymptomsListAdapter.SymptomsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item_symptoms, parent, false);
         return new SymptomsListAdapter.SymptomsViewHolder(itemView);
     }
 
@@ -33,7 +33,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         if (symptoms != null) {
             Note current = symptoms.get(position);
             holder.ratingBar.setRating(current.getRate());
-            holder.data.setText("new data");
+            holder.data.setText(current.getData().toString());
         } else {
             // Covers the case of data not being ready yet.
            // holder.name.setText("No name");

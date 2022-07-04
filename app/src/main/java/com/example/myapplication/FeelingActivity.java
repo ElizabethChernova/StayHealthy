@@ -12,16 +12,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.entities.Data;
 import com.example.entities.Note;
 import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
+import com.example.entities.Time;
 import com.google.android.material.navigation.NavigationView;
 
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +38,8 @@ public class FeelingActivity extends AppCompatActivity {
     private ImageButton appetite;
     private ImageButton stomach;
     private ImageButton mood;
+    private RatingBar ratingBar;
+    private EditText comment;
 
     private Button saveButton;
 
@@ -68,12 +76,15 @@ public class FeelingActivity extends AppCompatActivity {
         stomach = findViewById(R.id.imageButtonStomach);
         mood = findViewById(R.id.imageButtonMood);
 
+        ratingBar=(RatingBar) findViewById(R.id.ratingBar);
+        comment=(EditText) findViewById(R.id.editTextFeelingsComment);
+
         saveButton = findViewById(R.id.saveSymptomData);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO зберегти динні в json!
-
+                saveNewNote(view);
                 person= Storage.importFromJSON(FeelingActivity.this);
 
                 if(person!=null){
@@ -189,6 +200,21 @@ public class FeelingActivity extends AppCompatActivity {
     }
 
     private void saveNewNote(View view) {
+        person=Storage.importFromJSON(this);
+        Note myNote=new Note();
+        myNote.setData(new Data(OffsetDateTime.now().getDayOfMonth(),OffsetDateTime.now().getMonthValue(),OffsetDateTime.now().getYear()));
+        myNote.setTime(new Time(OffsetTime.now().getHour(), OffsetTime.now().getMinute()));
+        myNote.setTemperature(temperatureClicked);
+        myNote.setCaught(coughClicked);
+        myNote.setBadAppetite(appetiteClicked);
+        myNote.setBadEating(stomachClicked);
+        myNote.setBadMood(moodClicked);
+        myNote.setRate(ratingBar.getRating());
+        myNote.setComment(comment.getText().toString());
 
+        if(person!=null){
+            person.addNote(myNote);
+            Storage.exportToJSON(this, person);
+        }
     }
 }
