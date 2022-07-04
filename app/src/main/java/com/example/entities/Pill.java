@@ -37,24 +37,16 @@ public class Pill {
      */
     private String dependency;
 
-    public int getUserTimeH() {
-        return userTimeH;
+    public ArrayList<Time> getUserTimes() {
+        return userTimes;
     }
 
-    public void setUserTimeH(int userTimeH) {
-        this.userTimeH = userTimeH;
+    public void setUserTimes(ArrayList<Time> userTimes) {
+        this.userTimes = userTimes;
     }
 
-    public int getUserTimeM() {
-        return userTimeM;
-    }
-
-    public void setUserTimeM(int userTimeM) {
-        this.userTimeM = userTimeM;
-    }
-
-    private int userTimeH,userTimeM;
-    private OffsetTime userTime;
+    private ArrayList<Time> userTimes;
+    public void addUserTime(Time time){userTimes.add(time);}
 
     public int getDependencyTime() {
         return dependencyTime;
@@ -75,6 +67,7 @@ public class Pill {
     private ArrayList<Time> times;
 
     public Pill() {
+        userTimes=new ArrayList<Time>();
     }
 
     public String getComment() {
@@ -113,22 +106,25 @@ public class Pill {
 //"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"
     public void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
-        OffsetTime currentUserTime=OffsetTime.of(userTimeH,userTimeM,0,0,OffsetTime.now().getOffset());
-        if(dependency.equals("До іжі")){
-            currentUserTime=currentUserTime.minusMinutes(dependencyTime);
+
+        for (Time time:userTimes) {
+            OffsetTime currentUserTime = OffsetTime.of(time.getHours(), time.getMinutes(), 0, 0, OffsetTime.now().getOffset());
+            if (dependency.equals("До їжі")) {
+                currentUserTime = currentUserTime.minusMinutes(dependencyTime);
+            }
+            if (dependency.equals("Після їжі")) {
+                currentUserTime = currentUserTime.plusMinutes(dependencyTime);
+            }
+            if (dependency.equals("До сну")) {
+                currentUserTime = OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = currentUserTime.minusMinutes(dependencyTime);
+            }
+            if (dependency.equals("Після сну")) {
+                currentUserTime = OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = currentUserTime.plusMinutes(dependencyTime);
+            }
+            times.add(new Time(currentUserTime.getHour(), currentUserTime.getMinute()));
         }
-        if(dependency.equals("Після іжі")){
-            currentUserTime=currentUserTime.plusMinutes(dependencyTime);
-        }
-        if(dependency.equals("До сну")){
-            currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
-            currentUserTime=currentUserTime.minusMinutes(dependencyTime);
-        }
-        if(dependency.equals("Після сну")){
-            currentUserTime=OffsetTime.of(Person.getDaySchedule().goingToSleepH, Person.getDaySchedule().goingToSleepM, 0,0,OffsetTime.now().getOffset());
-            currentUserTime=currentUserTime.plusMinutes(dependencyTime);
-        }
-        times.add(new Time(currentUserTime.getHour(),currentUserTime.getMinute()));
     }
 
     public String getName() {

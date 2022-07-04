@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
+import com.example.entities.Time;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
-    private String[] dependency = {"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
+    private String[] dependency = {"До їжі", "Під час їжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
     Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
@@ -176,8 +177,10 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
             newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
-            newPill.setUserTimeH(timeToPills.getHour());
-            newPill.setUserTimeM(timeToPills.getMinute());
+
+            for(View timePicker:arrayListOfTimePicker) {
+                newPill.addUserTime(new Time(((TimePicker)timePicker).getHour(),((TimePicker)timePicker).getMinute()));
+            }
 
             if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
                 newPill.setAlarmType('A');
