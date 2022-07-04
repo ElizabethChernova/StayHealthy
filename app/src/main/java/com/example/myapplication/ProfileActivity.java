@@ -143,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void open() {
         person = Storage.importFromJSON(this);
         if (person != null) {
