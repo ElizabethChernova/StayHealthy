@@ -116,7 +116,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 TextView timeTExt = findViewById(R.id.eating_time);
                 if (position == 0 || position == 1 || position == 2) {
                     timeLayout.setVisibility(View.VISIBLE);
-                    timeTExt.setText("Час прийому іжі");
+                    timeTExt.setText("Час прийому їжі");
                 }
                 if (position == 3) {
                     timeLayout.setVisibility(View.GONE);

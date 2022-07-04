@@ -114,11 +114,6 @@ public class MainActivity extends AppCompatActivity {
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-//          Pill pill =new Pill(info[0], Double.parseDouble(info[1]), Integer.parseInt(info[2]),
-//            info[3], info[4], Integer.parseInt(info[5]));
-//            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
-//            mWordViewModel.insert(word);
         } else {
 
         }
