@@ -33,6 +33,7 @@
                 android:layout_marginTop="0dp"
                 android:padding="8dp"
                 android:gravity="right"
+                android:textSize="17dp"
                 android:text="Data" />
         </LinearLayout>
 
