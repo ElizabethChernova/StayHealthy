@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -67,11 +69,11 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         else return 0;
     }
 
-    class SymptomsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class SymptomsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,  View.OnCreateContextMenuListener {
         private final RatingBar ratingBar;
         private final TextView data;
         private final LinearLayout linearComment;
-        private final TextView comment;
+        private final EditText comment;
         private final LinearLayout item;
 
         //symptoms
@@ -98,6 +100,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
 
             item =  itemView.findViewById(R.id.item);
             item.setOnClickListener(this);
+            item.setOnCreateContextMenuListener(this);
         }
 
         @Override
@@ -106,12 +109,22 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
                 linearComment.setVisibility(View.VISIBLE);
                 ratingBar.setIsIndicator(false);
 
-                //TODO changes in json
+                //TODO changes in json (changes in comment and ratingBar)
             }
             else{
                 linearComment.setVisibility(View.GONE);
             }
         }
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            contextMenu.add(this.getAdapterPosition(), 122,1,"Видалити");
+        }
+
+    }
+    public void removeItem(int position)
+    {
+        symptoms.remove(position);
+        notifyDataSetChanged();
     }
 
 }

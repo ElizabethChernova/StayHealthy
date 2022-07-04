@@ -227,4 +227,22 @@ public class FeelingActivity extends AppCompatActivity {
             Storage.exportToJSON(this, person);
         }
     }
+
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case 122:
+                adapter.removeItem(item.getGroupId());
+                person=Storage.importFromJSON(this);
+                if(person!=null) {
+                    person.getNotes().remove(item.getGroupId());
+                    Storage.exportToJSON(this, person);
+                }
+                return false;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
 }

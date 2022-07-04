@@ -46,7 +46,7 @@
             android:visibility="gone">
 
 
-            <TextView
+            <EditText
                 android:id="@+id/comment"
                 style="@style/text_view_style"
                 android:background="@color/colorScreenBackground"
