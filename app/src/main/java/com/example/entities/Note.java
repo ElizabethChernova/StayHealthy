@@ -1,9 +1,24 @@
 package com.example.entities;
 
-import java.util.ArrayList;
-
 public class Note {
-String comment;
+    String comment;
+    double rate;
+    boolean caught;
+    boolean temperature;
+    boolean badAppetite;
+    boolean badEating;
+    boolean badMood;
+
+
+    public Note(String comment, double rate, boolean caught, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
+        this.comment = comment;
+        this.rate = rate;
+        this.caught = caught;
+        this.temperature = temperature;
+        this.badAppetite = badAppetite;
+        this.badEating = badEating;
+        this.badMood = badMood;
+    }
 
     public double getRate() {
         return rate;
@@ -13,8 +28,6 @@ String comment;
         this.rate = rate;
     }
 
-    double rate;
-
     public String getComment() {
         return comment;
     }
@@ -23,26 +36,12 @@ String comment;
         this.comment = comment;
     }
 
-
-boolean cought;
-boolean temperature;
-
-    public Note(String comment, double rate, boolean cought, boolean temperature, boolean badAppetite, boolean badEating, boolean badMood) {
-        this.comment = comment;
-        this.rate = rate;
-        this.cought = cought;
-        this.temperature = temperature;
-        this.badAppetite = badAppetite;
-        this.badEating = badEating;
-        this.badMood = badMood;
+    public boolean isCaught() {
+        return caught;
     }
 
-    public boolean isCought() {
-        return cought;
-    }
-
-    public void setCought(boolean cought) {
-        this.cought = cought;
+    public void setCaught(boolean caught) {
+        this.caught = caught;
     }
 
     public boolean isTemperature() {
@@ -77,7 +76,4 @@ boolean temperature;
         this.badMood = badMood;
     }
 
-    boolean badAppetite;
-boolean badEating;
-boolean badMood;
 }
