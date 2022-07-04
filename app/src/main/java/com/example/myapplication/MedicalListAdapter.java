@@ -78,6 +78,13 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             contextMenu.add(this.getAdapterPosition(), 121,0,"Редагувати");
             contextMenu.add(this.getAdapterPosition(), 122,1,"Видалити");
         }
+
+    }
+    public void removeItem(int position)
+    {
+        //TODO remove from json
+        pills.remove(position);
+        notifyDataSetChanged();
     }
 }
 

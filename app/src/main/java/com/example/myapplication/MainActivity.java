@@ -118,4 +118,19 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case 121:
+                //TODO редагувати
+                return true;
+            case 122:
+                adapter.removeItem(item.getGroupId());
+                return false;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
 }
