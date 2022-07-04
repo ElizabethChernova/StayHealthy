@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
+
             <TextView
                 android:id="@+id/kg"
                 android:layout_width="120dp"
@@ -90,25 +91,26 @@
                 android:id="@+id/age"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
                 android:text="Вік" />
 
-            <EditText
-                style="@style/edittext_view_style"
+            <NumberPicker
                 android:id="@+id/editAge"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:width="200dp" />
             <TextView
                 android:id="@+id/p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextPrimary"
                 android:text="р"
-                android:layout_marginTop="8dp"
-                android:paddingStart="0dp"
+                android:paddingStart="24dp"
                 android:padding="12dp"
+                android:layout_gravity="center"
                 android:textSize="17dp" />
         </LinearLayout>
         <LinearLayout
@@ -121,25 +123,26 @@
                 android:id="@+id/height"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_gravity="center"
                 android:text="Зріст" />
 
-            <EditText
-                style="@style/edittext_view_style"
+            <NumberPicker
                 android:id="@+id/editHeight"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:width="200dp" />
             <TextView
                 android:id="@+id/cm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextPrimary"
                 android:text="см"
-                android:layout_marginTop="8dp"
-                android:paddingStart="0dp"
+                android:paddingStart="24dp"
                 android:padding="12dp"
+                android:layout_gravity="center"
                 android:textSize="17dp" />
         </LinearLayout>
 

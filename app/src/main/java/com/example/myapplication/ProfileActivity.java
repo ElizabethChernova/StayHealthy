@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
@@ -28,7 +29,8 @@ import java.time.OffsetTime;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText name, weight, height, age;
+    private EditText name, weight;
+    private NumberPicker height, age;
     private RadioGroup sex;
     private RadioButton male, female;
     private TimePicker awake, goToSleep;
@@ -59,8 +61,12 @@ public class ProfileActivity extends AppCompatActivity {
         //set connection with fields
         name = (EditText) findViewById(R.id.personName);
         weight = (EditText) findViewById(R.id.editWeigh);
-        height = (EditText) findViewById(R.id.editHeight);
-        age = (EditText) findViewById(R.id.editAge);
+        height =  findViewById(R.id.editHeight);
+        height.setMaxValue(230);
+        height.setMinValue(120);
+        age =  findViewById(R.id.editAge);
+        age.setMaxValue(150);
+        age.setMinValue(1);
         sex = (RadioGroup) findViewById(R.id.radio_group_sex);
         male = (RadioButton) findViewById(R.id.radio_button_male);
         female = (RadioButton) findViewById(R.id.radio_button_female);
@@ -111,21 +117,18 @@ public class ProfileActivity extends AppCompatActivity {
     public void saveChanges(View view) {
         String nameGetString = name.getText().toString();
         String weightString = weight.getText().toString();
-        String ageString = age.getText().toString();
-        if (((sex.getCheckedRadioButtonId() != R.id.radio_button_male) && sex.getCheckedRadioButtonId() != R.id.radio_button_female) || ageString.matches("") || nameGetString.matches("") || weightString.matches("")) {
+        if (((sex.getCheckedRadioButtonId() != R.id.radio_button_male) && sex.getCheckedRadioButtonId() != R.id.radio_button_female) || nameGetString.matches("") || weightString.matches("")) {
             Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         } else if (Double.parseDouble(weightString) > 400 || Double.parseDouble(weightString) < 1) {
             Toast.makeText(this, "Please enter correct weight", Toast.LENGTH_SHORT).show();
-        } else if (Double.parseDouble(ageString) > 150 || Double.parseDouble(weightString) < 0) {
-            Toast.makeText(this, "Please enter correct age", Toast.LENGTH_SHORT).show();
         } else {
 
             person.setName(name.getText().toString());
 
             person.setWeight(Double.parseDouble(weight.getText().toString()));
-            person.setHeight(Double.parseDouble(height.getText().toString()));
-            person.setAge(Integer.parseInt(age.getText().toString()));
+            person.setHeight(height.getValue());
+            person.setAge(age.getValue());
 
             if (sex.getCheckedRadioButtonId() == R.id.radio_button_male) person.setSex('Ч');
             else if (sex.getCheckedRadioButtonId() == R.id.radio_button_female) person.setSex('Ж');
@@ -149,8 +152,9 @@ public class ProfileActivity extends AppCompatActivity {
         if (person != null) {
             name.setText(person.getName());
             weight.setText(person.getWeight() + "");
-            height.setText(person.getHeight() + "");
-            age.setText(person.getAge() + "");
+            height.setValue((int) person.getHeight());
+            age.setValue((int) person.getAge());
+            
             if (person.getSex() == 'Ч') male.setChecked(true);
             else if (person.getSex() == 'Ж') female.setChecked(true);
             awake.setHour(person.getDaySchedule().wakingUpH);
