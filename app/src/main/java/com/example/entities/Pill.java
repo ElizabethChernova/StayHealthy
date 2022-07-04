@@ -103,7 +103,7 @@ public class Pill {
 
         countTimeSlots();
     }
-//"До іжі", "Під час іжі", "Після іжі", "До сну", "Після сну", "Немає залежності"
+
     public void countTimeSlots(){
         times=new ArrayList<>(timesPerDay);
 

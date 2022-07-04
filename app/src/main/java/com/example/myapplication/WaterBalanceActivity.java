@@ -25,6 +25,7 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
     private ImageButton minus;
     private TextView numberOfGlass;
     private TextView mlInDay;
+    private Person person;
 
     private int currentNumberOfGlass = 0;
     private double neededMLInDay = 2000;
@@ -52,9 +53,19 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         mlInDay = findViewById(R.id.mlInDay);
-        countWater();
-        remainingML = neededMLInDay;
-        mlInDay.setText("На сьогодні ще потрібно випити: " + neededMLInDay + " мл");
+        person = Storage.importFromJSON(this);
+        if(person!=null) {
+            if(person.getCurrentAmountOfWater()==0) {
+                countWater();
+                remainingML = neededMLInDay;
+            }else{
+                remainingML=person.getCurrentAmountOfWater();
+            }
+        }
+        else{
+            remainingML=neededMLInDay;
+        }
+        mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +74,11 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 currentNumberOfGlass++;
                 numberOfGlass.setText(String.valueOf(currentNumberOfGlass));
                 remainingML -= getNumber((String) mTextView.getText());
+                person=Storage.importFromJSON(WaterBalanceActivity.this);
+                if(person!=null){
+                    person.setCurrentAmountOfWater(remainingML);
+                    Storage.exportToJSON(WaterBalanceActivity.this,person);
+                }
                 if (remainingML >= 0) {
                     mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
                 } else {

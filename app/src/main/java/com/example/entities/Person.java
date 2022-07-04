@@ -37,15 +37,15 @@ public class Person {
 
     private char sex;
 
-    public int getCurrentAmountOfWater() {
+    public double getCurrentAmountOfWater() {
         return currentAmountOfWater;
     }
 
-    public void setCurrentAmountOfWater(int currentAmountOfWater) {
+    public void setCurrentAmountOfWater(double currentAmountOfWater) {
         currentAmountOfWater = currentAmountOfWater;
     }
 
-    private int currentAmountOfWater = 0;
+    private double currentAmountOfWater = 0;
 
     public String getName() {
         return name;
