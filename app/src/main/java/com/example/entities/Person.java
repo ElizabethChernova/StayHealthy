@@ -42,7 +42,7 @@ public class Person {
     }
 
     public void setCurrentAmountOfWater(double currentAmountOfWater) {
-        currentAmountOfWater = currentAmountOfWater;
+        this.currentAmountOfWater = currentAmountOfWater;
     }
 
     private double currentAmountOfWater = 0;
