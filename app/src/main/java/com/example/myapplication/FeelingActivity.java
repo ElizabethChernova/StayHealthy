@@ -79,6 +79,16 @@ public class FeelingActivity extends AppCompatActivity {
         ratingBar=(RatingBar) findViewById(R.id.ratingBar);
         comment=(EditText) findViewById(R.id.editTextFeelingsComment);
 
+        person= Storage.importFromJSON(FeelingActivity.this);
+        if(person!=null){
+            notesFromJson=person.getNotes();
+        }
+
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new SymptomsListAdapter(notesFromJson);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(FeelingActivity.this));
+
         saveButton = findViewById(R.id.saveSymptomData);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,6 +24,8 @@ import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
 
+import java.util.ArrayList;
+
 public class NewMedicineActivity extends AppCompatActivity {
     Person person;
     private EditText name, dose, comment, dependencyTime;
@@ -37,7 +39,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
-    private TimePicker timePicker;
+
+    private LinearLayout layoutWithTimePickers;
+    private ArrayList<View> arrayListOfTimePicker=new ArrayList<>();
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
 
@@ -48,6 +52,7 @@ public class NewMedicineActivity extends AppCompatActivity {
 
         timeToPills = this.findViewById(R.id.timePickerEatPills);
         timeToPills.setIs24HourView(true);
+        arrayListOfTimePicker.add(timeToPills);
         name = (EditText) findViewById(R.id.edit_med_name);
         dose = (EditText) findViewById(R.id.edit_dose);
         comment = (EditText) findViewById(R.id.editTextСomment);
@@ -136,6 +141,17 @@ public class NewMedicineActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
+
+        times.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal ) {
+                for(int i=arrayListOfTimePicker.size(); i<newVal; i++)
+                {
+                    arrayListOfTimePicker.add(new TimePicker(NewMedicineActivity.this));
+                }
+                layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
+            }
+        });
     }
 
     private void open() {
@@ -160,8 +176,8 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
             newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
-            newPill.setUserTimeH(timePicker.getHour());
-            newPill.setUserTimeM(timePicker.getMinute());
+            newPill.setUserTimeH(timeToPills.getHour());
+            newPill.setUserTimeM(timeToPills.getMinute());
 
             if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
                 newPill.setAlarmType('A');

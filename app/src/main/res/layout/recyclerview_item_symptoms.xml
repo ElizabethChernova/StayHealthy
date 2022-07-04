@@ -21,7 +21,8 @@
             android:id="@+id/lastRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp" />
+            android:paddingTop="8dp"
+            android:isIndicator = "true"/>
 
             <TextView
                 android:id="@+id/dayAndTime"
@@ -135,7 +136,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginStart="70dp"
                                 android:layout_marginTop="75dp"
                                 app:srcCompat="@drawable/ic_icon_feeling_6" />
 

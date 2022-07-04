@@ -33,7 +33,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         if (symptoms != null) {
             Note current = symptoms.get(position);
             holder.ratingBar.setRating(current.getRate());
-            holder.data.setText(current.getData().toString());
+            holder.data.setText(current.getData().toString() + "\n" + current.getTime());
         } else {
             // Covers the case of data not being ready yet.
            // holder.name.setText("No name");
