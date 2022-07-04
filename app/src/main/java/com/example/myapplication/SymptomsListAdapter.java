@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.entities.Note;
 import com.example.entities.Pill;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapter.SymptomsViewHolder> {
@@ -21,6 +24,7 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
     private List<Note> symptoms; // Cached copy of words
 
     SymptomsListAdapter(List<Note> symptoms) {
+        Collections.reverse(symptoms);
         this.symptoms =symptoms;
     }
 
@@ -37,6 +41,17 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
             holder.ratingBar.setRating(current.getRate());
             holder.data.setText(current.getData().toString() + "\n" + current.getTime());
             holder.comment.setText(current.getComment());
+            if(current.isTemperature())
+                holder.l1.setVisibility(View.VISIBLE);
+            if(current.isCaught())
+                holder.l2.setVisibility(View.VISIBLE);
+            if(current.isBadAppetite())
+                holder.l3.setVisibility(View.VISIBLE);
+            if(current.isBadEating())
+                holder.l4.setVisibility(View.VISIBLE);
+            if(current.isBadMood())
+                holder.l5.setVisibility(View.VISIBLE);
+
         } else {
             // Covers the case of data not being ready yet.
            // holder.name.setText("No name");
@@ -57,6 +72,16 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         private final TextView data;
         private final LinearLayout linearComment;
         private final TextView comment;
+        private final LinearLayout item;
+
+        //symptoms
+        private final LinearLayout l1;
+        private final LinearLayout l2;
+        private final LinearLayout l3;
+        private final LinearLayout l4;
+        private final LinearLayout l5;
+
+        private boolean alreadyOpen=false;
 
         private SymptomsViewHolder(View itemView) {
             super(itemView);
@@ -64,11 +89,28 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
             ratingBar = itemView.findViewById(R.id.lastRatingBar);
             linearComment= itemView.findViewById(R.id.additionalPanel);
             comment = itemView.findViewById(R.id.comment);
+
+            l1 = itemView.findViewById(R.id.linearLayout2);
+            l2 = itemView.findViewById(R.id.linearLayout3);
+            l3 = itemView.findViewById(R.id.linearLayout4);
+            l4 = itemView.findViewById(R.id.linearLayout5);
+            l5 = itemView.findViewById(R.id.linearLayout6);
+
+            item =  itemView.findViewById(R.id.item);
+            item.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            linearComment.setVisibility(View.VISIBLE);
+            if(!alreadyOpen){
+                linearComment.setVisibility(View.VISIBLE);
+                ratingBar.setIsIndicator(false);
+
+                //TODO changes in json
+            }
+            else{
+                linearComment.setVisibility(View.GONE);
+            }
         }
     }
 
