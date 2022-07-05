@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryLight"
         >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="@color/colorPrimaryLight"
         android:layout_marginTop="8dp">
 
     <LinearLayout
@@ -28,6 +29,7 @@
         <TextView
             android:id="@+id/name_of_the_medical"
             style="@style/text_view_style"
+            android:background="@color/opacity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Name of the medical"
@@ -37,6 +39,7 @@
         <TextView
             android:id="@+id/condition"
             style="@style/text_view_style"
+            android:background="@color/opacity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -48,17 +51,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/time"
-                style="@style/text_view_style"
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Time"
-                android:textSize="20dp"
-                android:textFontWeight="600"
-                android:gravity="right"
-                />
+                android:orientation="horizontal"
+                android:gravity="right">
+                <TextView
+                    android:id="@+id/time"
+                    style="@style/text_view_style"
+                    android:background="@color/opacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Time"
+                    android:textSize="20dp"
+                    android:textFontWeight="600"
 
+                    />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/priority"
                 android:layout_width="30dp"
@@ -66,7 +76,18 @@
                 android:layout_margin="10dp"
                 android:background="@color/priority_red"
                 android:padding="5dp"
+                android:gravity="right"
+                />
+
+            </LinearLayout>
+            <Switch
+                android:id="@+id/switchDone"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Випито"
                 android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorTextPrimary"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -81,6 +102,7 @@
             <TextView
                 android:id="@+id/daysNeedToEat"
                 style="@style/text_view_style"
+                android:background="@color/opacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Ще лишилось:"
@@ -89,6 +111,7 @@
             <TextView
                 android:id="@+id/comment"
                 style="@style/text_view_style"
+                android:background="@color/opacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"

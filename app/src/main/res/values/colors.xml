@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryLight">#C4EDEB</color>
+    <color name="colorPrimaryGray">#B9BCBC</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#FFFF9800</color>
     <color name="colorTextPrimary">#018D85</color>
@@ -21,4 +22,5 @@
     <color name="default_background">#E0E0E0</color>
     <color name="priority_red">#ED786F</color>
     <color name="priority_gray">#BCAFAE</color>
+    <color name="opacity">#00BCAFAE</color>
 </resources>

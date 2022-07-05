@@ -6,7 +6,9 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,7 +73,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         else return 0;
     }
 
-    class MedicalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
+    class MedicalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener, CompoundButton.OnCheckedChangeListener {
         private final TextView name;
         private final TextView time;
         private final TextView dependency;
@@ -80,6 +82,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         private final LinearLayout additionField;
         private final TextView days;
         private final TextView comment;
+        private final Switch switchDone;
 
         private boolean alreadyOpen=false;
 
@@ -93,7 +96,9 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             additionField = itemView.findViewById(R.id.additionScreen);
             days = itemView.findViewById(R.id.daysNeedToEat);
             comment = itemView.findViewById(R.id.comment);
+            switchDone = itemView.findViewById(R.id.switchDone);
 
+            switchDone.setOnCheckedChangeListener(this);
             item.setOnCreateContextMenuListener(this);
             item.setOnClickListener(this);
         }
@@ -117,10 +122,19 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             contextMenu.add(this.getAdapterPosition(), 122,1,"Видалити");
         }
 
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if(isChecked){
+                //todo skip item to end
+                item.setBackgroundColor(Color.parseColor("#B9BCBC"));
+            }else{
+                //todo skip item to start
+                item.setBackgroundColor(Color.parseColor("#C4EDEB"));
+            }
+        }
     }
     public void removeItem(int position)
     {
-        //TODO remove from json
         pills.remove(position);
         notifyDataSetChanged();
     }
