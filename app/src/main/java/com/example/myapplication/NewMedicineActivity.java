@@ -46,11 +46,12 @@ public class NewMedicineActivity extends AppCompatActivity {
     private LinearLayout timeLayout;
 
     private LinearLayout layoutWithTimePickers;
-    private ArrayList<View> arrayListOfTimePicker=new ArrayList<>();
+    private ArrayList<View> arrayListOfTimePicker = new ArrayList<>();
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
 
-    int number =1;
+    int number = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,22 +65,22 @@ public class NewMedicineActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.edit_med_name);
         dose = (EditText) findViewById(R.id.edit_dose);
         comment = (EditText) findViewById(R.id.editTextСomment);
-        times =  findViewById(R.id.edit_times);
+        times = findViewById(R.id.edit_times);
         times.setMaxValue(20);
         times.setMinValue(1);
         alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
         notification = (RadioButton) findViewById(R.id.radio_button_notification);
         timeLayout = findViewById(R.id.field_time);
-        numberOfDays=  findViewById(R.id.edit_number_of_days);
+        numberOfDays = findViewById(R.id.edit_number_of_days);
         numberOfDays.setMaxValue(365);
         numberOfDays.setMinValue(1);
-        comment=(EditText) findViewById(R.id.editTextСomment);
-        dependencyTime=(EditText) findViewById(R.id.edit_minute);
+        comment = (EditText) findViewById(R.id.editTextСomment);
+        dependencyTime = (EditText) findViewById(R.id.edit_minute);
 
 
         layoutWithTimePickers = findViewById(R.id.timePickers);
-   //     layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
+        //     layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
         LinearLayout layoutWithTimePickersAndText = findViewById(R.id.field_time);
 
         // адаптер
@@ -101,7 +102,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 replyIntent.putExtra(EXTRA_REPLY, info);
                 setResult(RESULT_OK, replyIntent);
                 finish();
-                 }
+            }
         });
         open();
 
@@ -141,44 +142,48 @@ public class NewMedicineActivity extends AppCompatActivity {
 
         times.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal ) {
-                number=newVal;
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                number = newVal;
 
             }
         });
 
         times.setOnTouchListener(new View.OnTouchListener() {
-                     @Override
-             public boolean onTouch(View v, MotionEvent event) {
-                         //Log.e("TAG", event.getX()+" "+event.getY());
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //Log.e("TAG", event.getX()+" "+event.getY());
 
-                         switch (event.getAction()) {
-                             case MotionEvent.ACTION_DOWN://0
-                                 Log.e("TAG", "LinearLayout onTouch and hold");
-                                 break;
-                             case MotionEvent.ACTION_UP://1
-                                 Log.e("ТЕГ", "LinearLayout onTouch поднять вверх");
-                                 layoutWithTimePickers.removeAllViewsInLayout();
-                                 for(int i=arrayListOfTimePicker.size(); i<number; i++)
-                                 {
-                                     TimePicker timePicker= new TimePicker(NewMedicineActivity.this);
-                                     timePicker.setIs24HourView(true);
-
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN://0
+                        Log.e("TAG", "LinearLayout onTouch and hold");
+                        break;
+                    case MotionEvent.ACTION_UP://1
+                        Log.e("ТЕГ", "LinearLayout onTouch поднять вверх");
+                        layoutWithTimePickers.removeAllViewsInLayout();
+                        if (arrayListOfTimePicker.size() <= number) {
+                            for (int i = arrayListOfTimePicker.size(); i < number; i++) {
+                                TimePicker timePicker = new TimePicker(NewMedicineActivity.this);
+                                timePicker.setIs24HourView(true);
 //                    timePicker= findViewById(R.id.timePickerEatPills);
-                                     arrayListOfTimePicker.add(timePicker);
-                                 }
-                                 for(int i=0; i<arrayListOfTimePicker.size(); i++) {
-                                     layoutWithTimePickers.addView(arrayListOfTimePicker.get(i));
-                                 }
-                                 layoutWithTimePickersAndText.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                arrayListOfTimePicker.add(timePicker);
+                            }
+                        }else{
+                            while(arrayListOfTimePicker.size()>number) {
+                                arrayListOfTimePicker.remove(arrayListOfTimePicker.size()-1);
+                            }
+                        }
+                        for (int i = 0; i < arrayListOfTimePicker.size(); i++) {
+                            layoutWithTimePickers.addView(arrayListOfTimePicker.get(i));
+                        }
+                        layoutWithTimePickersAndText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-                                 break;
-                             case MotionEvent.ACTION_MOVE://2
-                                 Log.e("TAG", "LinearLayout onTouch Mobile");
-                                 break;
-                         }
-                         return false;
-                     }
+                        break;
+                    case MotionEvent.ACTION_MOVE://2
+                        Log.e("TAG", "LinearLayout onTouch Mobile");
+                        break;
+                }
+                return false;
+            }
         });
 
     }
@@ -204,13 +209,13 @@ public class NewMedicineActivity extends AppCompatActivity {
             newPill.setNumberOfDays(numberOfDays.getValue());
             newPill.setDependency(spinner.getSelectedItem().toString());
             newPill.setComment(comment.getText().toString());
-            if(!dependencyTime.getText().toString().equals(""))
+            if (!dependencyTime.getText().toString().equals(""))
                 newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
             else
                 newPill.setDependencyTime(0);
 
-            for(View timePicker:arrayListOfTimePicker) {
-                newPill.addUserTime(new Time(((TimePicker)timePicker).getHour(),((TimePicker)timePicker).getMinute()));
+            for (View timePicker : arrayListOfTimePicker) {
+                newPill.addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
             }
 
             if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
@@ -221,7 +226,7 @@ public class NewMedicineActivity extends AppCompatActivity {
             if (person != null) {
                 newPill.countTimeSlots();
                 person.addPill(newPill);
-                Storage.exportToJSON(this,person);
+                Storage.exportToJSON(this, person);
                 Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
 
             } else {

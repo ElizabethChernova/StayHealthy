@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Person person;
     private FloatingActionButton buttonPlus;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_WORD_ACTIVITY_REQUEST_CODE = 2;
     public static String info[]= new String[4];
 
     private RecyclerView recyclerView;
@@ -126,8 +127,14 @@ public class MainActivity extends AppCompatActivity {
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        } else {
+        }
+        if (requestCode == EDIT_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
+            //todo save changes in json
+
+            adapter = new MedicalListAdapter(this, pillsFromJson);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
     }
 
@@ -143,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 mBundle.putString("depend", person.getPills().get(item.getGroupId()).getDependency());
                 mBundle.putString("times", String.valueOf(person.getPills().get(item.getGroupId()).getTimesPerDay()));
                 mBundle.putString("numberOfDays", String.valueOf(person.getPills().get(item.getGroupId()).getNumberOfDays()));
-
+                intent.putExtra("arrayListTime", person.getPills().get(item.getGroupId()).getTimes());
                 // mBundle.putParcelableArrayList("arrayListTime", person.getPills().get(item.getGroupId()).getTimes());
                 mBundle.putString("alarmNot", String.valueOf(person.getPills().get(item.getGroupId()).getAlarmType()));
                 mBundle.putString("comment", person.getPills().get(item.getGroupId()).getComment());
@@ -151,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 intent.putExtras(mBundle);
-                startActivity(intent);
+                startActivityForResult(intent, EDIT_WORD_ACTIVITY_REQUEST_CODE);
                 return true;
             case 122:
                 adapter.removeItem(item.getGroupId());

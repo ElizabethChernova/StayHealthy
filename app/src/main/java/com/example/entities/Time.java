@@ -1,6 +1,8 @@
 package com.example.entities;
 
-public class Time implements Comparable<Time>{
+import java.io.Serializable;
+
+public class Time implements Comparable<Time>, Serializable {
     public int getHours() {
         return hours;
     }
