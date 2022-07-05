@@ -173,24 +173,25 @@ public class NewMedicineActivity extends AppCompatActivity {
                                 Calendar alarmStartTime = Calendar.getInstance();
                                 alarmStartTime.setTimeInMillis(System.currentTimeMillis());
                                 Calendar now = Calendar.getInstance();
-                                //ArrayList<Pill> pills=Storage.importFromJSON(NewMedicineActivity.this).getPills();
-                            //    int hours= pills.get(pills.size()-1).getTimes().get(0).getHours();
-                                alarmStartTime.set(Calendar.HOUR_OF_DAY, 12);
-                                alarmStartTime.set(Calendar.MINUTE, 31 );
-                                alarmStartTime.set(Calendar.SECOND, 0);
+                                ArrayList<Pill> pills=Storage.importFromJSON(NewMedicineActivity.this).getPills();
+                                for(int i=0; i<pills.size();i++){
+                                    int hours= pills.get(pills.size()-1).getTimes().get(i).getHours();
+                                    int minutes= pills.get(pills.size()-1).getTimes().get(i).getMinutes();
+                                    alarmStartTime.set(Calendar.HOUR_OF_DAY, hours);
+                                    alarmStartTime.set(Calendar.MINUTE, minutes );
+                                    alarmStartTime.set(Calendar.SECOND, 0);
 
-                                long triggerTime = alarmStartTime.getTimeInMillis();
-                                //SystemClock.elapsedRealtime() + repeatInterval;
+                                    long triggerTime = alarmStartTime.getTimeInMillis();
+                                    //SystemClock.elapsedRealtime() + repeatInterval;
 
-                                // If the Toggle is turned on, set the repeating alarm with
-                                // a 15 minute interval.
-                                if (alarmManager != null) {
-                                    long thirtySecondsFromNow = System.currentTimeMillis() + 50 * 1000;
-                                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 10000, notifyPendingIntent);
-                           /*     alarmManager.setRepeating
-                                        (AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                                                triggerTime, repeatInterval,
-                                                notifyPendingIntent);*/
+                                    // If the Toggle is turned on, set the repeating alarm with
+                                    // a 15 minute interval.
+                                    if (alarmManager != null) {
+                                    //    long thirtySecondsFromNow = System.currentTimeMillis() + 50 * 1000;
+                                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, AlarmManager.INTERVAL_DAY, notifyPendingIntent);
+                                }
+
+
                                 }
                                 // Set the toast message for the "on" case.
                                 toastMessage = getString(R.string.alarm_on_toast);
