@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,12 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             else {
                 holder.comment.setVisibility(View.GONE);
                 holder.comment.setText("");
+            }
+            if(current.getAlarmType()=='A')
+            {
+                holder.priority.setBackgroundColor(Color.parseColor("#ED786F"));
+            }else{
+                holder.priority.setBackgroundColor(Color.parseColor("#BCAFAE"));
             }
            // holder.priority.setBackgroundColor();
         } else {
