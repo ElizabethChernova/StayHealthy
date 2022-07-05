@@ -406,8 +406,8 @@ public class NewMedicineActivity extends AppCompatActivity {
                 newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
             if (person != null) {
-                person.addPill(newPill);
                 newPill.countTimeSlots();
+                person.addPill(newPill);
                 Collections.sort(person.getPills(), new Comparator<Pill>() {
                     @Override
                     public int compare(Pill pill1, Pill pill2) {
@@ -471,4 +471,6 @@ public class NewMedicineActivity extends AppCompatActivity {
             mNotificationManager.createNotificationChannel(notificationChannel);
         }
     }
+
+
 }

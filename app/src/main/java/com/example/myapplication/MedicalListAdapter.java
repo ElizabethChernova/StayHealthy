@@ -202,5 +202,9 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         pills.remove(position);
         notifyDataSetChanged();
     }
+
+    public static void changeToNextDay(){
+
+    }
 }
 
