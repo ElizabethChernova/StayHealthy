@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewMedicineActivity">
+    tools:context=".NewMedicineActivity"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -173,7 +175,7 @@
         <LinearLayout
             android:id="@+id/field_time"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -182,20 +184,30 @@
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:text="Час прийому"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"/>
 
             <LinearLayout
                 android:id="@+id/timePickers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <TimePicker
-                android:id="@+id/timePickerEatPills"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:timePickerMode="spinner"
-                />
+
+                <Button
+                    android:id="@+id/timeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="saveNewMedicine"
+                    android:layout_gravity="center"
+                    android:layout_margin="0dp"
+                    android:height="45dp"
+                    android:text="Час"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:textColor="#00857D"
+                    android:shadowColor="@color/white"/>
+
         </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

@@ -47,7 +47,7 @@
         <item name="android:layout_marginTop">16dp</item>
     </style>
 
-    <style name="TimePicker" parent="Theme.AppCompat.Light.Dialog">
+    <style name="TimePicker" parent="Widget.MaterialComponents.TimePicker.Clock">
         <item name="android:timePickerMode">spinner</item>
     </style>
     <!-- Colored button styles -->

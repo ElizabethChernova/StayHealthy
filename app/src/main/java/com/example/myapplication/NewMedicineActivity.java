@@ -4,6 +4,8 @@ import static com.example.myapplication.MainActivity.info;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.TimePickerDialog;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.app.AlarmManager;
@@ -39,6 +41,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
+import java.util.stream.Stream;
 
 public class NewMedicineActivity extends AppCompatActivity {
 
@@ -55,7 +59,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     private EditText name, dose, comment, dependencyTime;
     private NumberPicker times, numberOfDays;
     private ToggleButton toggleButton;
-    private TimePicker timeToPills;
+    //private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
     private String[] dependency = {"До їжі", "Під час їжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
@@ -64,20 +68,24 @@ public class NewMedicineActivity extends AppCompatActivity {
     private LinearLayout timeLayout;
     ToggleButton alarmToggle;
     private LinearLayout layoutWithTimePickers;
-    private ArrayList<View> arrayListOfTimePicker = new ArrayList<>();
+    private ArrayList<Button> arrayListOfTimePicker = new ArrayList<>();
 
     public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
 
     int number = 1;
+    int hour,minute;
 
+    private Button timeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(R.style.TimePicker);
         setContentView(R.layout.activity_new_medicine);
 
-        timeToPills = this.findViewById(R.id.timePickerEatPills);
-        timeToPills.setIs24HourView(true);
-        arrayListOfTimePicker.add(timeToPills);
+//        timeToPills = this.findViewById(R.id.timePickerEatPills);
+//        timeToPills.setIs24HourView(true);
+        timeButton = this.findViewById(R.id.timeButton);
+        arrayListOfTimePicker.add(timeButton);
         name = (EditText) findViewById(R.id.edit_med_name);
         dose = (EditText) findViewById(R.id.edit_dose);
         comment = (EditText) findViewById(R.id.editTextСomment);
@@ -86,7 +94,6 @@ public class NewMedicineActivity extends AppCompatActivity {
         times.setMinValue(1);
 
         toggleButton =  findViewById(R.id.alarmToggle);
-        timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
 
         toggleButton =  findViewById(R.id.alarmToggle);
         timeLayout = findViewById(R.id.field_time);
@@ -266,10 +273,31 @@ public class NewMedicineActivity extends AppCompatActivity {
                         layoutWithTimePickers.removeAllViewsInLayout();
                         if (arrayListOfTimePicker.size() <= number) {
                             for (int i = arrayListOfTimePicker.size(); i < number; i++) {
-                                TimePicker timePicker = new TimePicker(NewMedicineActivity.this);
-                                timePicker.setIs24HourView(true);
+                                Button timePickerButton = new Button(NewMedicineActivity.this);
 //                    timePicker= findViewById(R.id.timePickerEatPills);
-                                arrayListOfTimePicker.add(timePicker);
+                                timePickerButton.setText("Час");
+                                timePickerButton.setBackgroundColor(Color.parseColor("#C4EDEB"));
+                                timePickerButton.setTextColor(Color.parseColor("#00857D"));
+                                timePickerButton.setHeight(35);
+                              //  timePickerButton.setPadding(0,8,0,0);
+                                timePickerButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        // додаємо ліки у список
+
+                                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                                            @Override
+                                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                                                hour = i;
+                                                minute=i1;
+                                                timePickerButton.setText(String.format(Locale.getDefault(), "%02d:%02d", i, i1));
+                                            }
+                                        };
+                                        TimePickerDialog timePickerDialog = new TimePickerDialog(NewMedicineActivity.this, onTimeSetListener, hour, minute, true);
+                                        timePickerDialog.show();
+                                    }
+                                });
+                                arrayListOfTimePicker.add(timePickerButton);
                             }
                         }else{
                             while(arrayListOfTimePicker.size()>number) {
@@ -290,6 +318,23 @@ public class NewMedicineActivity extends AppCompatActivity {
             }
         });
 
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // додаємо ліки у список
+
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        hour = i;
+                        minute=i1;
+                        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", i, i1));
+                    }
+                };
+                TimePickerDialog timePickerDialog = new TimePickerDialog(NewMedicineActivity.this, onTimeSetListener, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
     }
 
     private void open() {
@@ -326,8 +371,10 @@ public class NewMedicineActivity extends AppCompatActivity {
             else
                 newPill.setDependencyTime(0);
 
-            for (View timePicker : arrayListOfTimePicker) {
-                newPill.addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
+            for (Button timePickerButton : arrayListOfTimePicker) {
+                String str= (String) timePickerButton.getText();
+                String[] arr = str.split(":");
+                newPill.addUserTime(new Time(Integer.parseInt( arr[0]), Integer.parseInt( arr[1])));
             }
 
             if(toggleButton.isChecked())
