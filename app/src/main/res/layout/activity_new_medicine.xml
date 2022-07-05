@@ -8,278 +8,267 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="729dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/name"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Назва ліків" />
 
-            <LinearLayout
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/edit_med_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Назва ліків" />
-
-                <EditText
-                    android:id="@+id/edit_med_name"
-                    style="@style/edittext_view_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/weight"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Дозування" />
 
-                <TextView
-                    android:id="@+id/weight"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Дозування" />
-
-                <EditText
-                    android:id="@+id/edit_dose"
-                    style="@style/edittext_view_style"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-
-                <TextView
-                    android:id="@+id/ml"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:padding="12dp"
-                    android:paddingStart="0dp"
-                    android:text="мг"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="17dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/edit_dose"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:ems="10"
+                android:inputType="number" />
 
-                <TextView
-                    android:id="@+id/dependency"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Залежність" />
-
-                <Spinner
-                    android:id="@+id/spinnerDependency"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/timesPerDay"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Кількість прийомів на день" />
-
-                <NumberPicker
-                    android:id="@+id/edit_times"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:width="200dp"
-                    android:gravity="center" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/numberOfDays"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Кількість днів прийому" />
-
-                <NumberPicker
-                    android:id="@+id/edit_number_of_days"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:width="200dp"
-                    android:gravity="center" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/newDependency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/newDep"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="За   "
-                    android:textSize="17dp" />
-
-                <EditText
-                    android:id="@+id/edit_minute"
-                    style="@style/edittext_view_style"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="20dp"
-                    android:ems="3"
-                    android:inputType="number"
-                    android:padding="0dp" />
-
-                <TextView
-                    android:id="@+id/minute"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:padding="12dp"
-                    android:paddingStart="0dp"
-                    android:text="хв"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="17dp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/field_time"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/eating_time"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Час прийому" />
-
-                <LinearLayout
-                    android:id="@+id/timePickers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TimePicker
-                        android:id="@+id/timePickerEatPills"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:timePickerMode="spinner" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/importance"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Вид оповіщення" />
-
-                <ToggleButton
-                    android:id="@+id/alarmToggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:textOff="@string/alarm_off"
-                    android:textOn="@string/alarm_on" />
-                <RadioGroup
-                    android:id="@+id/radio_group_alarmType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="12dp"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/radio_button_notification"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Сповіщення"
-                        android:textColor="@color/colorTextPrimary" />
-
-                    <RadioButton
-                        android:id="@+id/radio_button_alarm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Будильник"
-                        android:textColor="@color/colorTextPrimary" />
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/comment"
-                    style="@style/text_style"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:text="Коментар" />
-
-                <EditText
-                    android:id="@+id/editTextСomment"
-                    style="@style/edittext_view_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textLongMessage" />
-
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/addButton"
+            <TextView
+                android:id="@+id/ml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:text="мг"
+                android:layout_marginTop="8dp"
+                android:paddingStart="0dp"
+                android:padding="12dp"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/dependency"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Залежність" />
+
+            <Spinner
+                android:id="@+id/spinnerDependency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/timesPerDay"
+                style="@style/text_style"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Кількість прийомів на день" />
+
+            <NumberPicker
+                android:id="@+id/edit_times"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:onClick="saveNewMedicine"
-                android:text="Додати" />
+                android:width="200dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/numberOfDays"
+                style="@style/text_style"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Кількість днів прийому" />
+
+            <NumberPicker
+                android:id="@+id/edit_number_of_days"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:width="200dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newDependency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/newDep"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="За   "
+                android:gravity="right"
+                android:textSize="17dp"/>
+
+            <EditText
+                style="@style/edittext_view_style"
+                android:id="@+id/edit_minute"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:ems="3"
+                android:padding="0dp"
+                android:inputType="number"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextPrimary"
+                android:text="хв"
+                android:layout_marginTop="8dp"
+                android:paddingStart="0dp"
+                android:padding="12dp"
+                android:textSize="17dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/field_time"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/eating_time"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Час прийому"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:id="@+id/timePickers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TimePicker
+                android:id="@+id/timePickerEatPills"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:timePickerMode="spinner"
+                />
+        </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/importance"
+                style="@style/text_style"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Вид оповіщення"
+                android:layout_gravity="center"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group_alarmType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radio_button_notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="Сповіщення"
+                    android:textColor="@color/colorTextPrimary" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="Будильник"
+                    android:textColor="@color/colorTextPrimary" />
+            </RadioGroup>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/comment"
+                style="@style/text_style"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:text="Коментар" />
+
+            <EditText
+                style="@style/edittext_view_style"
+            android:id="@+id/editTextСomment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textLongMessage"
+            />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveNewMedicine"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Додати" />
+
+    </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
