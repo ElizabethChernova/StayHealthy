@@ -63,7 +63,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     //private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
-    private String[] dependency = {"До їжі", "Під час їжі", "Після іжі", "До сну", "Після сну", "Немає залежності"};
+    private String[] dependency = {"До їжі", "Під час їжі", "Після їжі", "До сну", "Після сну", "Немає залежності"};
     Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
