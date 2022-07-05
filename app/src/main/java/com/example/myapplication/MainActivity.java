@@ -63,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
             pillsFromJson=person.getPills();
         }
 
+//        Collections.sort(pillsFromJson, new Comparator<Pill>() {
+//            @Override
+//            public int compare(Pill pill1, Pill pill2) {
+//                return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+//            }
+//        });
+
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new MedicalListAdapter(this, pillsFromJson);
         recyclerView.setAdapter(adapter);
@@ -118,12 +125,12 @@ public class MainActivity extends AppCompatActivity {
             if(person!=null){
                 pillsFromJson=person.getPills();
             }
-            Collections.sort(pillsFromJson, new Comparator<Pill>() {
-                @Override
-                public int compare(Pill pill1, Pill pill2) {
-                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
-                }
-            });
+//            Collections.sort(pillsFromJson, new Comparator<Pill>() {
+//                @Override
+//                public int compare(Pill pill1, Pill pill2) {
+//                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+//                }
+//            });
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -131,6 +138,17 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == EDIT_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
             //todo save changes in json
+            person= Storage.importFromJSON(this);
+
+            if(person!=null){
+                pillsFromJson=person.getPills();
+            }
+//            Collections.sort(pillsFromJson, new Comparator<Pill>() {
+//                @Override
+//                public int compare(Pill pill1, Pill pill2) {
+//                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+//                }
+//            });
 
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
@@ -155,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 mBundle.putString("alarmNot", String.valueOf(person.getPills().get(item.getGroupId()).getAlarmType()));
                 mBundle.putString("comment", person.getPills().get(item.getGroupId()).getComment());
                 mBundle.putString("dependencyTime", String.valueOf(person.getPills().get(item.getGroupId()).getDependencyTime()));
+                mBundle.putInt("position", item.getGroupId());
 
 
                 intent.putExtras(mBundle);

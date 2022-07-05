@@ -22,7 +22,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
+import com.example.entities.Person;
 import com.example.entities.Pill;
+import com.example.entities.Storage;
 import com.example.entities.Time;
 import java.util.ArrayList;
 
@@ -107,6 +109,52 @@ public class EditMedicineActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // редагуємо ліки з списку
                 //saveEditMedicine(view);
+
+                newPill = new Pill();
+                newPill.setName(name.getText().toString());
+
+                newPill.setDose(Double.parseDouble(dose.getText().toString()));
+                newPill.setTimesPerDay(times.getValue());
+                newPill.setNumberOfDays(numberOfDays.getValue());
+                newPill.setDependency(spinner.getSelectedItem().toString());
+                newPill.setComment(comment.getText().toString());
+                if (!dependencyTime.getText().toString().equals(""))
+                    newPill.setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
+                else
+                    newPill.setDependencyTime(0);
+
+                for (View timePicker : arrayListOfTimePicker) {
+                    newPill.addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
+                }
+                if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
+                    newPill.setAlarmType('A');
+                else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm)
+                    newPill.setAlarmType('N');
+//                person.getPills().get(positionInList).setTimesPerDay(times.getValue());
+//                person.getPills().get(positionInList).setComment(comment.getText().toString());
+//                if (!dependencyTime.getText().toString().equals(""))
+//                    person.getPills().get(positionInList).setDependencyTime(Integer.parseInt(dependencyTime.getText().toString()));
+//                else
+//                    person.getPills().get(positionInList).setDependencyTime(0);
+//
+//                person.getPills().get(positionInList).setUserTimes(new ArrayList<Time>());
+//                for (View timePicker : arrayListOfTimePicker) {
+//                    person.getPills().get(positionInList).addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
+//                }
+//
+//                if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
+//                    person.getPills().get(positionInList).setAlarmType('A');
+//                else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm)
+//                    person.getPills().get(positionInList).setAlarmType('N');
+
+                Person person= Storage.importFromJSON(view.getContext());
+                if(person!=null) {
+                    int positionInList = extras.getInt("position");
+                    newPill.countTimeSlots();
+                    person.getPills().set(positionInList, newPill);
+                    Storage.exportToJSON(view.getContext(), person);
+                }
+
 
                 Intent replyIntent = new Intent();
                 replyIntent.putExtra(EXTRA_REPLY, info);
