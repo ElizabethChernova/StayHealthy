@@ -52,8 +52,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     Person person;
     private EditText name, dose, comment, dependencyTime;
     private NumberPicker times, numberOfDays;
-    private RadioGroup alarmType;
-    private RadioButton notification, alarm;
+    private ToggleButton toggleButton;
     private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
@@ -83,10 +82,13 @@ public class NewMedicineActivity extends AppCompatActivity {
         times = findViewById(R.id.edit_times);
         times.setMaxValue(20);
         times.setMinValue(1);
+
         alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
         notification = (RadioButton) findViewById(R.id.radio_button_notification);
         timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
+
+        toggleButton =  findViewById(R.id.alarmToggle);
         timeLayout = findViewById(R.id.field_time);
         numberOfDays=  findViewById(R.id.edit_number_of_days);
         numberOfDays.setMaxValue(365);
@@ -298,6 +300,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     private boolean checkIfSomethingIsMissing(){
         String nameGetString = name.getText().toString();
         String doseString = dose.getText().toString();
+
         if (((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
             return true;
         }
@@ -306,6 +309,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     private void saveNewMedicine(View view) {
 
         if (checkIfSomethingIsMissing()) {
+        
             Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         }
@@ -328,9 +332,9 @@ public class NewMedicineActivity extends AppCompatActivity {
                 newPill.addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
             }
 
-            if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
+            if(toggleButton.isChecked())
                 newPill.setAlarmType('A');
-            else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm)
+            else
                 newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
             if (person != null) {

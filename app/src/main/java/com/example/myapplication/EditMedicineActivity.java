@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.ToggleButton;
 
 import com.example.entities.Pill;
 import com.example.entities.Time;
@@ -29,8 +30,7 @@ public class EditMedicineActivity extends AppCompatActivity {
 
     private EditText name, dose, comment, dependencyTime;
     private NumberPicker times, numberOfDays;
-    private RadioGroup alarmType;
-    private RadioButton notification, alarm;
+    private ToggleButton toggleButton;
     private TimePicker timeToPills;
     private Button add;
     private Spinner spinner;
@@ -89,14 +89,12 @@ public class EditMedicineActivity extends AppCompatActivity {
         layoutWithTimePickersAndText.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
 
-        alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
-        alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
-        notification = (RadioButton) findViewById(R.id.radio_button_notification);
+        toggleButton =  findViewById(R.id.alarmToggle);
         if(extras.getString("alarmNot").equals("A"))
         {
-            alarm.setChecked(true);
+            toggleButton.setChecked(true);
         }else{
-            notification.setChecked(true);
+            toggleButton.setChecked(false);
         }
 
         comment=(EditText) findViewById(R.id.editTextСomment);

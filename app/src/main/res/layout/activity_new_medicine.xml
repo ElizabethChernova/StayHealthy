@@ -200,7 +200,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <TextView
@@ -208,32 +208,17 @@
                 style="@style/text_style"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:text="Вид оповіщення"
-                android:layout_gravity="center"/>
+                android:layout_marginTop="0dp"
+                android:text="Вид оповіщення"/>
 
-            <RadioGroup
-                android:id="@+id/radio_group_alarmType"
+
+            <ToggleButton
+                android:id="@+id/alarmToggle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/radio_button_notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="Сповіщення"
-                    android:textColor="@color/colorTextPrimary" />
-
-                <RadioButton
-                    android:id="@+id/radio_button_alarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="Будильник"
-                    android:textColor="@color/colorTextPrimary" />
-            </RadioGroup>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="ToggleButton" />
 
         </LinearLayout>
 
