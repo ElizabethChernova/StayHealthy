@@ -1,6 +1,6 @@
 package com.example.entities;
 
-public class Time {
+public class Time implements Comparable<Time>{
     public int getHours() {
         return hours;
     }
@@ -32,5 +32,12 @@ public class Time {
     public Time(int hours, int minutes) {
         this.hours = hours;
         this.minutes = minutes;
+    }
+
+    @Override
+    public int compareTo(Time time) {
+        if(hours> time.hours||hours< time.hours) return Integer.compare(hours,time.hours);
+        return Integer.compare(minutes,time.minutes);
+
     }
 }

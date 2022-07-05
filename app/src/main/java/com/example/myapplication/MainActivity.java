@@ -22,6 +22,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -115,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
             if(person!=null){
                 pillsFromJson=person.getPills();
             }
+            Collections.sort(pillsFromJson, new Comparator<Pill>() {
+                @Override
+                public int compare(Pill pill1, Pill pill2) {
+                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+                }
+            });
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
