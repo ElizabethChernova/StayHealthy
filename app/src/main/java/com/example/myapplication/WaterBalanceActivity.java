@@ -14,9 +14,12 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.entities.Data;
 import com.example.entities.Person;
 import com.example.entities.Storage;
 import com.google.android.material.navigation.NavigationView;
+
+import java.time.OffsetDateTime;
 
 public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -54,16 +57,22 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
         minus = findViewById(R.id.minusButton);
         mlInDay = findViewById(R.id.mlInDay);
         person = Storage.importFromJSON(this);
-        if(person!=null) {
-            if(person.getCurrentAmountOfWater()==0) {
+        if (person != null) {
+            if ((person.getCurrentDataOfProgram().getYear() == 0) && (person.getCurrentDataOfProgram().getMonth() == 0) && (person.getCurrentDataOfProgram().getDay() == 0)) {
+                person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
                 countWater();
                 remainingML = neededMLInDay;
-            }else{
-                remainingML=person.getCurrentAmountOfWater();
+                Storage.exportToJSON(this,person);
             }
-        }
-        else{
-            remainingML=neededMLInDay;
+            else if (person.getCurrentDataOfProgram().getDay() != OffsetDateTime.now().getDayOfMonth() || person.getCurrentDataOfProgram().getMonth() != OffsetDateTime.now().getMonthValue() || person.getCurrentDataOfProgram().getYear() != OffsetDateTime.now().getYear()){
+                countWater();
+                remainingML = neededMLInDay;
+                person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
+                Storage.exportToJSON(this,person);
+            } else remainingML = person.getCurrentAmountOfWater();
+
+        } else {
+            remainingML = neededMLInDay;
         }
         if (remainingML >= 0) {
             mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");
@@ -77,10 +86,10 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 currentNumberOfGlass++;
                 numberOfGlass.setText(String.valueOf(currentNumberOfGlass));
                 remainingML -= getNumber((String) mTextView.getText());
-                person=Storage.importFromJSON(WaterBalanceActivity.this);
-                if(person!=null){
+                person = Storage.importFromJSON(WaterBalanceActivity.this);
+                if (person != null) {
                     person.setCurrentAmountOfWater(remainingML);
-                    Storage.exportToJSON(WaterBalanceActivity.this,person);
+                    Storage.exportToJSON(WaterBalanceActivity.this, person);
                 }
                 if (remainingML >= 0) {
                     mlInDay.setText("На сьогодні ще потрібно випити: " + remainingML + " мл");

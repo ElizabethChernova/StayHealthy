@@ -137,4 +137,14 @@ public class Person {
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
+
+    public Data getCurrentDataOfProgram() {
+        return currentDataOfProgram;
+    }
+
+    public void setCurrentDataOfProgram(Data currentDataOfProgram) {
+        this.currentDataOfProgram = currentDataOfProgram;
+    }
+
+    private Data currentDataOfProgram=new Data(0,0,0);
 }
