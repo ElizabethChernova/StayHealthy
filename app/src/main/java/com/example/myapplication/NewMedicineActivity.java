@@ -83,9 +83,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         times.setMaxValue(20);
         times.setMinValue(1);
 
-        alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
-        alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
-        notification = (RadioButton) findViewById(R.id.radio_button_notification);
+        toggleButton =  findViewById(R.id.alarmToggle);
         timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
 
         toggleButton =  findViewById(R.id.alarmToggle);
@@ -122,7 +120,7 @@ public class NewMedicineActivity extends AppCompatActivity {
 
         boolean alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
                 notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
-        alarm.setChecked(alarmUp);
+       // alarm.setChecked(alarmUp);
 
         final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
                 (this, NOTIFICATION_ID, notifyIntent,
@@ -301,7 +299,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         String nameGetString = name.getText().toString();
         String doseString = dose.getText().toString();
 
-        if (((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
+        if (doseString.matches("") || nameGetString.matches("")) {
             return true;
         }
         return false;
