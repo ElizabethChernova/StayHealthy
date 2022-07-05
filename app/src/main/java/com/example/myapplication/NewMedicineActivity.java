@@ -163,6 +163,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                             Toast.makeText(NewMedicineActivity.this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
                         }else{
+                            saveNewMedicine();
                             String toastMessage;
                             if (isChecked) {
                                 long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
@@ -218,7 +219,8 @@ public class NewMedicineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // додаємо ліки у список
-                saveNewMedicine(view);
+                if(!toggleButton.isChecked()){
+                saveNewMedicine();}
 
                 Intent replyIntent = new Intent();
                 replyIntent.putExtra(EXTRA_REPLY, info);
@@ -364,7 +366,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         }
         return false;
     }
-    private void saveNewMedicine(View view) {
+    private void saveNewMedicine( ) {
 
         if (checkIfSomethingIsMissing()) {
         
