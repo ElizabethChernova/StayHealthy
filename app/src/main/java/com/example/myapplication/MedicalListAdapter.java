@@ -39,7 +39,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             holder.name.setText(current.getName() + ", "+current.getDose()+"мг");
             holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
-            holder.days.setText("Ще лишилось: " + current.getNumberOfDays() + " д");
+            holder.days.setText("Ще лишилось днів: " + current.getNumberOfDays());
             if (!current.getComment().equals("")) {
                 holder.comment.setVisibility(View.VISIBLE);
                 holder.comment.setText("Коментар: " + current.getComment());

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.example.entities.Storage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private  MedicalListAdapter adapter;
     private List<Pill> pillsFromJson = new ArrayList<Pill>();
+
+    public static final String EXTRA_REPLY = "com.example.android.StayHealthy.REPLY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +128,22 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case 121:
                 //TODO редагувати
+                Intent intent = new Intent(this, EditMedicineActivity.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putString("name", person.getPills().get(item.getGroupId()).getName());
+                mBundle.putString("dose", String.valueOf(person.getPills().get(item.getGroupId()).getDose()));
+                mBundle.putString("depend", person.getPills().get(item.getGroupId()).getDependency());
+                mBundle.putString("times", String.valueOf(person.getPills().get(item.getGroupId()).getTimesPerDay()));
+                mBundle.putString("numberOfDays", String.valueOf(person.getPills().get(item.getGroupId()).getNumberOfDays()));
+
+                // mBundle.putParcelableArrayList("arrayListTime", person.getPills().get(item.getGroupId()).getTimes());
+                mBundle.putString("alarmNot", String.valueOf(person.getPills().get(item.getGroupId()).getAlarmType()));
+                mBundle.putString("comment", person.getPills().get(item.getGroupId()).getComment());
+                mBundle.putString("dependencyTime", String.valueOf(person.getPills().get(item.getGroupId()).getDependencyTime()));
+
+
+                intent.putExtras(mBundle);
+                startActivity(intent);
                 return true;
             case 122:
                 adapter.removeItem(item.getGroupId());
