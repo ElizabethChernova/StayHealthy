@@ -434,7 +434,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 });
 
                 Storage.exportToJSON(this, person);
-                Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Збережено налаштування", Toast.LENGTH_SHORT).show();
 
             } else {
                 Toast.makeText(this, "PLease make your personal profile at first", Toast.LENGTH_SHORT).show();
