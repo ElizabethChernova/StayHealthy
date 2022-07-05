@@ -37,6 +37,8 @@ import com.example.entities.Time;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class NewMedicineActivity extends AppCompatActivity {
 
@@ -335,6 +337,12 @@ public class NewMedicineActivity extends AppCompatActivity {
             person = Storage.importFromJSON(this);
             if (person != null) {
                 newPill.countTimeSlots();
+                Collections.sort(person.getPills(), new Comparator<Pill>() {
+                    @Override
+                    public int compare(Pill pill1, Pill pill2) {
+                        return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+                    }
+                });
                 person.addPill(newPill);
                 Storage.exportToJSON(this, person);
                 Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();

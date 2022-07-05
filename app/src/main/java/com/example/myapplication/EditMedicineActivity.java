@@ -27,6 +27,8 @@ import com.example.entities.Pill;
 import com.example.entities.Storage;
 import com.example.entities.Time;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EditMedicineActivity extends AppCompatActivity {
 
@@ -126,9 +128,9 @@ public class EditMedicineActivity extends AppCompatActivity {
                 for (View timePicker : arrayListOfTimePicker) {
                     newPill.addUserTime(new Time(((TimePicker) timePicker).getHour(), ((TimePicker) timePicker).getMinute()));
                 }
-                if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_notification)
+                if(toggleButton.isChecked())
                     newPill.setAlarmType('A');
-                else if (alarmType.getCheckedRadioButtonId() == R.id.radio_button_alarm)
+                else
                     newPill.setAlarmType('N');
 //                person.getPills().get(positionInList).setTimesPerDay(times.getValue());
 //                person.getPills().get(positionInList).setComment(comment.getText().toString());
@@ -152,6 +154,12 @@ public class EditMedicineActivity extends AppCompatActivity {
                     int positionInList = extras.getInt("position");
                     newPill.countTimeSlots();
                     person.getPills().set(positionInList, newPill);
+                    Collections.sort(person.getPills(), new Comparator<Pill>() {
+                        @Override
+                        public int compare(Pill pill1, Pill pill2) {
+                            return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+                        }
+                    });
                     Storage.exportToJSON(view.getContext(), person);
                 }
 
