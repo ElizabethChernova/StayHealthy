@@ -93,7 +93,6 @@ public class FeelingActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO зберегти динні в json!
                 saveNewNote(view);
                 person= Storage.importFromJSON(FeelingActivity.this);
 

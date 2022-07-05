@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.entities.Note;
+import com.example.entities.Person;
 import com.example.entities.Pill;
+import com.example.entities.Storage;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -110,12 +112,19 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
                 linearComment.setVisibility(View.VISIBLE);
                 ratingBar.setIsIndicator(false);
 
-                //TODO changes in json (changes in comment and ratingBar)
+
             }
             else{
                 alreadyOpen=false;
                 linearComment.setVisibility(View.GONE);
+                ratingBar.setIsIndicator(true);
+                Person p=Storage.importFromJSON(view.getContext());
+                p.getNotes().get(p.getNotes().size()-1-getAdapterPosition()).setComment(comment.getText().toString());
+                p.getNotes().get(p.getNotes().size()-1-getAdapterPosition()).setRate(ratingBar.getRating());
+                Storage.exportToJSON(view.getContext(), p);
+
             }
+
         }
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
