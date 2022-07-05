@@ -19,7 +19,10 @@ public class Time implements Comparable<Time>, Serializable {
         this.minutes = minutes;
     }
 
-    private int hours, minutes;
+    private int hours;
+    private int minutes;
+
+
 
     @Override
     public String toString() {

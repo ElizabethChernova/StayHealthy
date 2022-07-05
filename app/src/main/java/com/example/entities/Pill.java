@@ -170,7 +170,28 @@ public class Pill {
         return times;
     }
 
+    public int getCurrentTimesPerDay() {
+        return currentTimesPerDay;
+    }
+
+    public void setCurrentTimesPerDay(int currentTimesPerDay) {
+        this.currentTimesPerDay = currentTimesPerDay;
+    }
+
+    private int currentTimesPerDay=0;
+
     public void setTimes(ArrayList<Time> times) {
         this.times = times;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status=0;
+
 }

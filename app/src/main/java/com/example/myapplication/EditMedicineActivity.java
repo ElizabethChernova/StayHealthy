@@ -188,7 +188,24 @@ public class EditMedicineActivity extends AppCompatActivity {
                     Collections.sort(person.getPills(), new Comparator<Pill>() {
                         @Override
                         public int compare(Pill pill1, Pill pill2) {
-                            return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+                            return Integer.compare(pill1.getStatus(),pill2.getStatus());
+                        }
+                    });
+                    Collections.sort(person.getPills(), new Comparator<Pill>() {
+                        @Override
+                        public int compare(Pill pill1, Pill pill2) {
+                            if (pill1.getStatus() < pill2.getStatus())
+                                return -1;
+                            if (pill1.getStatus() > pill2.getStatus())
+                                return 1;
+                            else{
+                                if (pill1.getTimes().get(0).getHours()<pill2.getTimes().get(0).getHours()) return -1;
+                                if (pill1.getTimes().get(0).getHours()>pill2.getTimes().get(0).getHours()) return 1;
+                                else{
+                                    return Integer.compare(pill1.getTimes().get(0).getMinutes(),pill2.getTimes().get(0).getMinutes());
+                                }
+
+                            }
                         }
                     });
                     Storage.exportToJSON(view.getContext(), person);

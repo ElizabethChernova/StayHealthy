@@ -14,19 +14,27 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.entities.Person;
 import com.example.entities.Pill;
+import com.example.entities.Storage;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.MedicalViewHolder> {
 
     private final LayoutInflater mInflater;
     private List<Pill> pills; // Cached copy of words
+    private Person person;
+    private Context myContext;
 
     MedicalListAdapter(Context context, List<Pill> pills) {
         mInflater = LayoutInflater.from(context);
         this.pills=pills;
+        person= Storage.importFromJSON(context);
+        myContext=context;
     }
 
     @Override
@@ -39,6 +47,14 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
     public void onBindViewHolder(MedicalViewHolder holder, int position) {
         if (pills != null) {
             Pill current = pills.get(position);
+            if(current.getStatus()==1) {
+                holder.item.setBackgroundColor(Color.parseColor("#B9BCBC"));
+                holder.switchDone.setVisibility(View.GONE);
+            }
+            else{
+                holder.item.setBackgroundColor(Color.parseColor("#C4EDEB"));
+                holder.switchDone.setVisibility(View.VISIBLE);
+            }
             holder.name.setText(current.getName() + ", "+current.getDose()+"мг");
             holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
@@ -122,11 +138,59 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             contextMenu.add(this.getAdapterPosition(), 122,1,"Видалити");
         }
 
+
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if(isChecked){
                 //todo skip item to end
-                item.setBackgroundColor(Color.parseColor("#B9BCBC"));
+                person.getPills().get(getAdapterPosition()).setCurrentTimesPerDay(person.getPills().get(getAdapterPosition()).getCurrentTimesPerDay()+1);
+                if(person.getPills().get(getAdapterPosition()).getCurrentTimesPerDay()<person.getPills().get(getAdapterPosition()).getTimesPerDay()){
+                    //swipe used time to the end of array list? make next time on the top of the list
+                    person.getPills().get(getAdapterPosition()).getTimes().add(person.getPills().get(getAdapterPosition()).getTimes().remove(0));
+                    item.setBackgroundColor(Color.parseColor("#C4EDEB"));
+                }
+                else{
+                    person.getPills().get(getAdapterPosition()).getTimes().add(person.getPills().get(getAdapterPosition()).getTimes().remove(0));
+                    item.setBackgroundColor(Color.parseColor("#B9BCBC"));
+                    person.getPills().get(getAdapterPosition()).setStatus(1);
+                    compoundButton.setVisibility(View.GONE);
+                }
+
+
+                Collections.sort(person.getPills(), new Comparator<Pill>() {
+                    @Override
+                    public int compare(Pill pill1, Pill pill2) {
+                        return Integer.compare(pill1.getStatus(),pill2.getStatus());
+                    }
+                });
+
+                Collections.sort(person.getPills(), new Comparator<Pill>() {
+                    @Override
+                    public int compare(Pill pill1, Pill pill2) {
+                        if (pill1.getStatus() < pill2.getStatus())
+                            return -1;
+                        if (pill1.getStatus() > pill2.getStatus())
+                            return 1;
+                        else{
+                            if (pill1.getTimes().get(0).getHours()<pill2.getTimes().get(0).getHours()) return -1;
+                            if (pill1.getTimes().get(0).getHours()>pill2.getTimes().get(0).getHours()) return 1;
+                            else{
+                                return Integer.compare(pill1.getTimes().get(0).getMinutes(),pill2.getTimes().get(0).getMinutes());
+                            }
+
+                        }
+                    }
+                });
+//                Collections.sort(person.getPills(), new Comparator<Pill>() {
+//                    @Override
+//                    public int compare(Pill pill1, Pill pill2) {
+//                        return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
+//                    }
+//                });
+                Storage.exportToJSON(myContext,person);
+                compoundButton.setChecked(false);
+                time.setText(person.getPills().get(0).getTimes().get(0).toString());
+
             }else{
                 //todo skip item to start
                 item.setBackgroundColor(Color.parseColor("#C4EDEB"));
