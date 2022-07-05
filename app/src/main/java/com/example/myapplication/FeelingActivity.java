@@ -7,6 +7,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -225,13 +227,27 @@ public class FeelingActivity extends AppCompatActivity {
             person.addNote(myNote);
             Storage.exportToJSON(this, person);
         }
+        else showDialog(view);
     }
-
+    public void showDialog(View view) {
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle("Некоректні дії");
+        ad.setMessage("Перед додаванням нотаток заповніть профіль користувача");
+        ad.setIcon(R.drawable.ic_warning);
+        ad.setPositiveButton("Зрозуміло", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        ad.create().show();
+    }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case 122:
+
                 adapter.removeItem(item.getGroupId());
                 person=Storage.importFromJSON(this);
                 if(person!=null) {

@@ -7,6 +7,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -63,12 +66,6 @@ public class MainActivity extends AppCompatActivity {
             pillsFromJson=person.getPills();
         }
 
-//        Collections.sort(pillsFromJson, new Comparator<Pill>() {
-//            @Override
-//            public int compare(Pill pill1, Pill pill2) {
-//                return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
-//            }
-//        });
 
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new MedicalListAdapter(this, pillsFromJson);
@@ -108,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -125,30 +124,18 @@ public class MainActivity extends AppCompatActivity {
             if(person!=null){
                 pillsFromJson=person.getPills();
             }
-//            Collections.sort(pillsFromJson, new Comparator<Pill>() {
-//                @Override
-//                public int compare(Pill pill1, Pill pill2) {
-//                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
-//                }
-//            });
+
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
         if (requestCode == EDIT_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
-            //todo save changes in json
             person= Storage.importFromJSON(this);
 
             if(person!=null){
                 pillsFromJson=person.getPills();
             }
-//            Collections.sort(pillsFromJson, new Comparator<Pill>() {
-//                @Override
-//                public int compare(Pill pill1, Pill pill2) {
-//                    return pill1.getUserTimes().get(0).compareTo(pill2.getUserTimes().get(0));
-//                }
-//            });
 
             adapter = new MedicalListAdapter(this, pillsFromJson);
             recyclerView.setAdapter(adapter);
