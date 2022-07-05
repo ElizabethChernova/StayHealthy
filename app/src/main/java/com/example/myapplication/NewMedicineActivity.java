@@ -241,14 +241,12 @@ public class NewMedicineActivity extends AppCompatActivity {
             }
         });
 
+
         times.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal ) {
-                for(int i=arrayListOfTimePicker.size(); i<newVal; i++)
-                {
-                    arrayListOfTimePicker.add(new TimePicker(NewMedicineActivity.this));
-                }
-                layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                number = newVal;
+
             }
         });
 
