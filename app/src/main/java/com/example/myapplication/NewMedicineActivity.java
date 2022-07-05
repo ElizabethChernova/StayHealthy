@@ -398,6 +398,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
             if (person != null) {
+                person.addPill(newPill);
                 newPill.countTimeSlots();
                 Collections.sort(person.getPills(), new Comparator<Pill>() {
                     @Override
@@ -422,7 +423,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                         }
                     }
                 });
-                person.addPill(newPill);
+
                 Storage.exportToJSON(this, person);
                 Toast.makeText(this, "Додали пігулку", Toast.LENGTH_SHORT).show();
 
