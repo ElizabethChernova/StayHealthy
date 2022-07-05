@@ -4,16 +4,21 @@ import static com.example.myapplication.MainActivity.info;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.MotionEvent;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -23,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.entities.Person;
 import com.example.entities.Pill;
@@ -30,8 +36,19 @@ import com.example.entities.Storage;
 import com.example.entities.Time;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class NewMedicineActivity extends AppCompatActivity {
+
+
+    // Notification ID.
+    private static final int NOTIFICATION_ID = 0;
+    // Notification channel ID.
+    private static final String PRIMARY_CHANNEL_ID =
+            "primary_notification_channel";
+    private NotificationManager mNotificationManager;
+
+
     Person person;
     private EditText name, dose, comment, dependencyTime;
     private NumberPicker times, numberOfDays;
@@ -44,7 +61,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     Pill newPill;
     private LinearLayout layout;
     private LinearLayout timeLayout;
-
+    ToggleButton alarmToggle;
     private LinearLayout layoutWithTimePickers;
     private ArrayList<View> arrayListOfTimePicker = new ArrayList<>();
 
@@ -57,9 +74,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
 
-        this.setTheme(R.style.TimePicker);
-
-        timeToPills = findViewById(R.id.timePickerEatPills);
+        timeToPills = this.findViewById(R.id.timePickerEatPills);
         timeToPills.setIs24HourView(true);
         arrayListOfTimePicker.add(timeToPills);
         name = (EditText) findViewById(R.id.edit_med_name);
@@ -71,8 +86,9 @@ public class NewMedicineActivity extends AppCompatActivity {
         alarmType = (RadioGroup) findViewById(R.id.radio_group_alarmType);
         alarm = (RadioButton) findViewById(R.id.radio_button_alarm);
         notification = (RadioButton) findViewById(R.id.radio_button_notification);
+        timeToPills = (TimePicker) findViewById(R.id.timePickerEatPills);
         timeLayout = findViewById(R.id.field_time);
-        numberOfDays = findViewById(R.id.edit_number_of_days);
+        numberOfDays=  findViewById(R.id.edit_number_of_days);
         numberOfDays.setMaxValue(365);
         numberOfDays.setMinValue(1);
         comment = (EditText) findViewById(R.id.editTextСomment);
@@ -91,6 +107,90 @@ public class NewMedicineActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         spinner.setSelection(5);
 
+
+
+
+        mNotificationManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+
+         alarmToggle = findViewById(R.id.alarmToggle);
+
+        // Set up the Notification Broadcast Intent.
+        Intent notifyIntent = new Intent(this, AlarmReceiver.class);
+
+        boolean alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
+        alarm.setChecked(alarmUp);
+
+        final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
+                (this, NOTIFICATION_ID, notifyIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+        final AlarmManager alarmManager = (AlarmManager) getSystemService
+                (ALARM_SERVICE);
+
+        // Set the click listener for the toggle button.
+        alarmToggle.setOnCheckedChangeListener
+                (new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged
+                            (CompoundButton buttonView, boolean isChecked) {
+
+
+                        if (checkIfSomethingIsMissing()) {
+                            Toast.makeText(NewMedicineActivity.this, "You did not enter everything", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                        String toastMessage;
+                        if (isChecked) {
+                            long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+                            Calendar alarmStartTime = Calendar.getInstance();
+                            alarmStartTime.setTimeInMillis(System.currentTimeMillis());
+                            Calendar now = Calendar.getInstance();
+                            alarmStartTime.set(Calendar.HOUR_OF_DAY, 12);
+                            alarmStartTime.set(Calendar.MINUTE, 31 );
+                            alarmStartTime.set(Calendar.SECOND, 0);
+
+                            long triggerTime = alarmStartTime.getTimeInMillis();
+                            //SystemClock.elapsedRealtime() + repeatInterval;
+
+                            // If the Toggle is turned on, set the repeating alarm with
+                            // a 15 minute interval.
+                            if (alarmManager != null) {
+                                long thirtySecondsFromNow = System.currentTimeMillis() + 50 * 1000;
+                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 10000, notifyPendingIntent);
+                           /*     alarmManager.setRepeating
+                                        (AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                                                triggerTime, repeatInterval,
+                                                notifyPendingIntent);*/
+                            }
+                            // Set the toast message for the "on" case.
+                            toastMessage = getString(R.string.alarm_on_toast);
+
+                        } else {
+                            // Cancel notification if the alarm is turned off.
+                            mNotificationManager.cancelAll();
+
+                            if (alarmManager != null) {
+                                alarmManager.cancel(notifyPendingIntent);
+                            }
+                            // Set the toast message for the "off" case.
+                            toastMessage = getString(R.string.alarm_off_toast);
+
+                        }
+
+                        // Show a toast to say the alarm is turned on or off.
+                        Toast.makeText(NewMedicineActivity.this, toastMessage,
+                                Toast.LENGTH_SHORT).show();
+                    }}
+                });
+
+        // Create the notification channel.
+        createNotificationChannel();
+
+
+
+
         add = findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +205,7 @@ public class NewMedicineActivity extends AppCompatActivity {
             }
         });
         open();
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -142,9 +243,12 @@ public class NewMedicineActivity extends AppCompatActivity {
 
         times.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                number = newVal;
-
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal ) {
+                for(int i=arrayListOfTimePicker.size(); i<newVal; i++)
+                {
+                    arrayListOfTimePicker.add(new TimePicker(NewMedicineActivity.this));
+                }
+                layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
             }
         });
 
@@ -191,11 +295,17 @@ public class NewMedicineActivity extends AppCompatActivity {
     private void open() {
         person = Storage.importFromJSON(this);
     }
-
+private boolean checkIfSomethingIsMissing(){
+    String nameGetString = name.getText().toString();
+    String doseString = dose.getText().toString();
+    if (((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
+      return true;
+    }
+    return false;
+}
     private void saveNewMedicine(View view) {
-        String nameGetString = name.getText().toString();
-        String doseString = dose.getText().toString();
-        if (((alarmType.getCheckedRadioButtonId() != R.id.radio_button_alarm) && alarmType.getCheckedRadioButtonId() != R.id.radio_button_notification) || doseString.matches("") || nameGetString.matches("")) {
+
+        if (checkIfSomethingIsMissing()) {
             Toast.makeText(this, "You did not enter everything", Toast.LENGTH_SHORT).show();
 
         }
@@ -236,4 +346,33 @@ public class NewMedicineActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Creates a Notification channel, for OREO and higher.
+     */
+    public void createNotificationChannel() {
+
+        // Create a notification manager object.
+        mNotificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        // Notification channels are only available in OREO and higher.
+        // So, add a check on SDK version.
+        if (android.os.Build.VERSION.SDK_INT >=
+                android.os.Build.VERSION_CODES.O) {
+
+            // Create the NotificationChannel with all the parameters.
+            NotificationChannel notificationChannel = new NotificationChannel
+                    (PRIMARY_CHANNEL_ID,
+                            "Stand up notification",
+                            NotificationManager.IMPORTANCE_HIGH);
+
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setDescription("Notifies every 15 minutes to " +
+                    "stand up and walk");
+            mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 }
