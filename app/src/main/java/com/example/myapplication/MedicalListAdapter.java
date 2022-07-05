@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,12 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
                 holder.comment.setVisibility(View.GONE);
                 holder.comment.setText("");
             }
-           // holder.priority.setBackgroundColor();
+            if(current.getAlarmType()=='A')
+            {
+                holder.priority.setBackgroundColor(Color.parseColor("#ED786F"));
+            }else{
+                holder.priority.setBackgroundColor(Color.parseColor("#BCAFAE"));
+            }
         } else {
             // Covers the case of data not being ready yet.
             holder.name.setText("No name");
@@ -86,6 +92,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             additionField = itemView.findViewById(R.id.additionScreen);
             days = itemView.findViewById(R.id.daysNeedToEat);
             comment = itemView.findViewById(R.id.comment);
+
 
             item.setOnCreateContextMenuListener(this);
             item.setOnClickListener(this);
