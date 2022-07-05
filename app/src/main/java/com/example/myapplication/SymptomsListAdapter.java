@@ -106,12 +106,14 @@ public class SymptomsListAdapter  extends RecyclerView.Adapter<SymptomsListAdapt
         @Override
         public void onClick(View view) {
             if(!alreadyOpen){
+                alreadyOpen=true;
                 linearComment.setVisibility(View.VISIBLE);
                 ratingBar.setIsIndicator(false);
 
                 //TODO changes in json (changes in comment and ratingBar)
             }
             else{
+                alreadyOpen=false;
                 linearComment.setVisibility(View.GONE);
             }
         }

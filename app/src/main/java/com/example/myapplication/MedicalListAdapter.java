@@ -36,10 +36,18 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
     public void onBindViewHolder(MedicalViewHolder holder, int position) {
         if (pills != null) {
             Pill current = pills.get(position);
-            holder.name.setText(current.getName() + ", доза: "+current.getDose()+"мл");
+            holder.name.setText(current.getName() + ", "+current.getDose()+"мг");
             holder.time.setText(current.getTimes().get(0).toString());
             holder.dependency.setText(current.getDependency());
-
+            holder.days.setText("Ще лишилось: " + current.getNumberOfDays() + " д");
+            if (!current.getComment().equals("")) {
+                holder.comment.setVisibility(View.VISIBLE);
+                holder.comment.setText("Коментар: " + current.getComment());
+            }
+            else {
+                holder.comment.setVisibility(View.GONE);
+                holder.comment.setText("");
+            }
            // holder.priority.setBackgroundColor();
         } else {
             // Covers the case of data not being ready yet.
@@ -56,12 +64,17 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         else return 0;
     }
 
-    class MedicalViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    class MedicalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
         private final TextView name;
         private final TextView time;
         private final TextView dependency;
         private final ShapeableImageView priority;
         private final LinearLayout item;
+        private final LinearLayout additionField;
+        private final TextView days;
+        private final TextView comment;
+
+        private boolean alreadyOpen=false;
 
         private MedicalViewHolder(View itemView) {
             super(itemView);
@@ -70,9 +83,27 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
             dependency = itemView.findViewById(R.id.condition);
             priority = itemView.findViewById(R.id.priority);
             item =  itemView.findViewById(R.id.item);
+            additionField = itemView.findViewById(R.id.additionScreen);
+            days = itemView.findViewById(R.id.daysNeedToEat);
+            comment = itemView.findViewById(R.id.comment);
+
             item.setOnCreateContextMenuListener(this);
+            item.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            if(!alreadyOpen){
+                alreadyOpen=true;
+                additionField.setVisibility(View.VISIBLE);
+
+
+            }
+            else{
+                alreadyOpen=false;
+                additionField.setVisibility(View.GONE);
+            }
+        }
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             contextMenu.add(this.getAdapterPosition(), 121,0,"Редагувати");
