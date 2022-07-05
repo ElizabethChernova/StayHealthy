@@ -2,10 +2,12 @@ package com.example.myapplication;
 
 import static com.example.myapplication.MainActivity.info;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.app.AlarmManager;
@@ -77,6 +79,7 @@ public class NewMedicineActivity extends AppCompatActivity {
     int hour,minute;
 
     private Button timeButton;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,6 +173,8 @@ public class NewMedicineActivity extends AppCompatActivity {
                                 Calendar alarmStartTime = Calendar.getInstance();
                                 alarmStartTime.setTimeInMillis(System.currentTimeMillis());
                                 Calendar now = Calendar.getInstance();
+                                //ArrayList<Pill> pills=Storage.importFromJSON(NewMedicineActivity.this).getPills();
+                            //    int hours= pills.get(pills.size()-1).getTimes().get(0).getHours();
                                 alarmStartTime.set(Calendar.HOUR_OF_DAY, 12);
                                 alarmStartTime.set(Calendar.MINUTE, 31 );
                                 alarmStartTime.set(Calendar.SECOND, 0);
@@ -275,6 +280,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         });
 
         times.setOnTouchListener(new View.OnTouchListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 //Log.e("TAG", event.getX()+" "+event.getY());
