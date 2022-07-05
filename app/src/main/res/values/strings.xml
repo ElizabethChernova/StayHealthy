@@ -7,11 +7,5 @@
     <string name="appetite">Втрата апетиту</string>
     <string name="digestive_problems">Проблеми травлення</string>
     <string name="bad_mood">Погіршення настрою</string>
-    <string name="notification_title">take pill</string>
-    <string name="notification_text">you need to take pill</string>
-    <string name="alarm_off">no notific.</string>
-    <string name="alarm_on">notific on</string>
-    <string name="alarm_on_toast">Notifications on</string>
-    <string name="alarm_off_toast">notifications off</string>
 
 </resources>
