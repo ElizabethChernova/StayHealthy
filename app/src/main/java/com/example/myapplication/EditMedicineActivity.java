@@ -28,6 +28,8 @@ import com.example.entities.Person;
 import com.example.entities.Pill;
 import com.example.entities.Storage;
 import com.example.entities.Time;
+
+import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -272,7 +274,11 @@ public class EditMedicineActivity extends AppCompatActivity {
                             for (int i = arrayListOfTimePicker.size(); i < number; i++) {
                                 Button timePickerButton = new Button(EditMedicineActivity.this);
 //                    timePicker= findViewById(R.id.timePickerEatPills);
-                                timePickerButton.setText("Час");
+                                if(OffsetTime.now().getMinute()<10)
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+                                else
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
+
                                 timePickerButton.setBackgroundColor(Color.parseColor("#C4EDEB"));
                                 timePickerButton.setTextColor(Color.parseColor("#00857D"));
                                 timePickerButton.setHeight(45);

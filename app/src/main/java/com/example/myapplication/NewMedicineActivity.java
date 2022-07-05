@@ -37,6 +37,7 @@ import com.example.entities.Pill;
 import com.example.entities.Storage;
 import com.example.entities.Time;
 
+import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -84,8 +85,22 @@ public class NewMedicineActivity extends AppCompatActivity {
 
 //        timeToPills = this.findViewById(R.id.timePickerEatPills);
 //        timeToPills.setIs24HourView(true);
-        timeButton = this.findViewById(R.id.timeButton);
+        LinearLayout layoutWithTimePickersAndText = findViewById(R.id.field_time);
+        layoutWithTimePickers = findViewById(R.id.timePickers);
+        layoutWithTimePickers.removeAllViewsInLayout();
+        timeButton  = new Button(NewMedicineActivity.this);
+        if(OffsetTime.now().getMinute()<10)
+            timeButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+        else
+            timeButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
+
+        timeButton.setBackgroundColor(Color.parseColor("#C4EDEB"));
+        timeButton.setTextColor(Color.parseColor("#00857D"));
+        timeButton.setHeight(35);
         arrayListOfTimePicker.add(timeButton);
+        layoutWithTimePickers.addView(arrayListOfTimePicker.get(0));
+        layoutWithTimePickersAndText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
         name = (EditText) findViewById(R.id.edit_med_name);
         dose = (EditText) findViewById(R.id.edit_dose);
         comment = (EditText) findViewById(R.id.editTextСomment);
@@ -103,10 +118,8 @@ public class NewMedicineActivity extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.editTextСomment);
         dependencyTime = (EditText) findViewById(R.id.edit_minute);
 
-
-        layoutWithTimePickers = findViewById(R.id.timePickers);
         //     layoutWithTimePickers.addChildrenForAccessibility(arrayListOfTimePicker);
-        LinearLayout layoutWithTimePickersAndText = findViewById(R.id.field_time);
+
 
         // адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dependency);
@@ -274,8 +287,10 @@ public class NewMedicineActivity extends AppCompatActivity {
                         if (arrayListOfTimePicker.size() <= number) {
                             for (int i = arrayListOfTimePicker.size(); i < number; i++) {
                                 Button timePickerButton = new Button(NewMedicineActivity.this);
-//                    timePicker= findViewById(R.id.timePickerEatPills);
-                                timePickerButton.setText("Час");
+                                if(OffsetTime.now().getMinute()<10)
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+                                else
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
                                 timePickerButton.setBackgroundColor(Color.parseColor("#C4EDEB"));
                                 timePickerButton.setTextColor(Color.parseColor("#00857D"));
                                 timePickerButton.setHeight(35);
