@@ -101,7 +101,7 @@ public class FeelingActivity extends AppCompatActivity {
                 if(person!=null){
                     notesFromJson=person.getNotes();
                 }
-
+                comment.setText("");
                 recyclerView = findViewById(R.id.recyclerview);
                 adapter = new SymptomsListAdapter(notesFromJson);
                 recyclerView.setAdapter(adapter);
