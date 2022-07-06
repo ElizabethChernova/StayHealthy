@@ -461,14 +461,13 @@ public class NewMedicineActivity extends AppCompatActivity {
             // Create the NotificationChannel with all the parameters.
             NotificationChannel notificationChannel = new NotificationChannel
                     (PRIMARY_CHANNEL_ID,
-                            "Stand up notification",
+                            "Pill notification",
                             NotificationManager.IMPORTANCE_HIGH);
 
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
             notificationChannel.enableVibration(true);
-            notificationChannel.setDescription("Notifies every 15 minutes to " +
-                    "stand up and walk");
+            notificationChannel.setDescription("Take pill");
             mNotificationManager.createNotificationChannel(notificationChannel);
         }
     }
