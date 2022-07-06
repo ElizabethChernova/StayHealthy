@@ -174,7 +174,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                                 alarmStartTime.setTimeInMillis(System.currentTimeMillis());
                                 Calendar now = Calendar.getInstance();
                                 ArrayList<Pill> pills=Storage.importFromJSON(NewMedicineActivity.this).getPills();
-                                for(int i=0; i<pills.size();i++){
+                                for(int i=0; i<pills.get(pills.size()-1).getTimes().size();i++){
                                     int hours= pills.get(pills.size()-1).getTimes().get(i).getHours();
                                     int minutes= pills.get(pills.size()-1).getTimes().get(i).getMinutes();
                                     alarmStartTime.set(Calendar.HOUR_OF_DAY, hours);
