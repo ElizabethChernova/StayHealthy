@@ -203,7 +203,7 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         notifyDataSetChanged();
     }
 
-    public void changeToNextDay(){
+    public static void changeToNextDay(){
         person=Storage.importFromJSON(myContext);
 
         if(person!=null){

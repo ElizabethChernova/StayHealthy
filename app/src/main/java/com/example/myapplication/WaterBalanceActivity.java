@@ -75,7 +75,7 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 remainingML = neededMLInDay;
                 person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
                 Storage.exportToJSON(this,person);
-                //MedicalListAdapter.changeToNextDay();
+                MedicalListAdapter.changeToNextDay();
             }
 
             else remainingML = person.getCurrentAmountOfWater();

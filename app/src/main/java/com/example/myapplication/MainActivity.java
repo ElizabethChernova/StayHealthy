@@ -72,15 +72,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new MedicalListAdapter(this, pillsFromJson);
 
-        if(person!=null) {
-            if ((person.getCurrentDataOfProgram().getYear() == 0) && (person.getCurrentDataOfProgram().getMonth() == 0) && (person.getCurrentDataOfProgram().getDay() == 0)) {
-                person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
-                Storage.exportToJSON(this, person);
-            } else if (person.getCurrentDataOfProgram().getDay() != OffsetDateTime.now().getDayOfMonth() || person.getCurrentDataOfProgram().getMonth() != OffsetDateTime.now().getMonthValue() || person.getCurrentDataOfProgram().getYear() != OffsetDateTime.now().getYear()) {
-                adapter.changeToNextDay();
-                person.setCurrentDataOfProgram(new Data(1, 1, 1));
-            }
-        }
+//        if(person!=null) {
+//            if ((person.getCurrentDataOfProgram().getYear() == 0) && (person.getCurrentDataOfProgram().getMonth() == 0) && (person.getCurrentDataOfProgram().getDay() == 0)) {
+//                person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
+//                Storage.exportToJSON(this, person);
+//            } else if (person.getCurrentDataOfProgram().getDay() != OffsetDateTime.now().getDayOfMonth() || person.getCurrentDataOfProgram().getMonth() != OffsetDateTime.now().getMonthValue() || person.getCurrentDataOfProgram().getYear() != OffsetDateTime.now().getYear()) {
+//                adapter.changeToNextDay();
+//                person.setCurrentDataOfProgram(new Data(1, 1, 1));
+//            }
+//        }
 
             recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
