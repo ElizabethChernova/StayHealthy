@@ -183,7 +183,7 @@ public class EditMedicineActivity extends AppCompatActivity {
                 Person person= Storage.importFromJSON(view.getContext());
                 if(person!=null) {
                     int positionInList = extras.getInt("position");
-                    newPill.countTimeSlots();
+                    newPill.countTimeSlots(person.getEnd());
                     person.getPills().set(positionInList, newPill);
                     Collections.sort(person.getPills(), new Comparator<Pill>() {
                         @Override

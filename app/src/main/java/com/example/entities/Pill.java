@@ -86,7 +86,7 @@ public class Pill {
         this.dose=dose;
         this.timesPerDay=timesPerDay;
         this.dependency =dependency;
-        countTimeSlots();
+        //countTimeSlots();
     }
 
     public Pill(String name, double dose, int timesPerDay, int numberOfDays, String dependency, int typeOfAlarm) {
@@ -101,10 +101,10 @@ public class Pill {
         else
             alarmType='A';
 
-        countTimeSlots();
+        //countTimeSlots();
     }
 
-    public void countTimeSlots(){
+    public void countTimeSlots(Time end){
         times=new ArrayList<>(timesPerDay);
 
         for (Time time:userTimes) {
@@ -116,11 +116,11 @@ public class Pill {
                 currentUserTime = currentUserTime.plusMinutes(dependencyTime);
             }
             if (dependency.equals("До сну")) {
-                currentUserTime = OffsetTime.of(Person.getEnd().getHours(), Person.getEnd().getMinutes(), 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = OffsetTime.of(end.getHours(), end.getMinutes(), 0, 0, OffsetTime.now().getOffset());
                 currentUserTime = currentUserTime.minusMinutes(dependencyTime);
             }
             if (dependency.equals("Після сну")) {
-                currentUserTime = OffsetTime.of(Person.getEnd().getHours(), Person.getEnd().getMinutes(), 0, 0, OffsetTime.now().getOffset());
+                currentUserTime = OffsetTime.of(end.getHours(), end.getMinutes(), 0, 0, OffsetTime.now().getOffset());
                 currentUserTime = currentUserTime.plusMinutes(dependencyTime);
             }
             times.add(new Time(currentUserTime.getHour(), currentUserTime.getMinute()));

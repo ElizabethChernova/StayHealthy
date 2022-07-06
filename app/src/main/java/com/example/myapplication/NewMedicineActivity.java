@@ -407,7 +407,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 newPill.setAlarmType('N');
             person = Storage.importFromJSON(this);
             if (person != null) {
-                newPill.countTimeSlots();
+                newPill.countTimeSlots(person.getEnd());
                 person.addPill(newPill);
                 Collections.sort(person.getPills(), new Comparator<Pill>() {
                     @Override

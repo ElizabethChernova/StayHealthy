@@ -87,7 +87,7 @@ public class Person {
         this.start = start;
     }
 
-    public static Time getEnd() {
+    public Time getEnd() {
         return end;
     }
 
@@ -102,7 +102,8 @@ public class Person {
         notes.add(note);
     }
 
-    private Time start=new Time(0,0);private static Time end=new Time(0,0);
+    private Time start=new Time(0,0);
+    private Time end=new Time(0,0);
 
     /**
      * age of person

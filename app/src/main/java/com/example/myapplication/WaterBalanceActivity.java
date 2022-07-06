@@ -64,13 +64,21 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 remainingML = neededMLInDay;
                 Storage.exportToJSON(this,person);
             }
+            if ((person.getCurrentDataOfProgram().getYear() == 1) && (person.getCurrentDataOfProgram().getMonth() == 1) && (person.getCurrentDataOfProgram().getDay() == 1)) {
+                person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
+                countWater();
+                remainingML = neededMLInDay;
+                Storage.exportToJSON(this,person);
+            }
             else if (person.getCurrentDataOfProgram().getDay() != OffsetDateTime.now().getDayOfMonth() || person.getCurrentDataOfProgram().getMonth() != OffsetDateTime.now().getMonthValue() || person.getCurrentDataOfProgram().getYear() != OffsetDateTime.now().getYear()){
                 countWater();
                 remainingML = neededMLInDay;
                 person.setCurrentDataOfProgram(new Data(OffsetDateTime.now().getDayOfMonth(), OffsetDateTime.now().getMonthValue(), OffsetDateTime.now().getYear()));
                 Storage.exportToJSON(this,person);
-                MedicalListAdapter.changeToNextDay();
-            } else remainingML = person.getCurrentAmountOfWater();
+                //MedicalListAdapter.changeToNextDay();
+            }
+
+            else remainingML = person.getCurrentAmountOfWater();
 
         } else {
             remainingML = neededMLInDay;
@@ -181,7 +189,6 @@ public class WaterBalanceActivity extends AppCompatActivity implements SeekBar.O
                 neededMLInDay = Storage.importFromJSON(this).getWeight() * 31;
             }
         }
-
 
     }
 }

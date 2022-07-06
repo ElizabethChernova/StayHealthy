@@ -27,8 +27,8 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
 
     private final LayoutInflater mInflater;
     private List<Pill> pills; // Cached copy of words
-    private Person person;
-    private Context myContext;
+    private static Person person;
+    private static Context myContext;
 
     MedicalListAdapter(Context context, List<Pill> pills) {
         mInflater = LayoutInflater.from(context);
@@ -203,8 +203,24 @@ public class MedicalListAdapter extends RecyclerView.Adapter<MedicalListAdapter.
         notifyDataSetChanged();
     }
 
-    public static void changeToNextDay(){
+    public void changeToNextDay(){
+        person=Storage.importFromJSON(myContext);
 
+        if(person!=null){
+            for(int i=0;i<person.getPills().size();i++) {
+                person.getPills().get(i).setNumberOfDays(person.getPills().get(i).getNumberOfDays()-1);
+                if(person.getPills().get(i).getNumberOfDays()<=0){
+                    person.getPills().remove(person.getPills().get(i));
+                }
+                else{
+                    person.getPills().get(i).setStatus(0);
+                }
+            }
+            Storage.exportToJSON(myContext,person);
+
+
+
+        }
     }
 }
 
