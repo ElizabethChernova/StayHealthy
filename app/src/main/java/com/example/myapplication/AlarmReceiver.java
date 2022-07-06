@@ -51,7 +51,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder
                 (context, PRIMARY_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stand_up)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(context.getString(R.string.notification_title))
                 .setContentText(context.getString(R.string.notification_text))
                 .setContentIntent(contentPendingIntent)
