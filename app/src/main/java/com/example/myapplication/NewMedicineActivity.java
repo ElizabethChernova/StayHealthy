@@ -93,7 +93,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         layoutWithTimePickers.removeAllViewsInLayout();
         timeButton  = new Button(NewMedicineActivity.this);
         if(OffsetTime.now().getMinute()<10)
-            timeButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+            timeButton.setText(OffsetTime.now().getHour()+":0"+OffsetTime.now().getMinute());
         else
             timeButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
 
@@ -297,7 +297,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                             for (int i = arrayListOfTimePicker.size(); i < number; i++) {
                                 Button timePickerButton = new Button(NewMedicineActivity.this);
                                 if(OffsetTime.now().getMinute()<10)
-                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":0"+OffsetTime.now().getMinute());
                                 else
                                     timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
                                 timePickerButton.setBackgroundColor(Color.parseColor("#C4EDEB"));

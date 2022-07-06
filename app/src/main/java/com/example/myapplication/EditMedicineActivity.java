@@ -89,7 +89,7 @@ public class EditMedicineActivity extends AppCompatActivity {
             Button timePickerButton = new Button(EditMedicineActivity.this);
 //                    timePicker= findViewById(R.id.timePickerEatPills);
             if(arrayListOfTimes.get(i).getMinutes()<10)
-                timePickerButton.setText(arrayListOfTimes.get(i).getHours() +":"+arrayListOfTimes.get(i).getMinutes()+"0");
+                timePickerButton.setText(arrayListOfTimes.get(i).getHours() +":0"+arrayListOfTimes.get(i).getMinutes());
             else
                 timePickerButton.setText(arrayListOfTimes.get(i).getHours() +":"+arrayListOfTimes.get(i).getMinutes());
             timePickerButton.setBackgroundColor(Color.parseColor("#C4EDEB"));
@@ -292,7 +292,7 @@ public class EditMedicineActivity extends AppCompatActivity {
                                 Button timePickerButton = new Button(EditMedicineActivity.this);
 //                    timePicker= findViewById(R.id.timePickerEatPills);
                                 if(OffsetTime.now().getMinute()<10)
-                                    timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute()+"0");
+                                    timePickerButton.setText(OffsetTime.now().getHour()+":0"+OffsetTime.now().getMinute());
                                 else
                                     timePickerButton.setText(OffsetTime.now().getHour()+":"+OffsetTime.now().getMinute());
 
